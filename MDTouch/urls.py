@@ -12,6 +12,11 @@ app_name = 'MDTouch'
 urlpatterns = [
     #url(r'^$',views.index, name='getstarted'),
     url(r'^$', views.IndexView.as_view(), name='index'),
+    url(r'^event/',views.eventpage,name='event'),
+    url(r'^appointments/eventdetail/(?P<event_id>[0-9]+)/', views.eventdetailview, name='eventdetail'),
+    url(r'^gallery',views.servicepage,name='gallery'),
+    url(r'^about',views.aboutpage,name='about'),
+    url(r'^services',views.servicepage,name='services'),
     url(r'^register/$', views.registerP, name='registerP'),
     url(r'^register/create$', views.createPLogIn, name='createPLogIn'),
     url(r'^password/$', views.password, name='password'),
@@ -57,7 +62,7 @@ urlpatterns = [
     url(r'^log/$', views.log, name='log'),
     url(r'^statistics/$', views.statistics, name='statistics'),
     url(r'^logOut/$', views.logOut, name='logOut'),
-    url(r'events/$',views.getevents,name='event'),
+    url(r'events/$',views.getevents,name='eventinview'),
     ##########API#####################
     path('api/hospital/', views.hospital_list),
     path('api/hospital/<int:pk>', views.hospital_detail),

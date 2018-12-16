@@ -2,9 +2,7 @@
 <html lang="en">
 {% load staticfiles %}
 
-<link rel="stylesheet" type="text/css" href="{% static 'HAccelerator/formPages.css' %}" />
 <link rel='shortcut icon' href={% static 'HAccelerator/images/favicon.ico' %} type='images/favicon' />
-
 <head>
 	<title>
 		MDTouch
@@ -12,7 +10,6 @@
 	<meta charset="utf-8" />
 	<meta name="theme-color" content="#3CB371">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-
     <meta name="keywords" content="" />
    <script>
         addEventListener("load", function () {
@@ -107,18 +104,18 @@ if(typeof _bsa !== 'undefined' && _bsa) {
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-lg-auto text-center">
                         <li class="nav-item active  mr-3 mt-lg-0 mt-3">
-                            <a class="nav-link" href="index.html">Home
+                            <a class="nav-link" href="{% url 'MDTouch:index' %}">Home
                                 <span class="sr-only">(current)</span>
                             </a>
                         </li>
                         <li class="nav-item  mr-3 mt-lg-0 mt-3">
-                            <a class="nav-link" href="services.html">services</a>
+                            <a class="nav-link" href="{% url 'MDTouch:event' %}">events</a>
                         </li>
                         <li class="nav-item mr-3 mt-lg-0 mt-3">
-                            <a class="nav-link" href="gallery.html">Gallery</a>
+                            <a class="nav-link" href="{% url 'MDTouch:services' %}">services</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="contact.html">Contact</a>
+                            <a class="nav-link" href="{% url 'MDTouch:about' %}">about</a>
                         </li>
                         <li>
                             <button type="button" class="btn  ml-lg-2 w3ls-btn" data-toggle="modal" aria-pressed="false" data-target="#exampleModal">
@@ -164,7 +161,10 @@ if(typeof _bsa !== 'undefined' && _bsa) {
 		<div class="container">
 			<div class="about-main">
 				<div class="about-right">
-					<h3 class="subheading-w3-agile">Make an Appointment</h3>
+
+                            <button type="button" class="btn  ml-lg-2 w3ls-btn" data-toggle="modal" aria-pressed="false" data-target="#exampleModal">
+								<h3 class="subheading-w3-agile">Book an Appointment</h3>
+                            </button>
 				</div>
 			</div>
 		</div>
@@ -273,13 +273,14 @@ if(typeof _bsa !== 'undefined' && _bsa) {
 	<section class="choose">
 		<div class="choose-1 py-5">
 			<div class="container py-md-4 mt-md-3">
+
 				<div class="row inner_w3l_agile_grids-1 ">
 					<div class="col-lg-7 w3layouts_choose_left_grid1">
 						<div class="choose_top">
-							<h3 class="w3l_header text-white">The MDTouch</h3>
-							<h4 class="mb-3 mt-3 text-white">Its a complete administration</h4>
+							<h3 class="w3l_header text-white">MDTouch</h3>
+							<h4 class="mb-3 mt-3 text-white">A centralised management system</h4>
 							<p class="text-white">The software is entirely intended to enhance the healthcare administration system. We have reminisced patient’s needs and doctor’s responsibilities while designing this software.</p>
-							<a href="about.html" class="btn btn-primary mt-3">Read More</a>
+							<a href="{% url 'MDTouch:about' %}" class="btn btn-primary mt-3">Read more</a>
 						</div>
 					</div>
 				</div>
@@ -294,8 +295,11 @@ if(typeof _bsa !== 'undefined' && _bsa) {
 				<h3 class="w3l-sub">Events</h3>
 				<h4 class="sub-title py-3">Register yourself on current or upcoming events.</h4>
 			</div>
+			<a href="{% url 'MDTouch:event' %}" class="btn btn-primary mt-3">See events</a>
+
 			<!-- case studies row -->
 			<div class="row">
+				<!---------
 				<div class="col-lg-4 col-md-6">
 					<div class="img1 img-grid  d-flex align-items-end justify-content-center p-3">
 						<div class="img_text_w3ls">
@@ -305,6 +309,7 @@ if(typeof _bsa !== 'undefined' && _bsa) {
 						</div>
 					</div>
 				</div>
+				--------->
 			</div>
 		</div>
 	</section>
@@ -324,7 +329,7 @@ if(typeof _bsa !== 'undefined' && _bsa) {
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{% url 'MDTouch:verify' %}" method="post" onsubmit="return checkform();">
+                    <form action="{% url 'MDTouch:verify' %}" method="post" >
                         <div class="form-group">
                             {% csrf_token %}
                             <label for="recipient-name" class="col-form-label">Username</label>

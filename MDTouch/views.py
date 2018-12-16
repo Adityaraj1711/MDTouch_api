@@ -50,11 +50,25 @@ def index(request):
 class IndexView(generic.ListView):
     template_name = 'MDTouch/index.html'
     context_object_name = 'user_login_information'
-    event = Event.objects.all()
-    extra_context = {'events':event}
+
     def get_queryset(self):
         return LogInInfo.objects.order_by('-username')
 
+def aboutpage(request):
+    return render(request,'MDTouch/about.html')
+
+def eventpage(request):
+    events = Event.objects.all()
+    context = {'events':events}
+    return render(request,'MDTouch/event.html',context)
+
+def eventdetailview(request,event_id):
+    event = Event.objects.get(id = event_id)
+    context = {'event':event}
+    return render(request,'MDTouch/eventdetail.html',context)
+
+def servicepage(request):
+    return render(request,'MDTouch/services.html')
 
 # This module simply renders the HTML page for the registration screen.
 def registerP(request):
@@ -63,23 +77,23 @@ def registerP(request):
 
 # This module handles the user registration. The "LogInInfo" object is used to store their credentials in the database.
 def createPLogIn(request):
-    firstName = (request.POST['firstName'])
-    lastName = (request.POST['lastName'])
-    address = (request.POST['address'])
-    number = (request.POST['number'])
-    email = (request.POST['email'])
-    provider = (request.POST['provider'])
-    insuranceid = (request.POST['insuranceid'])
-    contactfname = (request.POST['contactfname'])
-    contactlname = (request.POST['contactlname'])
-    contactaddress = (request.POST['contactaddress'])
-    contactnumber = (request.POST['contactnumber'])
-    height = (request.POST['height'])
-    weight = (request.POST['weight'])
-    allergies = (request.POST['allergies'])
-    gender = (request.POST['gender'])
-    username = (request.POST['username'])
-    password = (request.POST['password'])
+    firstName = (request.POST.get('firstName'))
+    lastName = (request.POST.get('lastName'))
+    address = (request.POST.get('address'))
+    number = (request.POST.get('number'))
+    email = (request.POST.get('email'))
+    provider = (request.POST.get('provider'))
+    insuranceid = (request.POST.get('insuranceid'))
+    contactfname = (request.POST.get('contactfname'))
+    contactlname = (request.POST.get('contactlname'))
+    contactaddress = (request.POST.get('contactaddress'))
+    contactnumber = (request.POST.get('contactnumber'))
+    height = (request.POST.get('height'))
+    weight = (request.POST.get('weight'))
+    allergies = (request.POST.get('allergies'))
+    gender = (request.POST.get('gender'))
+    username = request.POST.get('username')
+    password = (request.POST.get('password'))
     try:
         logininfo = LogInInfo.objects.get(username=username)
     except ObjectDoesNotExist:
@@ -691,6 +705,7 @@ def createApptInfo(request):
                        'type': utype,
                        'error_message': "The appointment could not be created, the doctor is busy at that time."}
             return render(request, 'MDTouch/createAppt.html', context)
+
 
 
 # This module simply renders the HTML page for the update appointment screen.

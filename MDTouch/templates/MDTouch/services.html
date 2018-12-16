@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load staticfiles %}
+<link rel='shortcut icon' href={% static 'HAccelerator/images/favicon.ico' %} type='images/favicon' />
+
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<head>
+    <title>MDTouch | About</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <!-- Custom Theme files -->
+    <link href="{% static 'HAccelerator/index/css/bootstrap.css' %}" type="text/css" rel="stylesheet" media="all">
+    <link href="{% static 'HAccelerator/index/css/style.css' %}" type="text/css" rel="stylesheet" media="all">
+    <!-- font-awesome icons -->
+    <link href="{% static 'HAccelerator/index/css/fontawesome-all.min.css' %}" rel="stylesheet">
+    <!-- //Custom Theme files -->
+	<link href="{% static 'HAccelerator/index/css/minimal-slider.css' %}" rel='stylesheet' type='text/css' />
+	<link rel="stylesheet" href="{% static 'HAccelerator/index/css/flexslider.css' %}" type="text/css" media="screen" property="" />
+    <!-- online-fonts -->
+	<link href="http://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800,900" rel="stylesheet"><!-- //online-fonts -->
+</head>
+<body>
+        <!-- header -->
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-light bg-gradient-secondary">
+                <h1>
+                    <a class="navbar-brand text-white" href="index.html">
+                       MDTouch
+                    </a>
+                </h1>
+                <button class="navbar-toggler ml-md-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-lg-auto text-center">
+                        <li class="nav-item mr-3 mt-lg-0 mt-3">
+                            <a class="nav-link" href="{% url 'MDTouch:index' %}">Home
+                            </a>
+                        </li>
+                        <li class="nav-item  mr-3 mt-lg-0 mt-3">
+                            <a class="nav-link" href="{% url 'MDTouch:services' %}">services<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item  mr-3 mt-lg-0 mt-3">
+                            <a class="nav-link" href="{% url 'MDTouch:event' %}">events</a>
+                        </li>
+                        <li class="nav-item mr-3 mt-lg-0 mt-3">
+                            <a class="nav-link" href="{% url 'MDTouch:about' %}">about</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+ <!-- main image slider container -->
+        <div class="inner-banner">
+         </div>
+    <!-- end of main image slider container -->
+    <!-- breadcrumbs -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="{% url 'MDTouch:index' %}">Home</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">Services</li>
+        </ol>
+    </nav>
+
+    <div class="agileits-about py-lg-5">
+            <div class="container py-4">
+             <div class="text-center wthree-title pb-sm-5 pb-3">
+                <h3 class="w3l-sub">Services</h3>
+                <h4 class="sub-title py-3">Services by MDTocuh and included functionalities</h4>
+            </div>
+
+            <div class="agileits-about-row row  text-center pt-lg-5">
+                <div class="col-lg-4 col-sm-6 agileits-about-grids">
+                    <div class="p-md-5 p-sm-3">
+                        <i class="fas fa-user-md"></i>
+                        <h4 class="mt-2 mb-3">therapist</h4>
+                        <p>Itaque earum rerum hic tenetur a sapiente delectus reiciendis maiores alias consequatur aut</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6 agileits-about-grids  border-left border-right my-sm-0 my-5">
+                    <div class="p-md-5 p-sm-3">
+                        <i class="fa fa-medkit" aria-hidden="true"></i>
+                        <h4 class="mt-2 mb-3">laboratory</h4>
+                        <p>Itaque earum rerum hic tenetur a sapiente delectus reiciendis maiores alias consequatur aut</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 agileits-about-grids">
+                    <div class="p-md-5 p-sm-3">
+                        <i class="far fa-hospital"></i>
+                        <h4 class="mt-2 mb-3">surgery</h4>
+                        <p>Itaque earum rerum hic tenetur a sapiente delectus reiciendis maiores alias consequatur aut</p>
+                    </div>
+                </div>
+            </div>
+            <div class="agileits-about-row border-top row text-center pb-lg-5 pt-md-0 pt-5 mt-md-0 mt-5">
+                <div class="col-lg-4 col-sm-6 agileits-about-grids">
+                    <div class="p-md-5 p-sm-3 col-label">
+                        <i class="fa fa-plus-square" aria-hidden="true"></i>
+                        <h4 class="mt-2 mb-3">transplants</h4>
+                        <p>Itaque earum rerum hic tenetur a sapiente delectus reiciendis maiores alias consequatur aut</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6 agileits-about-grids mt-lg-0 mt-md-3 border-left border-right pt-sm-0 pt-5">
+                    <div class="p-md-5 p-sm-3 col-label">
+                        <i class="fas fa-ambulance">
+                        </i>
+                        <h4 class="mt-2 mb-3">emergency care</h4>
+                        <p>Itaque earum rerum hic tenetur a sapiente delectus reiciendis maiores alias consequatur aut</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 agileits-about-grids pt-md-0 pt-5">
+                    <div class="p-md-5 p-sm-3 col-label">
+                        <i class="fa fa-user-md"></i>
+                        <h4 class="mt-2 mb-3">oncology</h4>
+                        <p>Itaque earum rerum hic tenetur a sapiente delectus reiciendis maiores alias consequatur aut</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- //services -->
+
+<!-- case studies -->
+    <section class="case_w3ls  py-lg-5">
+        <div class="container py-5">
+            <div class="text-center wthree-title pb-sm-5 pb-3">
+                <h3 class="w3l-sub">Medical Services</h4>
+                <h4 class="sub-title py-3">Donec consequat sapien ut leo cursus rhoncus.</h5>
+            </div>
+            <!-- case studies row -->
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="img1 img-grid  d-flex align-items-end justify-content-center p-3">
+                        <div class="img_text_w3ls">
+                            <h4>Emergency Help</h4>
+                            <span> </span>
+                            <p>Sed porttitor lectus nibh ras ultricies ligula sed magna dictum porta. </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 my-md-0 mt-4">
+                    <div class="img1 img2 img-grid  d-flex align-items-end justify-content-center p-3">
+                        <div class="img_text_w3ls">
+                            <h4>Heart Surgery</h4>
+                            <span> </span>
+                            <p>Sed porttitor lectus nibh ras ultricies ligula sed magna dictum porta. </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 my-lg-0 mt-4">
+                    <div class="img1 img3 img-grid  d-flex align-items-end justify-content-center p-3">
+                        <div class="img_text_w3ls">
+                            <h4>Emergency Care</h4>
+                            <span> </span>
+                            <p>Sed porttitor lectus nibh ras ultricies ligula sed magna dictum porta. </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- //case studies row -->
+        </div>
+    </section>
+
+<!-- footer -->
+    <footer class="py-sm-5">
+        <div class="container">
+            <div class="row py-5">
+                <!-- footer grid1 -->
+                <div class="col-lg-3 col-sm-6 fv5-contact">
+                    <h2 class="mb-4">Contact Us</h2>
+                    <div class="fv3-contact mt-3">
+
+                        <span class="fas fa-home mr-2"></span>
+                        <p>302-Esteem tower</p>
+                    </div>
+                    <div class="fv3-contact mt-3">
+                        <span class="fas fa-phone-volume mr-2"></span>
+                        <p>(+91)800 434 1143</p>
+                    </div>
+                    <div class="fv3-contact mt-3">
+                        <span class="fas fa-envelope-open mr-2"></span>
+                        <a href="mailto:example@email.com" class="text-secondary">magnet@example.com</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+        <!-- js -->
+    <script src="{% static 'HAccelerator/index/js/jquery-2.2.3.min.js' %}"></script>
+    <!-- //js -->
+	<script src="{% static 'HAccelerator/index/js/minimal-slider.js' %}"></script>
+	<!-- //flexSlider (for testimonials) -->
+	<script defer src="{% static 'HAccelerator/index/js/jquery.flexslider.js' %}"></script>
+    <script>
+        $(window).load(function () {
+            $('.flexslider').flexslider({
+                animation: "slide",
+                start: function (slider) {
+                    $('body').removeClass('loading');
+                }
+            });
+        });
+    </script>
+    <!-- script for password match -->
+    <script src="{% static 'HAccelerator/index/js/move-top.js' %}"></script>
+    <script src="{% static 'HAccelerator/index/js/easing.js' %}"></script>
+    <script>
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+
+                $('html,body').animate({
+                    scrollTop: $(this.hash).offset().top
+                }, 1000);
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $().UItoTop({
+                easingType: 'easeOutQuart'
+            });
+
+        });
+    </script>
+    <script src="{% static 'HAccelerator/index/js/SmoothScroll.min.js' %}"></script>
+    <script src="{% static 'HAccelerator/index/js/bootstrap.js' %}"></script>
+</body>
+</html>
+

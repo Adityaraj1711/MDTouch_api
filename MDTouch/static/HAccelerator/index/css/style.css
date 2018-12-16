@@ -1,8 +1,3 @@
-/*--Author: W3Layouts
-	Author URL: http://w3layouts.com
-	License: Creative Commons Attribution 3.0 Unported
-	License URL: http://creativecommons.org/licenses/by/3.0/
- --*/
 
 body {
 	margin: 0;
@@ -438,7 +433,6 @@ ul.testi-w3ls-rate li i {
 /*-- home --*/
 
 .img1 {
-    background: url(../images/g1.jpg) center no-repeat;
     padding: 0;
     background-size: cover;
     position: relative;

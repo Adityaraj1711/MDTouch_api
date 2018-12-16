@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load staticfiles %}
+<link rel='shortcut icon' href={% static 'HAccelerator/images/favicon.ico' %} type='images/favicon' />
+
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<head>
+    <title>MDTouch | About</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <!-- Custom Theme files -->
+    <link href="{% static 'HAccelerator/index/css/bootstrap.css' %}" type="text/css" rel="stylesheet" media="all">
+    <link href="{% static 'HAccelerator/index/css/style.css' %}" type="text/css" rel="stylesheet" media="all">
+    <!-- font-awesome icons -->
+    <link href="{% static 'HAccelerator/index/css/fontawesome-all.min.css' %}" rel="stylesheet">
+    <!-- //Custom Theme files -->
+	<link href="{% static 'HAccelerator/index/css/minimal-slider.css' %}" rel='stylesheet' type='text/css' />
+	<link rel="stylesheet" href="{% static 'HAccelerator/index/css/flexslider.css' %}" type="text/css" media="screen" property="" />
+    <!-- online-fonts -->
+	<link href="http://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800,900" rel="stylesheet"><!-- //online-fonts -->
+</head>
+<body>
+        <!-- header -->
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-light bg-gradient-secondary">
+                <h1>
+                    <a class="navbar-brand text-white" href="index.html">
+                       MDTouch
+                    </a>
+                </h1>
+                <button class="navbar-toggler ml-md-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-lg-auto text-center">
+                        <li class="nav-item mr-3 mt-lg-0 mt-3">
+                            <a class="nav-link" href="{% url 'MDTouch:index' %}">Home
+                            </a>
+                        </li>
+                        <li class="nav-item  mr-3 mt-lg-0 mt-3">
+                            <a class="nav-link" href="{% url 'MDTouch:services' %}">services</a>
+                        </li>
+                        <li class="nav-item mr-3 mt-lg-0 mt-3">
+                            <a class="nav-link" href="{% url 'MDTouch:about' %}">about<span class="sr-only">(current)</span></a>
+                        </li>
+
+                        <li class="nav-item mr-3 mt-lg-0 mt-3">
+                            <a class="nav-link" href="{% url 'MDTouch:event' %}">event</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+ <!-- main image slider container -->
+        <div class="inner-banner">
+         </div>
+    <!-- end of main image slider container -->
+	<!-- breadcrumbs -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="{% url 'MDTouch:index' %}">Home</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">About</li>
+        </ol>
+    </nav>
+    <!-- //breadcrumbs -->
+	<!---728x90--->
+
+    <!-- about -->
+    <div class="agileits-wthree-about py-lg-5">
+			<div class="container py-4">
+            <div class="text-center wthree-title pb-sm-5 pb-3">
+               <h3 class="w3l-sub">About Us</h3>
+				<h4 class="sub-title py-3">Donec consequat sapien ut leo cursus rhoncus.</h4>
+			</div>
+            <div class="agileits-wthree-about-row row py-lg-5  no-gutters">
+                <div class="col-lg-4">
+                    <div class="agileits-wthree-about-grids">
+                        <span class="fas fa-sitemap"></span>
+                        <h4 class="my-2">Android
+                        </h4>
+                        <p>Itaque earum rerum hic tenetur asap iente delectus rulla accumsan ac elit in coeiciendis maiores
+                            alias consequatur auectus rullat.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="agileits-wthree-about-grids mt-lg-0 my-5 px-lg-5">
+                        <span class="fas fa-chart-area"></span>
+                        <h4 class="my-2">Software
+                        </h4>
+                        <p>Itaque earum rerum hic tenetur asap iente delectus rulla accumsan ac elit in coeiciendis maiores
+                            alias consequatur auectus rullat.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="agileits-wthree-about-grids  pl-lg-5">
+                        <span class="fas fa-globe"></span>
+                        <h4 class="my-2">Website
+                        </h4>
+                        <p>Itaque earum rerum hic tenetur asap iente delectus rulla accumsan ac elit in coeiciendis maiores
+                            alias consequatur auectus rullat.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- //about -->
+	<!---728x90--->
+
+	<!--Departrments,facilities and services-->
+	<section class="departments">
+		<div class="departments-1 py-lg-5">
+			<div class="container py-5">
+				<div class="text-center wthree-title pb-sm-5 pb-3">
+					<h3 class="w3l-sub text-white">Services</h4>
+					<h4 class="sub-title py-3 text-white">The following services are included.</h5>
+				</div>
+					<div class="row py-lg-5">
+								<div class="col-sm-4 w3-ab">
+									<div class="w3-ab-grid text-center">
+										<div class="w3-aicon p-4">
+											<i class="fa fa-stethoscope" aria-hidden="true"></i>
+											<h4 class="my-3 text-capitalize text-white">Hospitals</h4>
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-4 w3-ab">
+									<div class="w3-ab-grid text-center">
+										<div class="w3-aicon p-4">
+											<i class="fa fa-wheelchair" aria-hidden="true"></i>
+											<h4 class="my-3 text-capitalize text-white">Blood Bank</h4>
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-4 w3-ab">
+									<div class="w3-ab-grid text-center">
+										<div class="w3-aicon p-4">
+											<i class="fa fa-plus-square" aria-hidden="true"></i>
+											<h4 class="my-3 text-capitalize text-white">Aid camps</h4>
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-4 mt-4 w3-ab">
+									<div class="w3-ab-grid text-center">
+										<div class="w3-aicon  p-4">
+											<i class="fa fa-heartbeat" aria-hidden="true"></i>
+											<h4 class="my-3 text-capitalize text-white">ML based disease search</h4>
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-4 mt-4 w3-ab">
+									<div class="w3-ab-grid text-center">
+										<div class="w3-aicon p-4">
+											<i class="fa fa-medkit" aria-hidden="true"></i>
+											<h4 class="my-3 text-capitalize text-white">Dispensaries</h4>
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-4 mt-4 w3-ab">
+									<div class="w3-ab-grid text-center">
+										<div class="w3-aicon p-4">
+											<i class="fa fa-ambulance" aria-hidden="true"></i>
+											<h4 class="my-3 text-capitalize text-white">Emergency services</h4>
+										</div>
+									</div>
+								</div>
+					</div>
+			</div>
+		</div>
+	</section>
+	<!-- testimonials -->
+<!---728x90--->
+    <!-- team -->
+    <section class="team py-lg-5">
+			<div class="container py-4">
+            <div class="text-center wthree-title pb-sm-5 pb-3">
+               <h3 class="w3l-sub">Our Team</h3>
+				<h4 class="sub-title py-3">The dedicated team includes .</h4>
+			</div>
+            <div class="row my-sm-5">
+                <div class="col-lg-3 col-sm-6">
+                    <div class="box16">
+                        <img src="{% static 'HAccelerator/index/images/aditya.jpg' %}" alt="" class="img-fluid" />
+                        <div class="box-content">
+                            <h3 class="title">Aditya</h3>
+                            <span class="post">website and database manager</span>
+                            <ul class="social">
+                                <li>
+                                    <a href="#">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fab fa-twitter"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fab fa-dribbble"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fab fa-behance"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="box16">
+                        <img src="{% static 'HAccelerator/index/images/abhishek.jpg' %}" alt="" class="img-fluid" />
+                        <div class="box-content">
+                            <h3 class="title">Abhishek</h3>
+                            <span class="post">Software and data specialist</span>
+                            <ul class="social">
+                                <li>
+                                    <a href="#">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fab fa-twitter"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fab fa-dribbble"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fab fa-behance"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 mx-auto mt-lg-0 mt-sm-5">
+                    <div class="box16">
+                        <img src="{% static 'HAccelerator/index/images/mrudul.jpg' %}" alt="" class="img-fluid" />
+                        <div class="box-content">
+                            <h3 class="title">Mrudul</h3>
+                            <span class="post">Graphic and Media analyst</span>
+                            <ul class="social">
+                                <li>
+                                    <a href="#">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fab fa-twitter"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fab fa-dribbble"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fab fa-behance"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 mx-auto mt-lg-0 mt-sm-5">
+                    <div class="box16">
+                        <img src="{% static 'HAccelerator/index/images/kauaa.jpg' %}" alt="" class="img-fluid" />
+                        <div class="box-content">
+                            <h3 class="title">Sourav</h3>
+                            <span class="post">Android app developer</span>
+                            <ul class="social">
+                                <li>
+                                    <a href="#">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fab fa-twitter"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fab fa-dribbble"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fab fa-behance"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- //team -->
+
+<!-- footer -->
+	<footer class="py-sm-5">
+		<div class="container">
+			<div class="row py-5">
+				<!-- footer grid1 -->
+				<div class="col-lg-3 col-sm-6 fv5-contact">
+					<h2 class="mb-4">Contact Us</h2>
+					<div class="fv3-contact mt-3">
+
+						<span class="fas fa-home mr-2"></span>
+						<p>302-Esteem tower</p>
+					</div>
+					<div class="fv3-contact mt-3">
+						<span class="fas fa-phone-volume mr-2"></span>
+						<p>(+91)800 434 1143</p>
+					</div>
+					<div class="fv3-contact mt-3">
+						<span class="fas fa-envelope-open mr-2"></span>
+						<a href="mailto:example@email.com" class="text-secondary">magnet@example.com</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+
+
+
+
+
+        <!-- js -->
+    <script src="{% static 'HAccelerator/index/js/jquery-2.2.3.min.js' %}"></script>
+    <!-- //js -->
+	<script src="{% static 'HAccelerator/index/js/minimal-slider.js' %}"></script>
+	<!-- //flexSlider (for testimonials) -->
+	<script defer src="{% static 'HAccelerator/index/js/jquery.flexslider.js' %}"></script>
+    <script>
+        $(window).load(function () {
+            $('.flexslider').flexslider({
+                animation: "slide",
+                start: function (slider) {
+                    $('body').removeClass('loading');
+                }
+            });
+        });
+    </script>
+    <!-- script for password match -->
+    <script src="{% static 'HAccelerator/index/js/move-top.js' %}"></script>
+    <script src="{% static 'HAccelerator/index/js/easing.js' %}"></script>
+    <script>
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+
+                $('html,body').animate({
+                    scrollTop: $(this.hash).offset().top
+                }, 1000);
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $().UItoTop({
+                easingType: 'easeOutQuart'
+            });
+
+        });
+    </script>
+    <script src="{% static 'HAccelerator/index/js/SmoothScroll.min.js' %}"></script>
+    <script src="{% static 'HAccelerator/index/js/bootstrap.js' %}"></script>
+</body>
+</html>

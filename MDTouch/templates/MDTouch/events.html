@@ -2,6 +2,8 @@
 <html>
 
 {% load staticfiles %}
+<link rel='shortcut icon' href={% static 'HAccelerator/images/favicon.ico' %} type='images/favicon' />
+
 <head>
     <meta name="theme-color" content="#3CB371">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -104,7 +106,7 @@
                     <div class="card-body">
                         <h4 class="card-title">{{event.title}}</h4>
                         <p class="card-text">{{event.description}}</p>
-                        <a href="#" class="btn btn-raised g-bg-cyan waves-effect waves-effect">See Details</a>
+                        <a href="{% url 'MDTouch:eventdetail' event.id %}" class="btn btn-raised g-bg-cyan waves-effect waves-effect">See Details</a>
                     </div>
                 </div>
             </div>
