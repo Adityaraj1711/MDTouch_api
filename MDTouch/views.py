@@ -50,7 +50,8 @@ def index(request):
 class IndexView(generic.ListView):
     template_name = 'MDTouch/index.html'
     context_object_name = 'user_login_information'
-
+    event = Event.objects.all()
+    extra_context = {'events':event}
     def get_queryset(self):
         return LogInInfo.objects.order_by('-username')
 

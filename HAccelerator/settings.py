@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/1.9/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.9/ref/settings/
 """
-
+import django_heroku
 import os
 from django.contrib import admin
 
@@ -82,18 +82,24 @@ STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#        'NAME': 'MDTouch',
+#        'USER': 'postgres',
+#        'PASSWORD': 'aditya123',
+#       'HOST': '127.0.0.1',
+#        'PORT': '5432',
+#    }
+#}
+
+import dj_database_url
+
 DATABASES = {
-
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'MDTouch',
-        'USER': 'postgres',
-        'PASSWORD': 'aditya123',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
-    }
+    'default': dj_database_url.config(
+        default='sqlite:////{0}'.format(os.path.join(BASE_DIR, 'db.sqlite3'))
+    )
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
@@ -132,3 +138,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+
+django_heroku.settings(locals())
