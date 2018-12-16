@@ -1,0 +1,157 @@
+User admin registered a new account - logged on: 11/02/18 @ 13:32:40
+User admin created an appointment @ Hospital 1 on 11.12.2034,05:00 AM - logged on: 11/02/18 @ 13:33:15
+User admin exported their information - logged on: 11/02/18 @ 13:33:50
+User admin updated their profile information - logged on: 11/02/18 @ 13:35:09
+User admin logged out - logged on: 11/02/18 @ 13:35:26
+User doctor1 changed their password - logged on: 11/02/18 @ 13:36:05
+User doctor1 logged in - logged on: 11/02/18 @ 13:36:16
+User doctor1 cancelled Appointment #1 - logged on: 11/02/18 @ 13:36:35
+User doctor1 logged out - logged on: 11/02/18 @ 13:36:45
+User admin logged in - logged on: 11/02/18 @ 13:36:53
+User admin logged out - logged on: 11/02/18 @ 13:37:10
+User admin2 changed their password - logged on: 11/02/18 @ 13:38:02
+User admin2 logged in - logged on: 11/02/18 @ 13:38:14
+User admin2 logged out - logged on: 11/02/18 @ 13:41:40
+User patient5 registered a new account - logged on: 11/02/18 @ 13:50:42
+User patient5 changed their password - logged on: 11/02/18 @ 13:57:13
+User patient5 logged in - logged on: 11/02/18 @ 13:57:15
+User patient5 changed their password - logged on: 11/02/18 @ 13:58:46
+User patient5 changed their password - logged on: 11/02/18 @ 13:59:47
+User patient5 logged in - logged on: 11/02/18 @ 18:06:16
+User  logged out - logged on: 11/02/18 @ 18:16:49
+User admin logged in - logged on: 11/02/18 @ 18:18:00
+User admin logged out - logged on: 11/02/18 @ 18:18:41
+User admin changed their password - logged on: 11/02/18 @ 18:19:02
+User admin changed their password - logged on: 11/02/18 @ 18:19:39
+User admin logged in - logged on: 11/02/18 @ 21:59:16
+User patient5 logged in - logged on: 11/02/18 @ 21:59:47
+User patient5 logged out - logged on: 11/02/18 @ 22:00:07
+User admin logged in - logged on: 11/02/18 @ 22:00:18
+User admin logged out - logged on: 11/02/18 @ 22:00:21
+User doctor1 logged in - logged on: 11/02/18 @ 22:00:30
+User admin logged in - logged on: 11/02/18 @ 22:03:06
+User admin created an appointment @ Hospital 1 on 11.12.2019,11:00 PM - logged on: 11/03/18 @ 00:05:07
+User admin logged out - logged on: 11/03/18 @ 00:05:48
+User admin logged in - logged on: 11/03/18 @ 00:45:00
+User admin logged in - logged on: 11/03/18 @ 10:30:45
+User admin logged out - logged on: 11/03/18 @ 10:31:52
+User admin logged in - logged on: 11/03/18 @ 10:32:00
+User doctor1 logged in - logged on: 11/03/18 @ 10:32:23
+User admin logged in - logged on: 11/03/18 @ 10:33:23
+User admin created an appointment @ Hospital 1 on 01.01.2019,01:30 AM - logged on: 11/03/18 @ 10:34:01
+User doctor1 updated Appointment #3 - logged on: 11/03/18 @ 10:34:32
+User doctor1 logged out - logged on: 11/03/18 @ 10:36:47
+ deleted message# 1 - logged on: 11/03/18 @ 10:37:50
+Patient admin sent a message to nurse1 - logged on: 11/03/18 @ 10:38:11
+Patient admin sent a message to admin - logged on: 11/03/18 @ 10:39:13
+Patient admin sent a message to admin - logged on: 11/03/18 @ 10:39:47
+ deleted message# 3 - logged on: 11/03/18 @ 10:40:21
+ deleted message# 3 - logged on: 11/03/18 @ 10:40:23
+ deleted message# 5 - logged on: 11/03/18 @ 10:40:27
+ deleted message# 5 - logged on: 11/03/18 @ 10:40:27
+ deleted message# 3 - logged on: 11/03/18 @ 10:40:32
+User patient1 logged in - logged on: 11/03/18 @ 14:36:11
+User patient6 registered a new account - logged on: 11/03/18 @ 14:37:33
+User patient1 logged in - logged on: 11/03/18 @ 14:49:51
+User patient6 logged in - logged on: 11/03/18 @ 14:50:01
+User patient6 logged out - logged on: 11/03/18 @ 14:50:09
+User doctor1 logged in - logged on: 11/03/18 @ 14:51:13
+User doctor1 logged out - logged on: 11/03/18 @ 14:54:21
+User patient1 registered a new account - logged on: 11/03/18 @ 16:28:12
+User patient1 logged in - logged on: 11/03/18 @ 23:27:14
+User patient1 updated their profile information - logged on: 11/03/18 @ 23:27:37
+User patient1 updated their profile information - logged on: 11/03/18 @ 23:46:27
+User patient1 created an appointment @ St Steph on 11.15.2018,11:00 AM - logged on: 11/03/18 @ 23:46:57
+Patient patient1 sent a message to doctor2 - logged on: 11/03/18 @ 23:47:49
+User doctor1 logged in - logged on: 11/03/18 @ 23:48:45
+User doctor1 logged out - logged on: 11/03/18 @ 23:49:55
+User admin1 logged in - logged on: 11/03/18 @ 23:50:04
+Administrator admin1 sent a message to patient1 - logged on: 11/03/18 @ 23:51:45
+ deleted message# 2 - logged on: 11/03/18 @ 23:52:41
+ deleted message# 2 - logged on: 11/03/18 @ 23:52:51
+User doctor1 logged in - logged on: 11/04/18 @ 14:34:34
+User doctor1 logged out - logged on: 11/04/18 @ 14:36:35
+User patient1 logged in - logged on: 11/05/18 @ 02:27:59
+User patient1 logged out - logged on: 11/05/18 @ 02:34:44
+User admin1 logged in - logged on: 11/05/18 @ 02:34:51
+User admin1 logged out - logged on: 11/05/18 @ 02:44:39
+User admin1 logged in - logged on: 11/05/18 @ 17:33:24
+User admin1 logged out - logged on: 11/06/18 @ 00:35:27
+User patient1 logged in - logged on: 11/06/18 @ 00:35:33
+User patient1 logged in - logged on: 11/06/18 @ 00:51:21
+User patient1 logged in - logged on: 11/06/18 @ 01:31:58
+User patient1 logged in - logged on: 11/06/18 @ 01:38:07
+User doctor1 logged in - logged on: 11/06/18 @ 02:16:00
+User doctor1 created an appointment @ Mary on 05.23.2019,01:30 AM - logged on: 11/06/18 @ 02:41:28
+User patient1 logged out - logged on: 11/06/18 @ 03:02:32
+User patient1 logged in - logged on: 11/06/18 @ 03:04:24
+User admin1 logged in - logged on: 11/06/18 @ 03:22:49
+User admin1 logged in - logged on: 11/06/18 @ 13:34:29
+User doctor1 logged in - logged on: 11/06/18 @ 13:34:36
+User doctor1 logged in - logged on: 11/09/18 @ 09:51:44
+User doctor1 logged in - logged on: 11/10/18 @ 14:15:05
+Doctor doctor1 sent a message to admin2 - logged on: 11/10/18 @ 14:16:01
+User doctor1 logged out - logged on: 11/10/18 @ 14:16:15
+User admin2 logged in - logged on: 11/10/18 @ 14:16:22
+User admin2 logged out - logged on: 11/10/18 @ 14:18:02
+User patient1 logged in - logged on: 11/10/18 @ 14:18:08
+User patient1 logged out - logged on: 11/10/18 @ 14:19:02
+User patient1 logged in - logged on: 11/13/18 @ 18:35:02
+User doctor1 logged in - logged on: 12/07/18 @ 18:30:37
+User doctor1 logged out - logged on: 12/07/18 @ 18:31:17
+User patient1 logged in - logged on: 12/07/18 @ 18:31:22
+User patient1 logged in - logged on: 12/07/18 @ 22:47:10
+User patient1 logged out - logged on: 12/07/18 @ 23:43:21
+User patient1 logged in - logged on: 12/10/18 @ 20:45:35
+User patient1 logged out - logged on: 12/10/18 @ 21:48:54
+User patient1 logged in - logged on: 12/10/18 @ 21:49:09
+User patient1 logged out - logged on: 12/10/18 @ 21:56:43
+User patient1 logged in - logged on: 12/10/18 @ 21:56:51
+User patient1 logged in - logged on: 12/11/18 @ 01:55:58
+User patient1 logged out - logged on: 12/11/18 @ 01:57:18
+User doctor1 logged in - logged on: 12/11/18 @ 01:57:23
+User doctor1 cancelled Appointment #2 - logged on: 12/11/18 @ 01:58:04
+User patient1 logged in - logged on: 12/11/18 @ 01:58:18
+User patient1 cancelled Appointment #1 - logged on: 12/11/18 @ 01:58:29
+User patient1 created an appointment @ Mary on 05.30.2018,07:30 PM - logged on: 12/11/18 @ 01:58:56
+Doctor doctor1 created a prescription for Patient patient1 - logged on: 12/11/18 @ 02:03:08
+Doctor doctor1 removed Prescription #2 - logged on: 12/11/18 @ 02:03:30
+Doctor doctor1 removed Prescription #1 - logged on: 12/11/18 @ 02:03:34
+Doctor doctor1 sent a message to admin1 - logged on: 12/11/18 @ 02:05:46
+User doctor1 logged in - logged on: 12/11/18 @ 12:10:44
+User doctor1 logged out - logged on: 12/11/18 @ 12:11:14
+User patient1 logged in - logged on: 12/11/18 @ 12:11:18
+Patient patient1 sent a message to doctor2 - logged on: 12/11/18 @ 12:12:36
+User patient1 logged in - logged on: 12/12/18 @ 07:38:55
+User patient1 created an appointment @ St Steph on 2018-12-14,05:00 AM - logged on: 12/12/18 @ 08:52:40
+User doctor1 logged in - logged on: 12/12/18 @ 09:02:28
+User doctor1 created an appointment @ Mary on 2018-12-14,04:00 Moring - logged on: 12/12/18 @ 09:05:04
+User patient1 updated Appointment #3 - logged on: 12/12/18 @ 09:24:53
+User patient1 updated Appointment #4 - logged on: 12/12/18 @ 09:25:13
+User patient1 logged in - logged on: 12/12/18 @ 09:57:31
+User patient1 logged in - logged on: 12/12/18 @ 11:50:10
+User patient1 logged out - logged on: 12/12/18 @ 12:29:53
+User patient1 logged in - logged on: 12/12/18 @ 14:43:32
+User patient1 logged in - logged on: 12/12/18 @ 14:50:36
+User patient1 logged in - logged on: 12/12/18 @ 17:34:33
+User patient1 logged out - logged on: 12/12/18 @ 17:34:40
+User admin1 logged in - logged on: 12/12/18 @ 17:34:54
+User admin1 logged in - logged on: 12/12/18 @ 17:34:54
+User nurse1 logged in - logged on: 12/12/18 @ 17:35:13
+User doctor1 logged in - logged on: 12/12/18 @ 17:35:17
+User doctor1 logged out - logged on: 12/12/18 @ 17:35:24
+User patient1 logged in - logged on: 12/12/18 @ 17:39:33
+User patient1 logged in - logged on: 12/12/18 @ 21:36:51
+User patient1 exported their information - logged on: 12/12/18 @ 21:50:49
+User patient1 created an appointment @ St Steph on 2018-12-30,07:00 Afternoon - logged on: 12/12/18 @ 22:58:34
+User patient1 logged in - logged on: 12/12/18 @ 23:32:54
+User patient1 logged out - logged on: 12/12/18 @ 23:33:01
+User patient1 logged in - logged on: 12/12/18 @ 23:35:30
+User patient1 logged in - logged on: 12/12/18 @ 23:48:28
+User patient1 logged in - logged on: 12/12/18 @ 23:48:35
+User patient1 logged in - logged on: 12/12/18 @ 23:49:02
+User patient1 logged out - logged on: 12/12/18 @ 23:49:06
+User patient1 logged in - logged on: 
+User patient1 logged in - logged on: 
+User patient1 logged in - logged on: 
+User patient1 logged in - logged on: 

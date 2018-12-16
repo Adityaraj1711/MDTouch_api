@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+{% load staticfiles %}
+<head>
+    <meta name="theme-color" content="#3CB371">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" type="text/css" href="{% static 'HAccelerator/mainPages.css' %}" />
+<link rel='shortcut icon' href="{% static 'HAccelerator/images/favicon.ico' %}" type='images/favicon' />
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="{% static 'HAccelerator/plugins/bootstrap/css/bootstrap.min.css' %}"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" type="text/css">
+<link rel="stylesheet" href="{% static 'HAccelerator/css/main.css' %}"/>
+    <title>MDTouch | Statistics</title>
+</head>
+
+
+<body class="theme-cyan">
+<div class="page-loader-wrapper">
+    <div class="loader">
+        <div class="preloader">
+            <div class="spinner-layer pl-red">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+        </div>
+        <p>Please wait...</p>
+    </div>
+</div>
+
+<!-- Overlay For Sidebars -->
+<div class="overlay"></div>
+<div id="morphsearch" class="morphsearch">
+    <form class="morphsearch-form">
+        <div class="form-group m-0">
+            <input value="" type="search" placeholder="Explore MDTouch Events..." class="form-control morphsearch-input" />
+            <button class="morphsearch-submit" type="submit">Search</button>
+        </div>
+    </form>   
+    <span class="morphsearch-close"></span>
+</div>
+<nav class="navbar clearHeader">
+    <div class="col-12">
+        <div class="navbar-header"> <a href="javascript:void(0);" class="bars"></a> <a class="navbar-brand" href="index.html">MDTouch</a> </div>
+    </div>
+</nav>
+
+<!--  --------------- ------------ -->
+<section class="content">
+    <div class="container-fluid">
+    <div id="container">
+        <h1>System Statistics</h1>
+
+        <form action="{% url 'MDTouch:home' %}">
+            Number of Administrators in System: {{ admins }}
+            <br>
+            Number of Doctors in System: {{ doctors }}
+            <br>
+            Number of Nurses in System: {{ nurses }}
+            <br>
+            Number of Patients in System: {{ patients }}
+            <br>
+            Number of Prescriptions in System: {{ prescriptions }}
+            <br>
+            Number of Appointments in System: {{ appointments }}
+            <input class="button" type="submit" value="Return" />
+        </form>
+    </div>
+
+</div>
+</section>
+<!-------------------  -->
+    <script>
+        var today = new Date;
+        document.getElementById('date').innerHTML= "" + today;
+    </script>
+  
+<div class="color-bg"></div>
+<!-- Jquery Core Js --> 
+<script src="{% static 'HAccelerator/bundles/libscripts.bundle.js' %}"></script> <!-- Lib Scripts Plugin Js -->
+ 
+<script src="{% static 'HAccelerator/bundles/vendorscripts.bundle.js' %}"></script> <!-- Lib Scripts Plugin Js --> 
+
+<script src="{% static 'HAccelerator/bundles/mainscripts.bundle.js' %}"></script><!-- Custom Js -->
+</body>
+</html>

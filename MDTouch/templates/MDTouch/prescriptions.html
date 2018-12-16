@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+
+{% load staticfiles %}
+<head>
+    <meta name="theme-color" content="#3CB371">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" type="text/css" href="{% static 'HAccelerator/mainPages.css' %}" />
+<link rel='shortcut icon' href="{% static 'HAccelerator/images/favicon.ico' %}" type='images/favicon' />
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="{% static 'HAccelerator/plugins/bootstrap/css/bootstrap.min.css' %}"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" type="text/css">
+<link rel="stylesheet" href="{% static 'HAccelerator/css/main.css' %}"/>
+    <title>MDTouch | Prescriptions</title>
+</head>
+
+
+<body class="theme-cyan">
+<div class="page-loader-wrapper">
+    <div class="loader">
+        <div class="preloader">
+            <div class="spinner-layer pl-red">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+        </div>
+        <p>Please wait...</p>
+    </div>
+</div>
+
+<!-- Overlay For Sidebars -->
+<div class="overlay"></div>
+<div id="morphsearch" class="morphsearch">
+    <form class="morphsearch-form">
+        <div class="form-group m-0">
+            <input value="" type="search" placeholder="Explore MDTouch Events..." class="form-control morphsearch-input" />
+            <button class="morphsearch-submit" type="submit">Search</button>
+        </div>
+    </form>   
+    <span class="morphsearch-close"></span>
+</div>
+<nav class="navbar clearHeader">
+    <div class="col-12">
+        <div class="navbar-header"> <a href="javascript:void(0);" class="bars"></a> <a class="navbar-brand" href="{% url 'MDTouch:home' %}">MDTouch</a> </div>
+    </div>
+</nav>
+<section>
+      <aside id="leftsidebar" class="sidebar">
+         <div class="user-info">
+            <div class="admin-image"> <img src="{% static 'HAccelerator/images/random-avatar7.jpg' %}" alt=""> </div>
+            <div class="admin-action-info"> <span>Welcome, {{ type }} :</span>
+                <h3>{{ user.lastName }}, {{ user.firstName }}</h3>
+            </div>
+        </div>
+          <div class="menu">
+            <ul class = "list">
+              {% if type == "Administrator"%}
+              <li><a href="{% url 'MDTouch:log' %}"><i class="zmdi zmdi-file-text"></i><span>Activity Log</span></a></li>
+              <li ><a href="{% url 'MDTouch:statistics' %}"><i class="zmdi zmdi-delicious"></i><span>Statistics</span></a></li>
+              <li ><a href="{% url 'MDTouch:registerDN' %}"><i class="zmdi zmdi-account"></i><span>Staff Registration</span></a></li>
+              <li ><a href="{% url 'MDTouch:messages' %}"><i class="zmdi zmdi-email"></i><span>Messages</span></a></li>
+              <li><a href="{% url 'MDTouch:logOut' %}"><i class="zmdi zmdi-sign-in"></i><span> Logout</span></a></li>
+              {% else %}
+              <li ><a href="{% url 'MDTouch:information' %}"><i class="zmdi zmdi-account"></i><span>User Information</span></a></li>
+              <li ><a href="{% url 'MDTouch:appointments' %}"><i class="zmdi zmdi-delicious"></i><span>Manage Appointments</span></a></li>
+              <li ><a  href="{% url 'MDTouch:prescriptions' %}"><i class="zmdi zmdi-file-text"></i><span>Prescriptions</span></a></li>
+              <li ><a  href="{% url 'MDTouch:calendar' %}"><i class="zmdi zmdi-file-text"></i><span>Calendar</span></a></li>
+              <li ><a  href="{% url 'MDTouch:messages' %}"><i class="zmdi zmdi-email"></i><span>Messages</span></a></li>
+              <li ><a href="{% url 'MDTouch:logOut' %}"><i class="zmdi zmdi-signin"></i><span>Logout</span></a></li>
+              {% endif %}
+
+            </ul>
+          </div>
+      </aside>
+</section>
+
+<!--  --------------- ------------ -->
+<section class="content">
+    <div class="container-fluid">
+    <div id="container">
+        <div id="tablecontainer">
+            {% if type == "Patient" %}
+                <h2><span style="text-decoration: underline;">{{ patient.firstName }} {{ patient.lastName }}</span>, these are the prescriptions that have been assigned to you</h2>
+            {% elif type == "Doctor" %}
+                <h2><span style="text-decoration: underline;">{{ employee.firstName }} {{ employee.lastName }}</span>, these are the prescriptions that you have created</h2>
+            {% else %}
+                <h2><span style="text-decoration: underline;">{{ employee.firstName }} {{ employee.lastName }}</span>, these are the prescriptions for patients at <span style="text-decoration: underline;">{{ employee.workplace.name }}</span></h2>
+            {% endif %}
+            {% if prescriptions %}
+	            <table>
+                    <tr>
+                        <th>Name</th>
+                        <th>Dosage</th>
+                        {% if type == "Patient"%}
+
+                        {% else %}
+                            <th>Patient</th>
+                        {% endif %}
+
+                        {% if type == "Doctor"%}
+                            <th></th>
+                        {% else %}
+                            <th>Doctor</th>
+                        {% endif %}
+                    </tr>
+                    {% for p in prescriptions %}
+                        <tr>
+                            {% if type == "Doctor"%}
+                                <td><a href="{% url 'MDTouch:updatePres' p.id %}">{{ p.name }}</a></td>
+                            {% else %}
+                                <td>{{ p.name }}</td>
+                            {% endif %}
+
+                            <td>{{ p.dosage }}</td>
+
+                            {% if type == "Patient"%}
+
+                            {% else %}
+                                <td>{{ p.patient }}</td>
+                            {% endif %}
+
+                            {% if type == "Doctor"%}
+                                <td><form action="{% url 'MDTouch:removePres' p.id %}"><input type="submit" value="Remove" /></form></td>
+                            {% else %}
+                                <td>{{ p.doctor }}</td>
+                            {% endif %}
+                        </tr>
+                    {% endfor %}
+                </table>
+            {% else %}
+                <p>There are no prescriptions to view</p>
+            {% endif %}
+
+            {% if type == "Doctor" %}
+                <h2>These are the prescriptions for patients at <span style="text-decoration: underline;">{{ employee.workplace.name }}</span></h2>
+                {% if presatw %}
+                    <table>
+                        <tr>
+                            <th>Name</th>
+                            <th>Dosage</th>
+                            <th>Patient</th>
+                            <th></th>
+                        </tr>
+                        {% for p in presatw %}
+                            <tr>
+                                <td><a href="{% url 'MDTouch:updatePres' p.id %}">{{ p.name }}</a></td>
+                                <td>{{ p.dosage }}</td>
+                                <td>{{ p.patient }}</td>
+                                <td><form action="{% url 'MDTouch:removePres' p.id %}"><input type="submit" value="Remove" /></form></td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                {% else %}
+                    <p>There are no prescriptions to view</p>
+                {% endif %}
+
+                <br>
+
+                <form action="{% url 'MDTouch:createPres' %}">
+                    <input type="submit" value="Create Prescription" />
+                </form>
+            {% endif %}
+        </div>
+    </div>
+    
+</div>
+</section>
+<!-------------------  -->
+    <script>
+        var today = new Date;
+        document.getElementById('date').innerHTML= "" + today;
+    </script>
+  
+<div class="color-bg"></div>
+<!-- Jquery Core Js --> 
+<script src="{% static 'HAccelerator/bundles/libscripts.bundle.js' %}"></script> <!-- Lib Scripts Plugin Js -->
+ 
+<script src="{% static 'HAccelerator/bundles/vendorscripts.bundle.js' %}"></script> <!-- Lib Scripts Plugin Js --> 
+
+<script src="{% static 'HAccelerator/bundles/mainscripts.bundle.js' %}"></script><!-- Custom Js -->
+</body>
+</html>

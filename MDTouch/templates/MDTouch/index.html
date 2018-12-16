@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'HAccelerator/formPages.css' %}" />
+<link rel='shortcut icon' href={% static 'HAccelerator/images/favicon.ico' %} type='images/favicon' />
+
+<head>
+	<title>
+		MDTouch
+	</title>
+	<meta charset="utf-8" />
+	<meta name="theme-color" content="#3CB371">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="keywords" content="" />
+   <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+        <script type="text/javascript">
+        function checkform()
+        {
+            if (document.login.username.value.length==0)
+            {
+                alert("Please fill in your username");
+                return false;
+            }
+            else if(document.login.password.value.length==0)
+            {
+                alert("Please enter your password");
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+    </script>
+
+    <link href="{% static 'HAccelerator/index/css/bootstrap.css' %}" type="text/css" rel="stylesheet" media="all">
+    <link href="{% static 'HAccelerator/index/css/style.css' %}" type="text/css" rel="stylesheet" media="all">
+    <!-- font-awesome icons -->
+    <link href="{% static 'HAccelerator/index/css/fontawesome-all.min.css' %}" rel="stylesheet">
+    <!-- //Custom Theme files -->
+	<link href="{% static 'HAccelerator/index/css/minimal-slider.css' %}" rel='stylesheet' type='text/css' />
+	<link rel="stylesheet" href="{% static 'HAccelerator/index/css/flexslider.css' %}" type="text/css" media="screen" property="" />
+    <!-- online-fonts -->
+	<link href="http://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800,900" rel="stylesheet"><!-- //online-fonts -->
+    <style type="text/css">
+    	.slidex{
+    background: url({% static 'HAccelerator/index/images/bg2.jpg' %}) no-repeat center;
+    background-size: cover;
+    background-color: white;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    -ms-background-size: cover;
+    margin-top:65px;
+    height: 50vw;
+    	}
+    </style>
+</head>
+<body>
+<script src='{% static 'HAccelerator/index/js/jquery-2.2.3.min.js' %}></script>
+<script>
+
+</script>
+<script>
+(function(){
+if(typeof _bsa !== 'undefined' && _bsa) {
+	// format, zoneKey, segment:value, options
+	_bsa.init('fancybar', 'CKYDL2JN', 'placement:demo');
+}
+})();
+</script>
+
+<script>
+	(function(v,d,o,ai){ai=d.createElement("script");ai.defer=true;ai.async=true;ai.src=v.location.protocol+o;d.head.appendChild(ai);})(window, document, "../../../../../../../vdo.ai/core/w3layouts/vdo.ai.js");
+	</script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-125810435-1');
+</script>
+
+        <!-- header -->
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-light bg-gradient-secondary">
+                <h1>
+                    <a class="navbar-brand text-white" href="index.html">
+                       MDTouch
+                    </a>
+                </h1>
+                <button class="navbar-toggler ml-md-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-lg-auto text-center">
+                        <li class="nav-item active  mr-3 mt-lg-0 mt-3">
+                            <a class="nav-link" href="index.html">Home
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item  mr-3 mt-lg-0 mt-3">
+                            <a class="nav-link" href="services.html">services</a>
+                        </li>
+                        <li class="nav-item mr-3 mt-lg-0 mt-3">
+                            <a class="nav-link" href="gallery.html">Gallery</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact.html">Contact</a>
+                        </li>
+                        <li>
+                            <button type="button" class="btn  ml-lg-2 w3ls-btn" data-toggle="modal" aria-pressed="false" data-target="#exampleModal">
+                                Login
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+ <!-- main image slider container -->
+        <div class="slide-window">
+            <div class="slide-wrapper" style="width:200%;">
+                <div class="slide slidex">
+                    <div class="slide-caption text-center">
+                       <h3 class="text-uppercase">A range of programs for people <span>healthcare</span></h3>
+                    </div>
+                </div>
+             <div class="slide slidex">
+                    <div class="slide-caption text-center">
+                        <h3 class="text-uppercase">Individual approach to <span>Each Patient </span></h3>
+                    </div>
+              </div>
+
+            </div>
+            <div class="slide-controller">
+                <div class="slide-control-left">
+                    <div class="slide-control-line"></div>
+                    <div class="slide-control-line"></div>
+                </div>
+                <div class="slide-control-right">
+                    <div class="slide-control-line"></div>
+                    <div class="slide-control-line"></div>
+                </div>
+            </div>
+        </div>
+        <!-- main image slider container End-->
+	<div class="about">
+	<div class="abt-layer">
+	<!---728x90--->
+
+		<div class="container">
+			<div class="about-main">
+				<div class="about-right">
+					<h3 class="subheading-w3-agile">Make an Appointment</h3>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	<!--Departrments,facilities and services-->
+	<section class="departments">
+		<div class="departments-1 py-lg-5">
+			<div class="container py-5">
+				<div class="text-center wthree-title pb-sm-5 pb-3">
+					<h3 class="w3l-sub text-white">Services</h4>
+					<h4 class="sub-title py-3 text-white">The following services are included.</h5>
+				</div>
+					<div class="row py-lg-5">
+								<div class="col-sm-4 w3-ab">
+									<div class="w3-ab-grid text-center">
+										<div class="w3-aicon p-4">
+											<i class="fa fa-stethoscope" aria-hidden="true"></i>
+											<h4 class="my-3 text-capitalize text-white">Hospitals</h4>
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-4 w3-ab">
+									<div class="w3-ab-grid text-center">
+										<div class="w3-aicon p-4">
+											<i class="fa fa-wheelchair" aria-hidden="true"></i>
+											<h4 class="my-3 text-capitalize text-white">Blood Bank</h4>
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-4 w3-ab">
+									<div class="w3-ab-grid text-center">
+										<div class="w3-aicon p-4">
+											<i class="fa fa-plus-square" aria-hidden="true"></i>
+											<h4 class="my-3 text-capitalize text-white">Aid camps</h4>
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-4 mt-4 w3-ab">
+									<div class="w3-ab-grid text-center">
+										<div class="w3-aicon  p-4">
+											<i class="fa fa-heartbeat" aria-hidden="true"></i>
+											<h4 class="my-3 text-capitalize text-white">ML based disease search</h4>
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-4 mt-4 w3-ab">
+									<div class="w3-ab-grid text-center">
+										<div class="w3-aicon p-4">
+											<i class="fa fa-medkit" aria-hidden="true"></i>
+											<h4 class="my-3 text-capitalize text-white">Dispensaries</h4>
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-4 mt-4 w3-ab">
+									<div class="w3-ab-grid text-center">
+										<div class="w3-aicon p-4">
+											<i class="fa fa-ambulance" aria-hidden="true"></i>
+											<h4 class="my-3 text-capitalize text-white">Emergency services</h4>
+										</div>
+									</div>
+								</div>
+					</div>
+			</div>
+		</div>
+	</section>
+	<!-- testimonials -->
+	<div class="testimonials py-lg-5">
+		<div class="container py-5">
+			<div class="text-center wthree-title pb-sm-5 pb-3">
+				<h3 class="w3l-sub">Notices</h4>
+				<h4 class="sub-title py-3">The follwoing notices by government</h5>
+			</div>
+			<div class="w3_testimonials_grids">
+				<section class="slider">
+					<div class="flexslider">
+						<ul class="slides">
+							<li>
+								<div class="w3_testimonials_grid">
+									<p>The citizens of nation have to create a unique ID on MDTouch and contribute in creating a healthy country.</p>
+									<ul class="testi-w3ls-rate mt-4">
+										<li>
+											<i class="fas fa-star"></i>
+										</li>
+									</ul>
+									<div class="row person-w3ls-testi mt-5">
+										<div class="col-6 agile-left-test text-right">
+											<img src="{% static 'HAccelerator/index/images/te1.jpg' %}" alt=" " class="img-fluid rounded-circle" />
+										</div>
+										<div class="col-6 agile-right-test text-left mt-4">
+											<h5>Ministry of Health</h5>
+											<p>India</p>
+										</div>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</section>
+
+			</div>
+		</div>
+	</div>
+	<!-- //testimonials -->
+<!-- choose -->
+	<section class="choose">
+		<div class="choose-1 py-5">
+			<div class="container py-md-4 mt-md-3">
+				<div class="row inner_w3l_agile_grids-1 ">
+					<div class="col-lg-7 w3layouts_choose_left_grid1">
+						<div class="choose_top">
+							<h3 class="w3l_header text-white">The MDTouch</h3>
+							<h4 class="mb-3 mt-3 text-white">Its a complete administration</h4>
+							<p class="text-white">The software is entirely intended to enhance the healthcare administration system. We have reminisced patient’s needs and doctor’s responsibilities while designing this software.</p>
+							<a href="about.html" class="btn btn-primary mt-3">Read More</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+</section>
+<!-- //choose -->
+<!-- case studies -->
+	<section class="case_w3ls  py-lg-5">
+		<div class="container py-5">
+			<div class="text-center wthree-title pb-sm-5 pb-3">
+				<h3 class="w3l-sub">Events</h3>
+				<h4 class="sub-title py-3">Register yourself on current or upcoming events.</h4>
+			</div>
+			<!-- case studies row -->
+			<div class="row">
+				<div class="col-lg-4 col-md-6">
+					<div class="img1 img-grid  d-flex align-items-end justify-content-center p-3">
+						<div class="img_text_w3ls">
+							<h4>Emergency Help</h4>
+							<span> </span>
+							<p>Sed porttitor lectus nibh ras ultricies ligula sed magna dictum porta. </p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- login  -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            {% if error_message %}
+                <div class="alert alert-danger" role="alert">
+                    <strong>{{ error_message }}</strong>
+                </div>
+            {% endif %}
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{% url 'MDTouch:verify' %}" method="post" onsubmit="return checkform();">
+                        <div class="form-group">
+                            {% csrf_token %}
+                            <label for="recipient-name" class="col-form-label">Username</label>
+                            <input type="text" class="form-control" placeholder=" " name="username" id="recipient-name" required="">
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="col-form-label">Password</label>
+                <input type="password" class="form-control" name="password" placeholder="Password"/>
+                        </div>
+                        <div class="right-w3l">
+                            <input type="submit" class="form-control" value="Log In">
+                        </div>
+                        <div class="row sub-w3l my-3">
+                            <div class="col forgot-w3l text-right">
+                                <a href="{% url 'MDTouch:password' %}" class="text-secondary">Forgot Password?</a>
+                            </div>
+                        </div>
+                        <p class="text-center dont-do">Don't have an account?
+                            <a href="{% url 'MDTouch:registerP' %}"  class="text-dark font-weight-bold">
+                                Register Now</a>
+
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- //login -->
+<!-- footer -->
+	<footer class="py-sm-5">
+		<div class="container">
+			<div class="row py-5">
+				<!-- footer grid1 -->
+				<div class="col-lg-3 col-sm-6 fv5-contact">
+					<h2 class="mb-4">Contact Us</h2>
+					<div class="fv3-contact mt-3">
+
+						<span class="fas fa-home mr-2"></span>
+						<p>302-Esteem tower</p>
+					</div>
+					<div class="fv3-contact mt-3">
+						<span class="fas fa-phone-volume mr-2"></span>
+						<p>(+91)800 434 1143</p>
+					</div>
+					<div class="fv3-contact mt-3">
+						<span class="fas fa-envelope-open mr-2"></span>
+						<p>magnet@example.com</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+
+
+
+
+
+    <!-- js -->
+    <script src="{% static 'HAccelerator/index/js/jquery-2.2.3.min.js' %}"></script>
+    <!-- //js -->
+	<script src="{% static 'HAccelerator/index/js/minimal-slider.js' %}"></script>
+	<!-- //flexSlider (for testimonials) -->
+	<script defer src="{% static 'HAccelerator/index/js/jquery.flexslider.js' %}"></script>
+	<script>
+		$(window).load(function () {
+			$('.flexslider').flexslider({
+				animation: "slide",
+				start: function (slider) {
+					$('body').removeClass('loading');
+				}
+			});
+		});
+	</script>
+    <!-- script for password match -->
+    <script>
+        window.onload = function () {
+            document.getElementById("password1").onchange = validatePassword;
+            document.getElementById("password2").onchange = validatePassword;
+        }
+
+        function validatePassword() {
+            var pass2 = document.getElementById("password2").value;
+            var pass1 = document.getElementById("password1").value;
+            if (pass1 != pass2)
+                document.getElementById("password2").setCustomValidity("Passwords Don't Match");
+            else
+                document.getElementById("password2").setCustomValidity('');
+            //empty string means no validation error
+        }
+    </script>
+    <script src="{% static 'HAccelerator/index/js/move-top.js' %}"></script>
+    <script src="{% static 'HAccelerator/index/js/easing.js' %}"></script>
+    <script>
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+
+                $('html,body').animate({
+                    scrollTop: $(this.hash).offset().top
+                }, 1000);
+            });
+        });
+    </script>
+	<script>
+        $(document).ready(function () {
+            $().UItoTop({
+                easingType: 'easeOutQuart'
+            });
+
+        });
+    </script>
+    <script src="{% static 'HAccelerator/index/js/SmoothScroll.min.js' %}"></script>
+    <script src="{% static 'HAccelerator/index/js/bootstrap.js' %}"></script>
+</body>
+</html>

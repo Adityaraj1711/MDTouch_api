@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+
+{% load staticfiles %}
+<head>
+    <meta name="theme-color" content="#3CB371">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" type="text/css" href="{% static 'HAccelerator/mainPages.css' %}" />
+<link rel='shortcut icon' href="{% static 'HAccelerator/images/favicon.ico' %}" type='images/favicon' />
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="{% static 'HAccelerator/plugins/bootstrap/css/bootstrap.min.css' %}"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" type="text/css">
+<link rel="stylesheet" href="{% static 'HAccelerator/css/main.css' %}"/>
+	<title>MDTouch | User Information</title>
+
+    <script>
+    function conExport()
+    {
+        if (confirm("WARNING: The MDTouch Development Team (Team Suites) cannot be held responsible if your exported " +
+                        "information falls into the wrong hands. Are you sure you want to continue?"))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    </script>
+</head>
+
+<body class="theme-cyan">
+<div class="page-loader-wrapper">
+    <div class="loader">
+        <div class="preloader">
+            <div class="spinner-layer pl-red">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+        </div>
+        <p>Please wait...</p>
+    </div>
+</div>
+
+<!-- Overlay For Sidebars -->
+<div class="overlay"></div>
+<div id="morphsearch" class="morphsearch">
+    <form class="morphsearch-form">
+        <div class="form-group m-0">
+            <input value="" type="search" placeholder="Explore MDTouch Events..." class="form-control morphsearch-input" />
+            <button class="morphsearch-submit" type="submit">Search</button>
+        </div>
+    </form>   
+    <span class="morphsearch-close"></span>
+</div>
+<nav class="navbar clearHeader">
+    <div class="col-12">
+        <div class="navbar-header"> <a href="javascript:void(0);" class="bars"></a> <a class="navbar-brand" href="{% url 'MDTouch:home' %}">MDTouch</a> </div>
+    </div>
+</nav>
+
+<section>
+      <aside id="leftsidebar" class="sidebar">
+         <div class="user-info">
+            <div class="admin-image"> <img src="{% static 'HAccelerator/images/random-avatar7.jpg' %}" alt=""> </div>
+            <div class="admin-action-info"> <span>Welcome, {{ type }} :</span>
+                <h3>{{ user.lastName }}, {{ user.firstName }}</h3>
+            </div>
+        </div>
+          <div class="menu">
+            <ul class = "list">
+              {% if type == "Administrator"%}
+              <li><a href="{% url 'MDTouch:log' %}"><i class="zmdi zmdi-file-text"></i><span>Activity Log</span></a></li>
+              <li ><a href="{% url 'MDTouch:statistics' %}"><i class="zmdi zmdi-delicious"></i><span>Statistics</span></a></li>
+              <li ><a href="{% url 'MDTouch:registerDN' %}"><i class="zmdi zmdi-account"></i><span>Staff Registration</span></a></li>
+              <li ><a href="{% url 'MDTouch:messages' %}"><i class="zmdi zmdi-email"></i><span>Messages</span></a></li>
+              <li><a href="{% url 'MDTouch:logOut' %}"><i class="zmdi zmdi-sign-in"></i><span> Logout</span></a></li>
+              {% else %}
+              <li ><a href="{% url 'MDTouch:information' %}"><i class="zmdi zmdi-account"></i><span>User Information</span></a></li>
+              <li ><a href="{% url 'MDTouch:appointments' %}"><i class="zmdi zmdi-delicious"></i><span>Manage Appointments</span></a></li>
+              <li ><a  href="{% url 'MDTouch:prescriptions' %}"><i class="zmdi zmdi-file-text"></i><span>Prescriptions</span></a></li>
+              <li ><a  href="{% url 'MDTouch:calendar' %}"><i class="zmdi zmdi-file-text"></i><span>Calendar</span></a></li>
+              <li ><a  href="{% url 'MDTouch:messages' %}"><i class="zmdi zmdi-email"></i><span>Messages</span></a></li>
+              <li ><a href="{% url 'MDTouch:logOut' %}"><i class="zmdi zmdi-sign-in"></i><span>Logout</span></a></li>
+              {% endif %}
+
+            </ul>
+          </div>
+      </aside>
+</section>
+
+
+<!--  --------------- ------------ -->
+<section class="content">
+    <div class="container-fluid">
+    <div id="container">
+        <div id="tablecontainer">
+            {% if type == "Patient" %}
+                <h2>Profile Information</h2>
+                <table>
+                    <tr>
+                        <th>Name</th>
+                        <th>Address</th>
+                        <th>Phone Number</th>
+                        <th>Email</th>
+                        <th>Insurance Provider</th>
+                        <th>Insurance ID</th>
+                    </tr>
+                    <tr>
+                        <td>{{ patient.lastName }}, {{ patient.firstName }}</td>
+                        <td>{{ patient.address }}</td>
+                        <td>{{ patient.number }}</td>
+                        <td>{{ patient.email }}</td>
+                        <td>{{ patient.provider }}</td>
+                        <td>{{ patient.insuranceid }}</td>
+                    </tr>
+                </table>
+
+                <h2>Emergency Contact</h2>
+                <table>
+                    <tr>
+                        <th>Name</th>
+                        <th>Address</th>
+                        <th>Phone Number</th>
+                    </tr>
+                    <tr>
+                        <td>{{ patient.contact.lastName }}, {{ patient.contact.firstName }}</td>
+                        <td>{{ patient.contact.address }}</td>
+                        <td>{{ patient.contact.number }}</td>
+                    </tr>
+                </table>
+
+                <br>
+
+                <form action="{% url 'MDTouch:updatePro' %}">
+                    <input type="submit" value="Update Profile Information" />
+                </form>
+
+                <br>
+                <br>
+
+                <h2>Medical Information</h2>
+                <table>
+                    <tr>
+                        <th>Height</th>
+                        <th>Weight</th>
+                        <th>Allergies</th>
+                        <th>Gender</th>
+                    </tr>
+                    <tr>
+                        <td>{{ patient.height }}</td>
+                        <td>{{ patient.weight }} lbs</td>
+                        <td>{{ patient.allergies }}</td>
+                        <td>{{ patient.gender }}</td>
+                    </tr>
+                </table>
+
+                <br>
+                <br>
+
+                <h2>Test Results</h2>\
+                {% if tests %}
+                    <table>
+                        <tr>
+                            <th>Test Name</th>
+                            <th>Release Status</th>
+                        </tr>
+                        {% for t in tests %}
+                            <tr>
+                                {% if t.released == True %}
+                                    <td><a class="alink" href="{% url 'MDTouch:testDetails' t.id %}">{{ t.name }}</a></td>
+                                {% else %}
+                                    <td>{{ t.name }}</td>
+                                {% endif %}
+                                {% if t.released == True %}
+                                    <td>Test is Released</td>
+                                {% else %}
+                                    <td>Not yet Released</td>
+                                {% endif %}
+                                </tr>
+                        {% endfor %}
+                    </table>
+                {% else %}
+                    <p>There are no tests to view</p>
+                {% endif %}
+
+                <br>
+
+				<form action="{% url 'MDTouch:export' %}" onsubmit="return conExport();">
+                    <input class="button" type="submit" value="Export Tests and Profile Information" />
+                </form>
+			{% endif %}
+			
+			{% if type != "Patient" %}
+                <h2><span style="text-decoration: underline;">{{ employee.firstName }} {{ employee.lastName }}</span>, these are the patients at <span style="text-decoration: underline;">{{ employee.workplace.name }}</span></h2>
+                {% if patw %}
+                    <table>
+                        <tr>
+                            <th>Patient Name</th>
+                            <th>Height</th>
+                            <th>Weight</th>
+                            <th>Allergies</th>
+                            <th>Gender</th>
+                            {% if type == "Doctor" %}
+                                <th></th>
+                                <th></th>
+                            {% endif %}
+                        </tr>
+                            {% for patient in patients %}
+                                {% if patient.hospital == employee.workplace %}
+                                    <tr>
+                                        <td><a class="alink" href="{% url 'MDTouch:updateMed' patient.id %}">{{ patient.lastName }}, {{ patient.firstName }}</a></td>
+                                        <td>{{ patient.height }}</td>
+                                        <td>{{ patient.weight }} lbs</td>
+                                        <td>{{ patient.allergies }}</td>
+                                        <td>{{ patient.gender }}</td>
+                                        {% if type == "Doctor" %}
+                                            <td><form action="{% url 'MDTouch:tests' patient.id %}"><input type="submit" value="Test Results" /></form></td>
+                                            <td><form action="{% url 'MDTouch:discharge' patient.id %}"><input type="submit" value="Discharge" /></form></td>
+                                        {% endif %}
+                                    </tr>
+                                {% endif %}
+                            {% endfor %}
+                    </table>
+                {% else %}
+                    <p>There are no patients at your hospital</p>
+                {% endif %}
+
+                <br>
+                <br>
+
+                <h2>Non Admitted Patients</h2>
+                <table>
+                    <tr>
+                        <th>Patient Name</th>
+                        <th>Current Hospital</th>
+                        <th></th>
+                    </tr>
+                    {% for patient in patients %}
+                        {% if patient.hospital.address != employee.workplace.address %}
+                            <tr>
+                                {% if type == "Doctor" %}
+                                    <td><a class="alink" href="{% url 'MDTouch:updateMed' patient.id %}">{{ patient.lastName }}, {{ patient.firstName }}</a></td>
+                                {% else %}
+                                    <td>{{ patient.lastName }}, {{ patient.firstName }}</td>
+                                {% endif %}
+
+                                {%if patient.hospital == None %}
+                                    <td>{{ patient.hospital.name }}</td>
+                                    <td><form action="{% url 'MDTouch:admission' patient.id employee.workplace.id%}"><input type="submit" value="Admit" /></form></td>
+                                {% else %}
+                                    {% if type == "Nurse" %}
+                                        <td>{{ patient.hospital.name }}</td>
+                                    {% endif %}
+                                    {% if type == "Doctor" %}
+                                        <td>{{ patient.hospital.name }}</td>
+                                        <td><form action="{% url 'MDTouch:transfer' patient.id employee.workplace.id%}"><input type="submit" value="Transfer" /></form></td>
+                                    {% endif %}
+                                {% endif %}
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                </table>
+            {% endif %}
+        </div>
+    </div>
+</div>
+</section>
+<!-------------------  -->
+    <script>
+        var today = new Date;
+        document.getElementById('date').innerHTML= "" + today;
+    </script>
+<div class="color-bg"></div>
+<!-- Jquery Core Js --> 
+<script src="{% static 'HAccelerator/bundles/libscripts.bundle.js' %}"></script> <!-- Lib Scripts Plugin Js -->
+ 
+<script src="{% static 'HAccelerator/bundles/vendorscripts.bundle.js' %}"></script> <!-- Lib Scripts Plugin Js --> 
+
+<script src="{% static 'HAccelerator/bundles/mainscripts.bundle.js' %}"></script><!-- Custom Js -->
+</body>
+</html>

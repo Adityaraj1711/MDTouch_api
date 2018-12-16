@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+{% load staticfiles %}
+<head>
+    <meta name="theme-color" content="#3CB371">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" type="text/css" href="{% static 'HAccelerator/mainPages.css' %}" />
+<link rel='shortcut icon' href="{% static 'HAccelerator/images/favicon.ico' %}" type='images/favicon' />
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="{% static 'HAccelerator/plugins/bootstrap/css/bootstrap.min.css' %}"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" type="text/css">
+<link rel="stylesheet" href="{% static 'HAccelerator/css/main.css' %}"/>
+
+<head>
+	<title>MDTouch | Update Prescription</title>
+	<script type="text/javascript">
+        function checkform()
+        {
+            if(document.updatePres.name.value.length==0)
+            {
+                alert("Please enter a Prescription name");
+                return false;
+            }
+            else if(document.updatePres.dosage.value.length==0)
+            {
+                alert("Please enter a Dosage");
+                return false;
+            }
+            else
+            {
+                alert("Your prescription will now be updated");
+                return true;
+            }
+        }
+	</script>
+</head>
+
+<body class="theme-cyan">
+<div class="page-loader-wrapper">
+    <div class="loader">
+        <div class="preloader">
+            <div class="spinner-layer pl-red">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+        </div>
+        <p>Please wait...</p>
+    </div>
+</div>
+
+<!-- Overlay For Sidebars -->
+<div class="overlay"></div>
+<div id="morphsearch" class="morphsearch">
+    <form class="morphsearch-form">
+        <div class="form-group m-0">
+            <input value="" type="search" placeholder="Explore MDTouch Events..." class="form-control morphsearch-input" />
+            <button class="morphsearch-submit" type="submit">Search</button>
+        </div>
+    </form>   
+    <span class="morphsearch-close"></span>
+</div>
+<nav class="navbar clearHeader">
+    <div class="col-12">
+        <div class="navbar-header"> <a href="javascript:void(0);" class="bars"></a> <a class="navbar-brand" href="{% url 'MDTouch:home' %}">MDTouch</a> </div>
+    </div>
+</nav>
+<!--  --------------- ------------ -->
+<section class="content">
+    <div class="container-fluid">
+    <div id="container">
+        <div id="formContainer">
+            <h1>Update Your Prescription Below</h1>
+            <form name = 'updatePres' action="{% url 'MDTouch:updatePresInfo' prescription.id %}" method="post" onsubmit="return checkform();">
+
+                {% csrf_token %}
+
+                <ul>
+                    <li class="form">To update your prescription, modify the form below</li>
+                </ul>
+
+                <div class="formcontent">
+                    Input a Prescription Name:
+                    <input type="text" name="name"  value="{{ prescription.name }}" placeholder="Ex.) Amoxicillin"/>
+                    Input a dosage:
+                    <input type="text" name="dosage" value="{{ prescription.dosage }}" placeholder="Ex.) 1 Every Six Hours"/>
+                    Select a Patient:
+                    <select style="display: block" name='patient'>
+                        <option name="patient" value="{{prescription.patient.id}}" selected>{{prescription.patient.lastName}}, {{ prescription.patient.firstName }}</option>
+                        {% for p in patients %}
+                            {% if p.id != prescription.patient.id %}
+                                <option name="patient" value="{{p.id}}">{{p.lastName}}, {{ p.firstName }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </div>
+                <input type="submit" value="Submit" />
+            </form>
+
+            <form action="{% url 'MDTouch:prescriptions' %}">
+                <input class="button" type="submit" value="Cancel" />
+            </form>
+        </div>
+    </div>
+</body>
+</html>

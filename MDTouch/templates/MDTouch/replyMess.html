@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+{% load staticfiles %}
+<head>
+<link rel="stylesheet" type="text/css" href="{% static 'HAccelerator/mainPages.css' %}" />
+<link rel='shortcut icon' href="{% static 'HAccelerator/images/favicon.ico' %}" type='images/favicon' />
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="{% static 'HAccelerator/plugins/bootstrap/css/bootstrap.min.css' %}"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" type="text/css">
+<link rel="stylesheet" href="{% static 'HAccelerator/css/main.css' %}"/>
+<meta name="theme-color" content="#3CB371">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>MDTouch | Reply Message</title>
+	<script type="text/javascript">
+        function checkform()
+        {
+			if(document.replyMess.subject.value.length == 0)
+            {
+                alert("Please enter a subject for your message");
+                return false;
+            }
+            else if(document.replyMess.message.value.length == 0)
+            {
+                alert("Please enter the contents of your message");
+                return false;
+            }
+            else
+            {
+                alert("Your message will now be sent")
+                return true;
+            }
+        }
+	</script>
+</head>
+
+<body class="theme-cyan">
+<div class="page-loader-wrapper">
+    <div class="loader">
+        <div class="preloader">
+            <div class="spinner-layer pl-red">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+        </div>
+        <p>Please wait...</p>
+    </div>
+</div>
+
+<!-- Overlay For Sidebars -->
+<div class="overlay"></div>
+<div id="morphsearch" class="morphsearch">
+    <form class="morphsearch-form">
+        <div class="form-group m-0">
+            <input value="" type="search" placeholder="Explore MDTouch Events..." class="form-control morphsearch-input" />
+            <button class="morphsearch-submit" type="submit">Search</button>
+        </div>
+    </form>   
+    <span class="morphsearch-close"></span>
+</div>
+<nav class="navbar clearHeader">
+    <div class="col-12">
+        <div class="navbar-header"> <a href="javascript:void(0);" class="bars"></a> <a class="navbar-brand" href="index.html">MDTouch</a> </div>
+    </div>
+</nav>
+
+<!--  --------------- ------------ -->
+<section class="content">
+    <div class="container-fluid">
+    <div id="container">
+        <div id="formContainer">
+            <h1>Reply To a Message</h1>
+            <form name = 'replyMess' action="{% url 'MDTouch:createMessInfo'  message.id %}" method="post" onsubmit="return checkform();">
+                {% csrf_token %}
+
+                <ul>
+                    <li class="form">This reply message is going to: <span style="text-decoration: underline;">{{ message.senderName }}</span></li>
+                </ul>
+
+                <div class="formcontent">
+                    Write a subject line:
+                    <input type="text" value="{{ message.subjectLine }}" name="subject"/>
+                    Write your message:
+                    <textarea style="display: block" rows="10" cols="101" name="message"></textarea>
+                </div>
+                <input type="submit" value="Submit" />
+            </form>
+
+            <form action="{% url 'MDTouch:messages' %}">
+                <input class="button" type="submit" value="Cancel" />
+            </form>
+        </div>
+    </div>
+
+</div>
+</section>
+<!-------------------  -->
+    <script>
+        var today = new Date;
+        document.getElementById('date').innerHTML= "" + today;
+    </script>
+  
+<div class="color-bg"></div>
+<!-- Jquery Core Js --> 
+<script src="{% static 'HAccelerator/bundles/libscripts.bundle.js' %}"></script> <!-- Lib Scripts Plugin Js -->
+ 
+<script src="{% static 'HAccelerator/bundles/vendorscripts.bundle.js' %}"></script> <!-- Lib Scripts Plugin Js --> 
+
+<script src="{% static 'HAccelerator/bundles/mainscripts.bundle.js' %}"></script><!-- Custom Js -->
+</body>
+</html>
