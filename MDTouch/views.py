@@ -1191,6 +1191,7 @@ def getevents(request):
 ################################           API and Calls              ########################################
 ##############################################################################################################
 ##############################################################################################################
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
@@ -1201,748 +1202,194 @@ from django.http import HttpResponse, JsonResponse
 from rest_framework.response import Response
 from rest_framework import status
 
-@csrf_exempt
-def hospital_list(request):
-    """
-    List all code snippets, or create a new snippet.
-    """
-    if request.method == 'GET':
-        hospital = Hospital.objects.all()
-        hospital = HospitalSerializer(hospital, many=True)
-        return JsonResponse(hospital.data, safe=False)
-
-    elif request.method == 'POST':
-        data = JSONParser().parse(request)
-        hospital = HospitalSerializer(data=data)
-        if hospital.is_valid():
-            hospital.save()
-            return JsonResponse(hospital.data, status=201)
-        return JsonResponse(hospital.errors, status=400)
-
-@api_view(['GET', 'PUT', 'DELETE'])
-def hospital_detail(request, pk):
-    """
-    Retrieve, update or delete a code snippet.
-    """
-    try:
-        album = Hospital.objects.get(pk=pk)
-    except Hospital.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
-
-    if request.method == 'GET':
-        serializer = HospitalSerializer(album)
-        return Response(serializer.data)
-
-    elif request.method == 'PUT':
-        serializer = HospitalSerializer(album, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    elif request.method == 'DELETE':
-        album.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
-
-
-@csrf_exempt
-def emergencycontact_list(request):
-    """
-    List all code snippets, or create a new snippet.
-    """
-    if request.method == 'GET':
-        emergencycontact = EmergencyContact.objects.all()
-        emergencycontact = EmergencyContactSerializer(emergencycontact, many=True)
-        return JsonResponse(emergencycontact.data, safe=False)
-
-    elif request.method == 'POST':
-        data = JSONParser().parse(request)
-        emergencycontact = EmergencyContactSerializer(data=data)
-        if emergencycontact.is_valid():
-            emergencycontact.save()
-            return JsonResponse(emergencycontact.data, status=201)
-        return JsonResponse(emergencycontact.errors, status=400)
-
-@api_view(['GET', 'PUT', 'DELETE'])
-def emergencycontact_detail(request, pk):
-    """
-    Retrieve, update or delete a code snippet.
-    """
-    try:
-        emergencycontact = EmergencyContact.objects.get(pk=pk)
-    except EmergencyContact.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
-
-    if request.method == 'GET':
-        serializer = EmergencyContactSerializer(emergencycontact)
-        return Response(serializer.data)
-
-    elif request.method == 'PUT':
-        serializer = EmergencyContactSerializer(emergencycontact, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    elif request.method == 'DELETE':
-        emergencycontact.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
-
-
-@csrf_exempt
-def patient_list(request):
-    """
-    List all code snippets, or create a new snippet.
-    """
-    if request.method == 'GET':
-        patient = Patient.objects.all()
-        patient = PatientSerializer(patient, many=True)
-        return JsonResponse(patient.data, safe=False)
-
-    elif request.method == 'POST':
-        data = JSONParser().parse(request)
-        patient = PatientSerializer(data=data)
-        if patient.is_valid():
-            patient.save()
-            return JsonResponse(patient.data, status=201)
-        return JsonResponse(patient.errors, status=400)
-
-@api_view(['GET', 'PUT', 'DELETE'])
-def patient_detail(request, pk):
-    """
-    Retrieve, update or delete a code snippet.
-    """
-    try:
-        patient = Patient.objects.get(pk=pk)
-    except EmergencyContact.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
-
-    if request.method == 'GET':
-        serializer = PatientSerializer(patient)
-        return Response(serializer.data)
-
-    elif request.method == 'PUT':
-        serializer = PatientSerializer(patient, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    elif request.method == 'DELETE':
-        patient.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
-
-@csrf_exempt
-def specialization_list(request):
-    """
-    List all code snippets, or create a new snippet.
-    """
-    if request.method == 'GET':
-        specialization = Specialization.objects.all()
-        specialization = SpecializationSerializer(patient, many=True)
-        return JsonResponse(specialization.data, safe=False)
-
-    elif request.method == 'POST':
-        data = JSONParser().parse(request)
-        specialization = SpecializationSerializer(data=data)
-        if specialization.is_valid():
-            specialization.save()
-            return JsonResponse(specialization.data, status=201)
-        return JsonResponse(specialization.errors, status=400)
-
-@api_view(['GET', 'PUT', 'DELETE'])
-def specialization_detail(request, pk):
-    """
-    Retrieve, update or delete a code snippet.
-    """
-    try:
-        specialization = Specialization.objects.get(pk=pk)
-    except Specialization.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
-
-    if request.method == 'GET':
-        serializer = SpecializationSerializer(specialization)
-        return Response(serializer.data)
-
-    elif request.method == 'PUT':
-        serializer = SpecializationSerializer(specialization, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    elif request.method == 'DELETE':
-        specialization.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
-
-@csrf_exempt
-def qualification_list(request):
-    """
-    List all code snippets, or create a new snippet.
-    """
-    if request.method == 'GET':
-        qualification = Qualification.objects.all()
-        qualification = QualificationSerializer(qualification, many=True)
-        return JsonResponse(qualification.data, safe=False)
-
-    elif request.method == 'POST':
-        data = JSONParser().parse(request)
-        qualification = QualificationSerializer(data=data)
-        if qualification.is_valid():
-            qualification.save()
-            return JsonResponse(qualification.data, status=201)
-        return JsonResponse(qualification.errors, status=400)
-
-@api_view(['GET', 'PUT', 'DELETE'])
-def qualification_detail(request, pk):
-    """
-    Retrieve, update or delete a code snippet.
-    """
-    try:
-        qualification = Qualification.objects.get(pk=pk)
-    except EmergencyContact.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
-
-    if request.method == 'GET':
-        serializer = QualificationSerializer(qualification)
-        return Response(serializer.data)
-
-    elif request.method == 'PUT':
-        serializer = QualificationSerializer(qualification, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    elif request.method == 'DELETE':
-        qualification.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
-
-@csrf_exempt
-def doctor_list(request):
-    """
-    List all code snippets, or create a new snippet.
-    """
-    if request.method == 'GET':
-        doctor = Doctor.objects.all()
-        doctor = DoctorSerializer(doctor, many=True)
-        return JsonResponse(doctor.data, safe=False)
-
-    elif request.method == 'POST':
-        data = JSONParser().parse(request)
-        doctor = DoctorSerializer(data=data)
-        if doctor.is_valid():
-            doctor.save()
-            return JsonResponse(doctor.data, status=201)
-        return JsonResponse(doctor.errors, status=400)
-
-@api_view(['GET', 'PUT', 'DELETE'])
-def doctor_detail(request, pk):
-    """
-    Retrieve, update or delete a code snippet.
-    """
-    try:
-        doctor = Doctor.objects.get(pk=pk)
-    except Doctor.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
-
-    if request.method == 'GET':
-        serializer = DoctorSerializer(doctor)
-        return Response(serializer.data)
-
-    elif request.method == 'PUT':
-        serializer = DoctorSerializer(doctor, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    elif request.method == 'DELETE':
-        doctor.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
-
-@csrf_exempt
-def administrator_list(request):
-    """
-    List all code snippets, or create a new snippet.
-    """
-    if request.method == 'GET':
-        administrator = Administrator.objects.all()
-        administrator = AdministratorSerializer(administrator, many=True)
-        return JsonResponse(administrator.data, safe=False)
-
-    elif request.method == 'POST':
-        data = JSONParser().parse(request)
-        administrator = AdministratorSerializer(data=data)
-        if administrator.is_valid():
-            administrator.save()
-            return JsonResponse(administrator.data, status=201)
-        return JsonResponse(administrator.errors, status=400)
-
-@api_view(['GET', 'PUT', 'DELETE'])
-def administrator_detail(request, pk):
-    """
-    Retrieve, update or delete a code snippet.
-    """
-    try:
-        administrator = Administrator.objects.get(pk=pk)
-    except Administrator.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
-
-    if request.method == 'GET':
-        serializer = AdministratorSerializer(administrator)
-        return Response(serializer.data)
-
-    elif request.method == 'PUT':
-        serializer = AdministratorSerializer(administrator, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    elif request.method == 'DELETE':
-        administrator.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
-
-
-@csrf_exempt
-def prescription_list(request):
-    """
-    List all code snippets, or create a new snippet.
-    """
-    if request.method == 'GET':
-        prescription = Prescription.objects.all()
-        prescription = PrescriptionSerializer(prescription, many=True)
-        return JsonResponse(prescription.data, safe=False)
-
-    elif request.method == 'POST':
-        data = JSONParser().parse(request)
-        prescription = PrescriptionSerializer(data=data)
-        if prescription.is_valid():
-            prescription.save()
-            return JsonResponse(prescription.data, status=201)
-        return JsonResponse(prescription.errors, status=400)
-
-@api_view(['GET', 'PUT', 'DELETE'])
-def prescription_detail(request, pk):
-    """
-    Retrieve, update or delete a code snippet.
-    """
-    try:
-        prescription = Prescription.objects.get(pk=pk)
-    except Prescription.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
-
-    if request.method == 'GET':
-        serializer = PrescriptionSerializer(prescription)
-        return Response(serializer.data)
-
-    elif request.method == 'PUT':
-        serializer = PrescriptionSerializer(prescription, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    elif request.method == 'DELETE':
-        prescription.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
-
-@csrf_exempt
-def test_list(request):
-    """
-    List all code snippets, or create a new snippet.
-    """
-    if request.method == 'GET':
-        test = Test.objects.all()
-        test = TestSerializer(test, many=True)
-        return JsonResponse(test.data, safe=False)
-
-    elif request.method == 'POST':
-        data = JSONParser().parse(request)
-        test = PrescriptionSerializer(data=data)
-        if test.is_valid():
-            test.save()
-            return JsonResponse(test.data, status=201)
-        return JsonResponse(test.errors, status=400)
-
-@api_view(['GET', 'PUT', 'DELETE'])
-def test_detail(request, pk):
-    """
-    Retrieve, update or delete a code snippet.
-    """
-    try:
-        test = Test.objects.get(pk=pk)
-    except Test.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
-
-    if request.method == 'GET':
-        serializer = TestSerializer(test)
-        return Response(serializer.data)
-
-    elif request.method == 'PUT':
-        serializer = TestSerializer(test, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    elif request.method == 'DELETE':
-        test.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
-
-@csrf_exempt
-def appointment_list(request):
-    """
-    List all code snippets, or create a new snippet.
-    """
-    if request.method == 'GET':
-        appointment = Appointment.objects.all()
-        appointment = AppointmentSerializer(appointment, many=True)
-        return JsonResponse(appointment.data, safe=False)
-
-    elif request.method == 'POST':
-        data = JSONParser().parse(request)
-        appointment = AppointmentSerializer(data=data)
-        if appointment.is_valid():
-            appointment.save()
-            return JsonResponse(appointment.data, status=201)
-        return JsonResponse(appointment.errors, status=400)
-
-@api_view(['GET', 'PUT', 'DELETE'])
-def appointment_detail(request, pk):
-    """
-    Retrieve, update or delete a code snippet.
-    """
-    try:
-        appointment = Appointment.objects.get(pk=pk)
-    except Appointment.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
-
-    if request.method == 'GET':
-        serializer = AppointmentSerializer(appointment)
-        return Response(serializer.data)
-
-    elif request.method == 'PUT':
-        serializer = AppointmentSerializer(appointment, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    elif request.method == 'DELETE':
-        appointment.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
-
-
-@csrf_exempt
-def message_list(request):
-    """
-    List all code snippets, or create a new snippet.
-    """
-    if request.method == 'GET':
-        message = Message.objects.all()
-        message = MessageSerializer(message, many=True)
-        return JsonResponse(message.data, safe=False)
-
-    elif request.method == 'POST':
-        data = JSONParser().parse(request)
-        message = MessageSerializer(data=data)
-        if message.is_valid():
-            message.save()
-            return JsonResponse(message.data, status=201)
-        return JsonResponse(message.errors, status=400)
-
-@api_view(['GET', 'PUT', 'DELETE'])
-def message_detail(request, pk):
-    """
-    Retrieve, update or delete a code snippet.
-    """
-    try:
-        message = Message.objects.get(pk=pk)
-    except Message.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
-
-    if request.method == 'GET':
-        serializer = MessageSerializer(message)
-        return Response(serializer.data)
-
-    elif request.method == 'PUT':
-        serializer = MessageSerializer(message, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    elif request.method == 'DELETE':
-        message.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
-
-
-@csrf_exempt
-def logininfo_list(request):
-    """
-    List all code snippets, or create a new snippet.
-    """
-    if request.method == 'GET':
-        logininfo = LogInInfo.objects.all()
-        logininfo = LoginInInfoSerializer(logininfo, many=True)
-        return JsonResponse(logininfo.data, safe=False)
-
-    elif request.method == 'POST':
-        data = JSONParser().parse(request)
-        logininfo = LoginInInfoSerializer(data=data)
-        if logininfo.is_valid():
-            logininfo.save()
-            return JsonResponse(logininfo.data, status=201)
-        return JsonResponse(logininfo.errors, status=400)
-
-@api_view(['GET', 'PUT', 'DELETE'])
-def logininfo_detail(request, pk):
-    """
-    Retrieve, update or delete a code snippet.
-    """
-    try:
-        logininfo = LogInInfo.objects.get(pk=pk)
-    except LogInInfo.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
-
-    if request.method == 'GET':
-        serializer = LoginInInfoSerializer(logininfo)
-        return Response(serializer.data)
-
-    elif request.method == 'PUT':
-        serializer = LoginInInfoSerializer(logininfo, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    elif request.method == 'DELETE':
-        logininfo.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
-
-@csrf_exempt
-def emergencyservices_list(request):
-    """
-    List all code snisppets, or create a new snippet.
-    """
-    if request.method == 'GET':
-        emergencyservices = EmergencyService.objects.all()
-        emergencyservices = EmergencyServiceSerializer(emergencyservices, many=True)
-        return JsonResponse(emergencyservices.data, safe=False)
-
-    elif request.method == 'POST':
-        data = JSONParser().parse(request)
-        emergencyservices = EmergencyServiceSerializer(data=data)
-        if emergencyservices.is_valid():
-            emergencyservices.save()
-            return JsonResponse(emergencyservices.data, status=201)
-        return JsonResponse(emergencyservices.errors, status=400)
-
-@api_view(['GET', 'PUT', 'DELETE'])
-def emergencyservices_detail(request, pk):
-    """
-    Retrieve, update or delete a code snippet.
-    """
-    try:
-        emergencyservices = EmergencyService.objects.get(pk=pk)
-    except EmergencyService.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
-
-    if request.method == 'GET':
-        serializer = EmergencyServiceSerializer(emergencyservices)
-        return Response(serializer.data)
-
-    elif request.method == 'PUT':
-        serializer = EmergencyServiceSerializer(emergencyservices, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    elif request.method == 'DELETE':
-        emergencyservices.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
-
-@csrf_exempt
-def ambulance_list(request):
-    """
-    List all code snisppets, or create a new snippet.
-    """
-    if request.method == 'GET':
-        ambulance = Ambulance.objects.all()
-        ambulance = AmbulanceSerializer(ambulance, many=True)
-        return JsonResponse(ambulance.data, safe=False)
-
-    elif request.method == 'POST':
-        data = JSONParser().parse(request)
-        ambulance = AmbulanceSerializer(data=data)
-        if ambulance.is_valid():
-            ambulance.save()
-            return JsonResponse(ambulance.data, status=201)
-        return JsonResponse(ambulance.errors, status=400)
-
-@api_view(['GET', 'PUT', 'DELETE'])
-def ambulance_detail(request, pk):
-    """
-    Retrieve, update or delete a code snippet.
-    """
-    try:
-        ambulance = Ambulance.objects.get(pk=pk)
-    except Ambulance.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
-
-    if request.method == 'GET':
-        serializer = AmbulanceSerializer(ambulance)
-        return Response(serializer.data)
-
-    elif request.method == 'PUT':
-        serializer = AmbulanceSerializer(ambulance, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    elif request.method == 'DELETE':
-        ambulance.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
-
-
-@csrf_exempt
-def login_list(request):
-    """
-    List all code snisppets, or create a new snippet.
-    """
-    if request.method == 'GET':
-        login = Login.objects.all()
-        login = LoginSerilizer(login, many=True)
-        return JsonResponse(login.data, safe=False)
-
-    elif request.method == 'POST':
-        data = JSONParser().parse(request)
-        login = LoginSerilizer(data=data)
-        if login.is_valid():
-            login.save()
-            return JsonResponse(login.data, status=201)
-        return JsonResponse(login.errors, status=400)
-
-@api_view(['GET', 'PUT', 'DELETE'])
-def login_detail(request, pk):
-    """
-    Retrieve, update or delete a code snippet.
-    """
-    try:
-        login = Login.objects.get(pk=pk)
-    except Login.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
-
-    if request.method == 'GET':
-        serializer = LoginSerilizer(login)
-        return Response(serializer.data)
-
-    elif request.method == 'PUT':
-        serializer = LoginSerilizer(login, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    elif request.method == 'DELETE':
-        login.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
-
-
-@csrf_exempt
-def bloodbankcenter_list(request):
-    """
-    List all code snisppets, or create a new snippet.
-    """
-    if request.method == 'GET':
-        bloodbankcenter = BloodBankCenter.objects.all()
-        bloodbankcenter = BloodBankCenterSerializer(bloodbankcenter, many=True)
-        return JsonResponse(bloodbankcenter.data, safe=False)
-
-    elif request.method == 'POST':
-        data = JSONParser().parse(request)
-        bloodbankcenter = BloodBankCenterSerializer(data=data)
-        if bloodbankcenter.is_valid():
-            bloodbankcenter.save()
-            return JsonResponse(bloodbankcenter.data, status=201)
-        return JsonResponse(bloodbankcenter.errors, status=400)
-
-@api_view(['GET', 'PUT', 'DELETE'])
-def bloodbankcenter_detail(request, pk):
-    """
-    Retrieve, update or delete a code snippet.
-    """
-    try:
-        bloodbankcenter = BloodBankCenter.objects.get(pk=pk)
-    except BloodBankCenter.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
-
-    if request.method == 'GET':
-        serializer = BloodBankCenterSerializer(bloodbankcenter)
-        return Response(serializer.data)
-
-    elif request.method == 'PUT':
-        serializer = BloodBankCenterSerializer(bloodbankcenter, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    elif request.method == 'DELETE':
-        bloodbankcenter.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
-
-
-@csrf_exempt
-def dispensaries_list(request):
-    """
-    List all code snisppets, or create a new snippet.
-    """
-    if request.method == 'GET':
-        dispensaries = Dispensaries.objects.all()
-        dispensaries = DispensariesSerializer(dispensaries, many=True)
-        return JsonResponse(dispensaries.data, safe=False)
-
-    elif request.method == 'POST':
-        data = JSONParser().parse(request)
-        dispensaries = DispensariesSerializer(data=data)
-        if dispensaries.is_valid():
-            dispensaries.save()
-            return JsonResponse(dispensaries.data, status=201)
-        return JsonResponse(dispensaries.errors, status=400)
-
-@api_view(['GET', 'PUT', 'DELETE'])
-def dispensaries_detail(request, pk):
-    """
-    Retrieve, update or delete a code snippet.
-    """
-    try:
-        dispensaries = Dispensaries.objects.get(pk=pk)
-    except Dispensaries.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
-
-    if request.method == 'GET':
-        serializer = DispensariesSerializer(dispensaries)
-        return Response(serializer.data)
-
-    elif request.method == 'PUT':
-        serializer = DispensariesSerializer(dispensaries, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    elif request.method == 'DELETE':
-        dispensaries.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
-
-from django_filters.rest_framework import DjangoFilterBackend
-
-class EventList(generics.ListAPIView):
+class HospitalList(generics.ListCreateAPIView):
+    serializer_class = HospitalSerializer
+    queryset = Hospital.objects.all()
+    filter_backends = (DjangoFilterBackend,)
+    filter_fields = '__all__'
+
+class HospitalDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Hospital.objects.all()
+    serializer_class = HospitalSerializer
+
+
+class EmergencycontactList(generics.ListCreateAPIView):
+    serializer_class = EmergencyContactSerializer
+    queryset = EmergencyContact.objects.all()
+    filter_backends = (DjangoFilterBackend,)
+    filter_fields = '__all__'
+
+class EmergencycontactDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = EmergencyContact.objects.all()
+    serializer_class = EmergencyContactSerializer
+
+class PatientList(generics.ListCreateAPIView):
+    serializer_class = PatientSerializer
+    queryset = Patient.objects.all()
+    filter_backends = (DjangoFilterBackend,)
+    filter_fields = '__all__'
+
+
+class PatientDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Patient.objects.all()
+    serializer_class = PatientSerializer
+
+class SpecializationList(generics.ListCreateAPIView):
+    serializer_class = SpecializationSerializer
+    queryset = Specialization.objects.all()
+    filter_backends = (DjangoFilterBackend,)
+    filter_fields = '__all__'
+
+
+class SpecializationDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Specialization.objects.all()
+    serializer_class = SpecializationSerializer
+
+class QualificationList(generics.ListCreateAPIView):
+    serializer_class = QualificationSerializer
+    queryset = Qualification.objects.all()
+    filter_backends = (DjangoFilterBackend,)
+    filter_fields = '__all__'
+
+
+class QualificationDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Qualification.objects.all()
+    serializer_class = QualificationSerializer
+
+class DoctorList(generics.ListCreateAPIView):
+    serializer_class = DoctorSerializer
+    queryset = Doctor.objects.all()
+    filter_backends = (DjangoFilterBackend,)
+    filter_fields = '__all__'
+
+
+class DoctorDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Doctor.objects.all()
+    serializer_class = DoctorSerializer
+
+class AdministratorList(generics.ListCreateAPIView):
+    serializer_class = AdministratorSerializer
+    queryset = Administrator.objects.all()
+    filter_backends = (DjangoFilterBackend,)
+    filter_fields = '__all__'
+
+
+class AdministratorDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Administrator.objects.all()
+    serializer_class = SpecializationSerializer
+
+class PrescriptionList(generics.ListCreateAPIView):
+    serializer_class = PrescriptionSerializer
+    queryset = Prescription.objects.all()
+    filter_backends = (DjangoFilterBackend,)
+    filter_fields = '__all__'
+
+
+class PrescriptionDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Prescription.objects.all()
+    serializer_class = PrescriptionSerializer
+
+class TestList(generics.ListCreateAPIView):
+    serializer_class = TestSerializer
+    queryset = Test.objects.all()
+    filter_backends = (DjangoFilterBackend,)
+    filter_fields = '__all__'
+
+
+class TestDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Test.objects.all()
+    serializer_class = TestSerializer
+
+class AppointmentList(generics.ListCreateAPIView):
+    serializer_class = AppointmentSerializer
+    queryset = Appointment.objects.all()
+    filter_backends = (DjangoFilterBackend,)
+    filter_fields = '__all__'
+
+
+class AppointmentDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Appointment.objects.all()
+    serializer_class = AppointmentSerializer
+
+class MessageList(generics.ListCreateAPIView):
+    serializer_class = MessageSerializer
+    queryset = Message.objects.all()
+    filter_backends = (DjangoFilterBackend,)
+    filter_fields = '__all__'
+
+
+class MessageDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Message.objects.all()
+    serializer_class = MessageSerializer
+
+class LogInInfoList(generics.ListCreateAPIView):
+    serializer_class = LoginInInfoSerializer
+    queryset = LogInInfo.objects.all()
+    filter_backends = (DjangoFilterBackend,)
+    filter_fields = '__all__'
+
+
+class LogInInfoDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = LogInInfo.objects.all()
+    serializer_class = LoginInInfoSerializer
+
+class EmergencyServicesList(generics.ListCreateAPIView):
+    serializer_class = EmergencyServiceSerializer
+    queryset = EmergencyService.objects.all()
+    filter_backends = (DjangoFilterBackend,)
+    filter_fields = '__all__'
+
+
+class EmergencyServiceDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = EmergencyService.objects.all()
+    serializer_class = EmergencyServiceSerializer
+
+class AmbulanceList(generics.ListCreateAPIView):
+    serializer_class = AmbulanceSerializer
+    queryset = Ambulance.objects.all()
+    filter_backends = (DjangoFilterBackend,)
+    filter_fields = '__all__'
+
+
+class AmbulanceDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Ambulance.objects.all()
+    serializer_class = AmbulanceSerializer
+
+class LoginList(generics.ListCreateAPIView):
+    serializer_class = LoginSerilizer
+    queryset = Login.objects.all()
+    filter_backends = (DjangoFilterBackend,)
+    filter_fields = '__all__'
+
+
+class LoginDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Login.objects.all()
+    serializer_class = LoginSerilizer
+
+class BloodBankCenterList(generics.ListCreateAPIView):
+    serializer_class = BloodBankCenterSerializer
+    queryset = BloodBankCenter.objects.all()
+    filter_backends = (DjangoFilterBackend,)
+    filter_fields = '__all__'
+
+
+class BloodBankCenterDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = BloodBankCenter.objects.all()
+    serializer_class = BloodBankCenterSerializer
+
+class DispensaryList(generics.ListCreateAPIView):
+    serializer_class = DispensariesSerializer
+    queryset = Dispensaries.objects.all()
+    filter_backends = (DjangoFilterBackend,)
+    filter_fields = '__all__'
+
+
+class DispensaryDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Dispensaries.objects.all()
+    serializer_class = DispensariesSerializer
+
+
+class EventList(generics.ListCreateAPIView):
     serializer_class = EventSerializer
     queryset = Event.objects.all()
     filter_backends = (DjangoFilterBackend,)
@@ -1951,94 +1398,7 @@ class EventList(generics.ListAPIView):
 class EventDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
-'''
-@csrf_exempt
-def event_list(request):
-    """
-    List all code snisppets, or create a new snippet.
-    """
-    if request.method == 'GET':
-        event = Event.objects.all()
-        event = EventSerializer(event, many=True)
-        return JsonResponse(event.data, safe=False)
 
-    elif request.method == 'POST':
-        data = JSONParser().parse(request)
-        event = EventSerializer(data=data)
-        if event.is_valid():
-            event.save()
-            return JsonResponse(event.data, status=201)
-        return JsonResponse(event.errors, status=400)
-
-@api_view(['GET', 'PUT', 'DELETE'])
-def event_detail(request, pk):
-    """
-    Retrieve, update or delete a code snippet.
-    """
-    try:
-        event = Event.objects.get(pk=pk)
-    except Event.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
-
-    if request.method == 'GET':
-        serializer = EventSerializer(event)
-        return Response(serializer.data)
-
-    elif request.method == 'PUT':
-        serializer = EventSerializer(event, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    elif request.method == 'DELETE':
-        event.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
-'''
-'''
-@csrf_exempt
-def bloodbilling_list(request):
-    """
-    List all code snisppets, or create a new snippet.
-    """
-    if request.method == 'GET':
-        bloodbilling = BloodBilling.objects.all()
-        bloodbilling = BloodBillingSerializer(bloodbilling, many=True)
-        return JsonResponse(bloodbilling.data, safe=False)
-
-    elif request.method == 'POST':
-        data = JSONParser().parse(request)
-        bloodbilling = BloodBillingSerializer(data=data)
-        if bloodbilling.is_valid():
-            bloodbilling.save()
-            return JsonResponse(bloodbilling.data, status=201)
-        return JsonResponse(bloodbilling.errors, status=400)
-
-@api_view(['GET', 'PUT', 'DELETE'])
-def bloodbilling_detail(request, pk):
-    """
-    Retrieve, update or delete a code snippet.
-    """
-    try:
-        bloodbilling = BloodBilling.objects.get(pk=pk)
-    except BloodBilling.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
-
-    if request.method == 'GET':
-        serializer = BloodBillingSerializer(bloodbilling)
-        return Response(serializer.data)
-
-    elif request.method == 'PUT':
-        serializer = BloodBillingSerializer(bloodbilling, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    elif request.method == 'DELETE':
-        bloodbilling.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
-'''
 class BloodBillingList(generics.ListCreateAPIView):
     queryset = BloodBilling.objects.all()
     serializer_class = BloodBillingSerializer
@@ -2049,7 +1409,7 @@ class BloodBillingDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = BloodBilling.objects.all()
     serializer_class = BloodBillingSerializer
 
-class AmbulanceBillingList(generics.ListAPIView):
+class AmbulanceBillingList(generics.ListCreateAPIView):
     serializer_class = AmbulanceBillingSerializer
     queryset = AmbulanceBilling.objects.all()
     filter_backends = (DjangoFilterBackend,)
@@ -2059,312 +1419,89 @@ class AmbulanceBillingDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = AmbulanceBilling.objects.all()
     serializer_class = AmbulanceBillingSerializer
 
+class BloodWasteList(generics.ListCreateAPIView):
+    serializer_class = BloodWasteSerializer
+    queryset = BloodWaste.objects.all()
+    filter_backends = (DjangoFilterBackend,)
+    filter_fields = '__all__'
+
+class BloodWasteDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = BloodWaste.objects.all()
+    serializer_class = BloodWasteSerializer
+
+class MedicineList(generics.ListCreateAPIView):
+    serializer_class = MedicineSerializer
+    queryset = Medicine.objects.all()
+    filter_backends = (DjangoFilterBackend,)
+    filter_fields = '__all__'
+
+class MedicineDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Medicine.objects.all()
+    serializer_class = MedicineSerializer
+
+class DispensaryBillingList(generics.ListCreateAPIView):
+    serializer_class = DispensariesSerializer
+    queryset = Dispensaries.objects.all()
+    filter_backends = (DjangoFilterBackend,)
+    filter_fields = '__all__'
+
+class DispensaryBillingDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Dispensaries.objects.all()
+    serializer_class = DispensariesSerializer
 
 
-@csrf_exempt
-def bloodwaste_list(request):
-    """
-    List all code snisppets, or create a new snippet.
-    """
-    if request.method == 'GET':
-        bloodwaste = BloodWaste.objects.all()
-        bloodwaste = BloodWasteSerializer(bloodwaste, many=True)
-        return JsonResponse(bloodwaste.data, safe=False)
+class TestServicesList(generics.ListCreateAPIView):
+    serializer_class = TestServicesSerializer
+    queryset = TestServices.objects.all()
+    filter_backends = (DjangoFilterBackend,)
+    filter_fields = '__all__'
 
-    elif request.method == 'POST':
-        data = JSONParser().parse(request)
-        bloodwaste = BloodWasteSerializer(data=data)
-        if bloodwaste.is_valid():
-            bloodwaste.save()
-            return JsonResponse(bloodwaste.data, status=201)
-        return JsonResponse(bloodwaste.errors, status=400)
+class TestServiceDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = TestServices.objects.all()
+    serializer_class = TestServicesSerializer
 
-@api_view(['GET', 'PUT', 'DELETE'])
-def bloodwaste_detail(request, pk):
-    """
-    Retrieve, update or delete a code snippet.
-    """
-    try:
-        bloodwaste = BloodWaste.objects.get(pk=pk)
-    except BloodWaste.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
+class TestCentreList(generics.ListCreateAPIView):
+    serializer_class = TestCentreSerializer
+    queryset = TestCentre.objects.all()
+    filter_backends = (DjangoFilterBackend,)
+    filter_fields = '__all__'
 
-    if request.method == 'GET':
-        serializer = BloodWasteSerializer(bloodwaste)
-        return Response(serializer.data)
-
-    elif request.method == 'PUT':
-        serializer = BloodWasteSerializer(bloodwaste, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    elif request.method == 'DELETE':
-        bloodwaste.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+class TestCentreDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = TestCentre.objects.all()
+    serializer_class = TestCentreSerializer
 
 
-@csrf_exempt
-def medicine_list(request):
-    """
-    List all code snisppets, or create a new snippet.
-    """
-    if request.method == 'GET':
-        medicine = Medicine.objects.all()
-        medicine = MedicineSerializer(medicine, many=True)
-        return JsonResponse(medicine.data, safe=False)
+class NoticeList(generics.ListCreateAPIView):
+    serializer_class = NoticeSerializer
+    queryset = Notice.objects.all()
+    filter_backends = (DjangoFilterBackend,)
+    filter_fields = '__all__'
 
-    elif request.method == 'POST':
-        data = JSONParser().parse(request)
-        medicine = MedicineSerializer(data=data)
-        if medicine.is_valid():
-            medicine.save()
-            return JsonResponse(medicine.data, status=201)
-        return JsonResponse(medicine.errors, status=400)
-
-@api_view(['GET', 'PUT', 'DELETE'])
-def medicine_detail(request, pk):
-    """
-    Retrieve, update or delete a code snippet.
-    """
-    try:
-        medicine = Medicine.objects.get(pk=pk)
-    except Medicine.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
-
-    if request.method == 'GET':
-        serializer = MedicineSerializer(medicine)
-        return Response(serializer.data)
-
-    elif request.method == 'PUT':
-        serializer = MedicineSerializer(medicine, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    elif request.method == 'DELETE':
-        medicine.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+class NoticeDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Notice.objects.all()
+    serializer_class = NoticeSerializer
 
 
-@csrf_exempt
-def dispensarybilling_list(request):
-    """
-    List all code snisppets, or create a new snippet.
-    """
-    if request.method == 'GET':
-        dispensarybilling = DispensaryBilling.objects.all()
-        dispensarybilling = DispensaryBillingSerializer(dispensarybilling, many=True)
-        return JsonResponse(dispensarybilling.data, safe=False)
+class BroadcastList(generics.ListCreateAPIView):
+    serializer_class = BroadcastSerializer
+    queryset = Broadcast.objects.all()
+    filter_backends = (DjangoFilterBackend,)
+    filter_fields = '__all__'
 
-    elif request.method == 'POST':
-        data = JSONParser().parse(request)
-        dispensarybilling = DispensaryBillingSerializer(data=data)
-        if dispensarybilling.is_valid():
-            dispensarybilling.save()
-            return JsonResponse(dispensarybilling.data, status=201)
-        return JsonResponse(dispensarybilling.errors, status=400)
-
-@api_view(['GET', 'PUT', 'DELETE'])
-def dispensarybilling_detail(request, pk):
-    """
-    Retrieve, update or delete a code snippet.
-    """
-    try:
-        dispensarybilling = DispensaryBilling.objects.get(pk=pk)
-    except DispensaryBilling.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
-
-    if request.method == 'GET':
-        serializer = DispensaryBillingSerializer(dispensarybilling)
-        return Response(serializer.data)
-
-    elif request.method == 'PUT':
-        serializer = DispensaryBillingSerializer(dispensarybilling, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    elif request.method == 'DELETE':
-        dispensarybilling.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+class BroadcastDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Broadcast.objects.all()
+    serializer_class = BroadcastSerializer
 
 
-@csrf_exempt
-def ambulancebilling_list(request):
-    """
-    List all code snisppets, or create a new snippet.
-    """
-    if request.method == 'GET':
-        ambulancebilling = AmbulanceBilling.objects.all()
-        ambulancebilling = AmbulanceBillingSerializer(ambulancebilling, many=True)
-        return JsonResponse(ambulancebilling.data, safe=False)
+class AmbulanceRequestList(generics.ListCreateAPIView):
+    serializer_class = AmbulanceRequestSerializer
+    queryset = AmbulanceRequest.objects.all()
+    filter_backends = (DjangoFilterBackend,)
+    filter_fields = '__all__'
 
-    elif request.method == 'POST':
-        data = JSONParser().parse(request)
-        ambulancebilling = AmbulanceBillingSerializer(data=data)
-        if ambulancebilling.is_valid():
-            ambulancebilling.save()
-            return JsonResponse(ambulancebilling.data, status=201)
-        return JsonResponse(ambulancebilling.errors, status=400)
-
-@api_view(['GET', 'PUT', 'DELETE'])
-def ambulancebilling_detail(request, pk):
-    """
-    Retrieve, update or delete a code snippet.
-    """
-    try:
-        ambulancebilling = AmbulanceBilling.objects.get(pk=pk)
-    except AmbulanceBilling.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
-
-    if request.method == 'GET':
-        serializer = AmbulanceBillingSerializer(ambulancebilling)
-        return Response(serializer.data)
-
-    elif request.method == 'PUT':
-        serializer = AmbulanceBillingSerializer(ambulancebilling, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    elif request.method == 'DELETE':
-        ambulancebilling.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
-
-@csrf_exempt
-def testservices_list(request):
-    """
-    List all code snisppets, or create a new snippet.
-    """
-    if request.method == 'GET':
-        testservices = TestServices.objects.all()
-        testservices = TestServicesSerializer(testservices, many=True)
-        return JsonResponse(testservices.data, safe=False)
-
-    elif request.method == 'POST':
-        data = JSONParser().parse(request)
-        testservices = TestServicesSerializer(data=data)
-        if testservices.is_valid():
-            testservices.save()
-            return JsonResponse(testservices.data, status=201)
-        return JsonResponse(testservices.errors, status=400)
-
-@api_view(['GET', 'PUT', 'DELETE'])
-def testservices_detail(request, pk):
-    """
-    Retrieve, update or delete a code snippet.
-    """
-    try:
-        testservices = TestServices.objects.get(pk=pk)
-    except TestServices.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
-
-    if request.method == 'GET':
-        serializer = TestServicesSerializer(testservices)
-        return Response(serializer.data)
-
-    elif request.method == 'PUT':
-        serializer = AmbulanceBillingSerializer(testservices, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    elif request.method == 'DELETE':
-        testservices.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
-
-@csrf_exempt
-def testcentre_list(request):
-    """
-    List all code snisppets, or create a new snippet.
-    """
-    if request.method == 'GET':
-        testcentre = TestCentre.objects.all()
-        testcentre = TestCentreSerializer(testcentre, many=True)
-        return JsonResponse(testcentre.data, safe=False)
-
-    elif request.method == 'POST':
-        data = JSONParser().parse(request)
-        testcentre = TestCentreSerializer(data=data)
-        if testcentre.is_valid():
-            testcentre.save()
-            return JsonResponse(testcentre.data, status=201)
-        return JsonResponse(testcentre.errors, status=400)
-
-@api_view(['GET', 'PUT', 'DELETE'])
-def testcentre_detail(request, pk):
-    """
-    Retrieve, update or delete a code snippet.
-    """
-    try:
-        testcentre = TestCentre.objects.get(pk=pk)
-    except TestCentre.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
-
-    if request.method == 'GET':
-        serializer = TestCentreSerializer(testcentre)
-        return Response(serializer.data)
-
-    elif request.method == 'PUT':
-        serializer = TestCentreSerializer(testcentre, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    elif request.method == 'DELETE':
-        testcentre.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
-
-
-@csrf_exempt
-def notice_list(request):
-    """
-    List all code snisppets, or create a new snippet.
-    """
-    if request.method == 'GET':
-        notice = Notice.objects.all()
-        notice = NoticeSerializer(notice, many=True)
-        return JsonResponse(notice.data, safe=False)
-
-    elif request.method == 'POST':
-        data = JSONParser().parse(request)
-        notice = NoticeSerializer(data=data)
-        if notice.is_valid():
-            notice.save()
-            return JsonResponse(notice.data, status=201)
-        return JsonResponse(notice.errors, status=400)
-
-@api_view(['GET', 'PUT', 'DELETE'])
-def notice_detail(request, pk):
-    """
-    Retrieve, update or delete a code snippet.
-    """
-    try:
-        notice = Notice.objects.get(pk=pk)
-    except Notice.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
-
-    if request.method == 'GET':
-        serializer = NoticeSerializer(notice)
-        return Response(serializer.data)
-
-    elif request.method == 'PUT':
-        serializer = NoticeSerializer(notice, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    elif request.method == 'DELETE':
-        notice.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+class AmbulanceRequestDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = AmbulanceRequest.objects.all()
+    serializer_class = AmbulanceRequestSerializer
 
 @csrf_exempt
 def webcarousel_list(request):

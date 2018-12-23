@@ -141,3 +141,13 @@ class WebCarouselSerializer(serializers.ModelSerializer):
         model = WebCarousel
         fields = '__all__'
 
+class AmbulanceRequestSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AmbulanceRequest
+        fields = '__all__'
+
+class BroadcastSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Broadcast
+        fields = '__all__'
+

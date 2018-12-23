@@ -78,14 +78,12 @@
               <li><a href="{% url 'MDTouch:log' %}"><i class="zmdi zmdi-file-text"></i><span>Activity Log</span></a></li>
               <li ><a href="{% url 'MDTouch:statistics' %}"><i class="zmdi zmdi-delicious"></i><span>Statistics</span></a></li>
               <li ><a href="{% url 'MDTouch:registerDN' %}"><i class="zmdi zmdi-account"></i><span>Staff Registration</span></a></li>
-              <li ><a href="{% url 'MDTouch:messages' %}"><i class="zmdi zmdi-email"></i><span>Messages</span></a></li>
               <li><a href="{% url 'MDTouch:logOut' %}"><i class="zmdi zmdi-sign-in"></i><span> Logout</span></a></li>
               {% else %}
               <li ><a href="{% url 'MDTouch:information' %}"><i class="zmdi zmdi-account"></i><span>User Information</span></a></li>
               <li ><a href="{% url 'MDTouch:appointments' %}"><i class="zmdi zmdi-delicious"></i><span>Manage Appointments</span></a></li>
               <li ><a  href="{% url 'MDTouch:prescriptions' %}"><i class="zmdi zmdi-file-text"></i><span>Prescriptions</span></a></li>
               <li ><a  href="{% url 'MDTouch:calendar' %}"><i class="zmdi zmdi-file-text"></i><span>Calendar</span></a></li>
-              <li ><a  href="{% url 'MDTouch:messages' %}"><i class="zmdi zmdi-email"></i><span>Messages</span></a></li>
               <li ><a  href="{% url 'MDTouch:eventinview' %}"><i class="zmdi zmdi-delicious"></i><span>Events</span></a></li>
               <li ><a href="{% url 'MDTouch:logOut' %}"><i class="zmdi zmdi-sign-in"></i><span>Logout</span></a></li>
               {% endif %}

@@ -38,6 +38,7 @@ class TestCentre(models.Model):
     name = models.CharField(max_length = 20,default = '')
     address = models.CharField(max_length = 40,default ='')
     city = models.CharField(max_length = 20,default='')
+    pin = models.IntegerField(default=0)
     state = models.CharField(max_length = 15,default ='')
     tests = models.ForeignKey(TestServices,on_delete=models.CASCADE,null=True)
     def __str__(self):
@@ -49,6 +50,7 @@ class EmergencyContact(models.Model):
     lastName = models.CharField(max_length=50, default='')
     number = models.CharField(max_length=20, default='')
     address = models.CharField(max_length=100, default='')
+    pin = models.IntegerField(default=0)
 
     def __str__(self):
         return self.firstName + " " + self.lastName
@@ -61,6 +63,8 @@ class Patient(models.Model):
     lastName = models.CharField(max_length=50, default='')
     number = models.CharField(max_length=13, default='')
     address = models.CharField(max_length=100, default='')
+    state = models.CharField(max_length=50,default='')
+    pin = models.IntegerField(default=0)
     email = models.CharField(max_length=100, default='')
     provider = models.CharField(max_length=100, default='')
     insuranceid = models.CharField(max_length=12, default='')
@@ -97,7 +101,7 @@ class Qualification(models.Model):
 class Doctor(models.Model):
     firstName = models.CharField(max_length=50, default='')
     lastName = models.CharField(max_length=50, default='')
-    username = models.CharField(max_length=100,default='')
+    username = models.ForeignKey(Login,on_delete=models.CASCADE,null=True)
     specialization = models.ForeignKey(Specialization,on_delete=models.CASCADE,null=True)
     qualification = models.ForeignKey(Qualification,on_delete=models.CASCADE,null=True)
     workplace = models.ForeignKey(Hospital, null=True,on_delete = models.CASCADE)
@@ -105,7 +109,7 @@ class Doctor(models.Model):
     address = models.CharField(max_length=400,default='')
     city = models.CharField(max_length=400,default='')
     state = models.CharField(max_length=400,default='')
-
+    pin = models.IntegerField(default=0)
     def __str__(self):
         return self.firstName + " " + self.lastName
 
@@ -185,6 +189,7 @@ class Appointment(models.Model):
     appttime = models.CharField(max_length=5, default='')  # '05:30'
     phase = models.CharField(max_length=10, default='')     # 'AM' or 'PM'
     appointmentdate = models.DateField(default=timezone.now)
+    status = models.IntegerField(default=0)
     patient = models.ForeignKey(Patient, null=True,on_delete = models.CASCADE)
     location = models.ForeignKey(Hospital, null=True,on_delete = models.CASCADE)
     doctor = models.ForeignKey(Doctor, null=True,on_delete = models.CASCADE)
@@ -207,15 +212,16 @@ class Appointment(models.Model):
 # This module contains the messaging model
 # D
 class Message(models.Model):
-    senderName = models.CharField(max_length=50, default='')
-    senderType = models.CharField(max_length=50, default='')
-    receiverName = models.CharField(max_length=50, default='')
-    viewed = models.BooleanField(default=False)
+    senderid = models.ForeignKey(Login,on_delete=models.CASCADE,null=True)
+    #senderName = models.CharField(max_length=50, default='')
+    #senderType = models.CharField(max_length=50, default='')
+    #receiverid = models.ForeignKey(Login,on_delete=models.CASCADE,null=True)
+    #viewed = models.BooleanField(default=False)
     date = models.DateField(default=timezone.now)
     subjectLine = models.CharField(max_length=50, default='')
     message = models.TextField(max_length=500, default='')
-    senderDelete = models.BooleanField(default=False)
-    receiverDelete = models.BooleanField(default=False)
+    #senderDelete = models.BooleanField(default=False)
+    #receiverDelete = models.BooleanField(default=False)
 
     def __str__(self):
         return self.subjectLine
@@ -235,12 +241,15 @@ class LogInInfo(models.Model):
 
 # D
 class EmergencyService(models.Model):
+    username = models.ForeignKey(Login,on_delete=models.CASCADE,null=True)
     name = models.CharField(max_length=30,default='')
     address = models.TextField(max_length=80,default='')
     city = models.CharField(max_length=40, default='')
-    #state = models.CharField(max_length=40,default='')
+    state = models.CharField(max_length=40,default='')
     email = models.EmailField(max_length=70,blank=True, null= True, unique= True)
     contact_number = models.CharField(max_length = 15,default = "")
+    pin = models.IntegerField(default=0)
+
 
 # D
 class Ambulance(models.Model):
@@ -265,6 +274,8 @@ class BloodBankCenter(models.Model):
     name = models.CharField(max_length = 30, default= '')
     address = models.TextField(max_length = 200,default = '')
     city = models.CharField(max_length = 40,default = '')
+    pin = models.IntegerField(default=0)
+    state = models.CharField(default='',max_length=50)
     contact = models.CharField(default = '',max_length=20)
     email = models.EmailField(max_length=70,blank=True, null= True, unique= True)
     quantityAp = models.IntegerField(default = 0)
@@ -285,6 +296,7 @@ class Dispensaries(models.Model):
     address = models.TextField(max_length=100,default='')
     city = models.CharField(max_length=25,default='')
     state = models.CharField(max_length=20,default='')
+    pin = models.IntegerField(default=0)
     def __str__(self):
         return self.name
 
@@ -292,6 +304,8 @@ class Dispensaries(models.Model):
 class Event(models.Model):
     eventlocation = models.TextField(max_length=100,default='')
     city = models.CharField(max_length=40,default='')
+    state = models.CharField(max_length=40,default='')
+    pin = models.IntegerField(default=0)
     hospitalid = models.ForeignKey(Hospital,null=True,blank=True,on_delete=models.SET_NULL)
     bloodbankid = models.ForeignKey(BloodBankCenter,null=True,blank=True,on_delete=models.SET_NULL)
     dispensaryid = models.ForeignKey(Dispensaries,null=True,blank=True,on_delete=models.SET_NULL)
@@ -347,14 +361,6 @@ class DispensaryBilling(models.Model):
     eventid = models.ForeignKey(Event,on_delete=models.CASCADE)
     date = models.DateField(default=timezone.now)
 
-# D
-class AmbulanceBilling(models.Model):
-    ambulance_id = models.ForeignKey(Ambulance,on_delete=models.CASCADE)
-    patientid = models.ForeignKey(Patient,on_delete=models.CASCADE)
-    destination = models.TextField(max_length=100,default='')
-    kilometers = models.IntegerField(default=0)
-    datetime = models.DateTimeField(default=datetime.now())
-
 
 class WebCarousel(models.Model):
     banner = models.CharField(default='Welcome',max_length=30)
@@ -362,6 +368,30 @@ class WebCarousel(models.Model):
     slug = models.CharField(default='HealthCare',max_length=15)
 
 class Notice(models.Model):
+    username = models.ForeignKey(Login,on_delete=models.CASCADE,null=True)
     host = models.CharField(default="Health Ministry",max_length=100)
+    title = models.CharField(default='',max_length=100)
     notice = models.TextField(default='Important notice',max_length=400)
     date = models.DateTimeField(default=datetime.now())
+
+class Broadcast(models.Model):
+    title = models.CharField(default='',max_length=100)
+    message = models.CharField(default='',max_length=500)
+    date = models.DateTimeField(default=datetime.now())
+    sendto = models.IntegerField(default=0)
+
+class AmbulanceRequest(models.Model):
+    patid = models.ForeignKey(Patient,on_delete=models.CASCADE)
+    requestaddress = models.CharField(default='',max_length=200)
+    arrivalpin = models.IntegerField(default=0)
+    destinationpin = models.IntegerField(default=0,null=True)
+    destinationaddress = models.CharField(default='',max_length=200)
+
+# D
+class AmbulanceBilling(models.Model):
+    ambulance_id = models.ForeignKey(Ambulance,on_delete=models.CASCADE)
+    patientid = models.ForeignKey(Patient,on_delete=models.CASCADE)
+    destination = models.TextField(max_length=100,default='')
+    kilometers = models.IntegerField(default=0)
+    datetime = models.DateTimeField(default=datetime.now())
+    requestid = models.ForeignKey(AmbulanceRequest,on_delete=models.CASCADE,null=True)
