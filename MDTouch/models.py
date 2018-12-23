@@ -238,7 +238,7 @@ class EmergencyService(models.Model):
     name = models.CharField(max_length=30,default='')
     address = models.TextField(max_length=80,default='')
     city = models.CharField(max_length=40, default='')
-    state = models.CharField(max_length=40,default='')
+    #state = models.CharField(max_length=40,default='')
     email = models.EmailField(max_length=70,blank=True, null= True, unique= True)
     contact_number = models.CharField(max_length = 15,default = "")
 
