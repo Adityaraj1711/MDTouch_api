@@ -1191,7 +1191,7 @@ def getevents(request):
 ################################           API and Calls              ########################################
 ##############################################################################################################
 ##############################################################################################################
-
+from rest_framework import generics
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from .models import *
@@ -1940,7 +1940,18 @@ def dispensaries_detail(request, pk):
         dispensaries.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+from django_filters.rest_framework import DjangoFilterBackend
 
+class EventList(generics.ListAPIView):
+    serializer_class = EventSerializer
+    queryset = Event.objects.all()
+    filter_backends = (DjangoFilterBackend,)
+    filter_fields = '__all__'
+
+class EventDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Event.objects.all()
+    serializer_class = EventSerializer
+'''
 @csrf_exempt
 def event_list(request):
     """
@@ -1983,8 +1994,8 @@ def event_detail(request, pk):
     elif request.method == 'DELETE':
         event.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-
-
+'''
+'''
 @csrf_exempt
 def bloodbilling_list(request):
     """
@@ -2027,6 +2038,27 @@ def bloodbilling_detail(request, pk):
     elif request.method == 'DELETE':
         bloodbilling.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+'''
+class BloodBillingList(generics.ListCreateAPIView):
+    queryset = BloodBilling.objects.all()
+    serializer_class = BloodBillingSerializer
+    filter_backends = (DjangoFilterBackend,)
+    filter_fields = '__all__'
+
+class BloodBillingDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = BloodBilling.objects.all()
+    serializer_class = BloodBillingSerializer
+
+class AmbulanceBillingList(generics.ListAPIView):
+    serializer_class = AmbulanceBillingSerializer
+    queryset = AmbulanceBilling.objects.all()
+    filter_backends = (DjangoFilterBackend,)
+    filter_fields = '__all__'
+
+class AmbulanceBillingDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = AmbulanceBilling.objects.all()
+    serializer_class = AmbulanceBillingSerializer
+
 
 
 @csrf_exempt
@@ -2376,3 +2408,4 @@ def webcarousel_detail(request, pk):
     elif request.method == 'DELETE':
         webcarousel.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+

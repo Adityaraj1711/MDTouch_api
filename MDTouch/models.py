@@ -1,9 +1,17 @@
 # imports
-from django.db import models
 from datetime import date,datetime
 from django.utils import timezone
 from django.db import models
 
+
+# D
+class Login(models.Model):      #for software
+    username = models.CharField(max_length=30, default="", unique=True)
+    password = models.CharField(max_length=30,default="Password123!")
+    dept = models.CharField(max_length=2,default='NA')
+    email = models.EmailField(max_length=70,blank=True, null= True, unique= True)
+    def __str__(self):
+        return self.username
 
 # This module contains the Hospital model.
 # D
@@ -13,7 +21,7 @@ class Hospital(models.Model):
     city = models.CharField(max_length = 40,default = '')
     state = models.CharField(max_length = 20, default = '')
     pin = models.IntegerField(default = 0)
-    contact = models.IntegerField(default = 0)
+    contact = models.CharField(default ='',max_length=20)
     email = models.EmailField(max_length=70,blank=True, null= True, unique= True)
     def __str__(self):
         return self.name
@@ -39,7 +47,7 @@ class TestCentre(models.Model):
 class EmergencyContact(models.Model):
     firstName = models.CharField(max_length=50, default='')
     lastName = models.CharField(max_length=50, default='')
-    number = models.CharField(max_length=13, default='')
+    number = models.CharField(max_length=20, default='')
     address = models.CharField(max_length=100, default='')
 
     def __str__(self):
@@ -89,10 +97,15 @@ class Qualification(models.Model):
 class Doctor(models.Model):
     firstName = models.CharField(max_length=50, default='')
     lastName = models.CharField(max_length=50, default='')
-    username = models.CharField(max_length=30, default='')
+    username = models.ForeignKey(Login,on_delete=models.CASCADE)
     specialization = models.ForeignKey(Specialization,on_delete=models.CASCADE,null=True)
     qualification = models.ForeignKey(Qualification,on_delete=models.CASCADE,null=True)
     workplace = models.ForeignKey(Hospital, null=True,on_delete = models.CASCADE)
+    email = models.EmailField(max_length=70,blank=True, null= True, unique= True)
+    address = models.CharField(max_length=400,default='')
+    city = models.CharField(max_length=400,default='')
+    state = models.CharField(max_length=400,default='')
+
     def __str__(self):
         return self.firstName + " " + self.lastName
 
@@ -117,7 +130,7 @@ class Nurse(models.Model):
 class Administrator(models.Model):
     firstName = models.CharField(max_length=50, default='')
     lastName = models.CharField(max_length=50, default='')
-    username = models.CharField(max_length=30, default='')
+    username = models.ForeignKey(Login, on_delete = models.CASCADE)
     workplace = models.ForeignKey(Hospital, null=True,on_delete = models.CASCADE)
     def __str__(self):
         return self.firstName + " " + self.lastName
@@ -223,31 +236,24 @@ class LogInInfo(models.Model):
 # D
 class EmergencyService(models.Model):
     name = models.CharField(max_length=30,default='')
-    city = models.CharField(max_length=25,default='new city')
     address = models.TextField(max_length=80,default='')
+    city = models.CharField(max_length=40, default='')
+    state = models.CharField(max_length=40,default='')
     email = models.EmailField(max_length=70,blank=True, null= True, unique= True)
-    contact_number = models.CharField(max_length = 12,default = "")
+    contact_number = models.CharField(max_length = 15,default = "")
 
 # D
 class Ambulance(models.Model):
     number = models.CharField(max_length=15,default="ECNALUBMA")
     driver = models.CharField(max_length=25,default='')
     capacity = models.CharField(max_length = 2,default = '2')
-    contact = models.CharField(max_length=12,default = "")
+    contact = models.CharField(max_length=15,default = "")
     type = models.CharField(max_length = 10,default = 'van')
     active = models.BooleanField(default=True)
     service = models.ForeignKey(EmergencyService,null=True,on_delete = models.CASCADE)
     def __str__(self):
         return self.type
 
-# D
-class Login(models.Model):      #for software
-    username = models.CharField(max_length=30,default="")
-    password = models.CharField(max_length=30,default="Password123!")
-    dept = models.CharField(max_length=2,default='NA')
-    email = models.EmailField(max_length=70,blank=True, null= True, unique= True)
-    def __str__(self):
-        return self.username
 
 #class ServiceAdmin(models.Model):
 #    username = models.CharField(max_length=25, default='')
@@ -259,7 +265,8 @@ class BloodBankCenter(models.Model):
     name = models.CharField(max_length = 30, default= '')
     address = models.TextField(max_length = 200,default = '')
     city = models.CharField(max_length = 40,default = '')
-    contact = models.IntegerField(default = 0)
+    state = models.CharField(max_length=50,default='')
+    contact = models.CharField(default = '',max_length=20)
     email = models.EmailField(max_length=70,blank=True, null= True, unique= True)
     quantityAp = models.IntegerField(default = 0)
     quantityAm = models.IntegerField( default=0)
@@ -285,7 +292,8 @@ class Dispensaries(models.Model):
 # D
 class Event(models.Model):
     eventlocation = models.TextField(max_length=100,default='')
-    city = models.CharField(max_length=25,default='')
+    city = models.CharField(max_length=40,default='')
+    state = models.CharField(max_length=40,default='')
     hospitalid = models.ForeignKey(Hospital,null=True,blank=True,on_delete=models.SET_NULL)
     bloodbankid = models.ForeignKey(BloodBankCenter,null=True,blank=True,on_delete=models.SET_NULL)
     dispensaryid = models.ForeignKey(Dispensaries,null=True,blank=True,on_delete=models.SET_NULL)
@@ -310,7 +318,7 @@ class BloodBilling(models.Model):
     date = models.DateField(default=timezone.now)
     status = models.BooleanField(default=False)
     def __str__(self):
-        return self.date
+        return self.bloodtype
 
 # D
 class BloodWaste(models.Model):
