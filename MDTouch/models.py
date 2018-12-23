@@ -97,7 +97,7 @@ class Qualification(models.Model):
 class Doctor(models.Model):
     firstName = models.CharField(max_length=50, default='')
     lastName = models.CharField(max_length=50, default='')
-    username = models.ForeignKey(Login,on_delete=models.CASCADE,null=True)
+    username = models.CharField(max_length=100,default='')
     specialization = models.ForeignKey(Specialization,on_delete=models.CASCADE,null=True)
     qualification = models.ForeignKey(Qualification,on_delete=models.CASCADE,null=True)
     workplace = models.ForeignKey(Hospital, null=True,on_delete = models.CASCADE)

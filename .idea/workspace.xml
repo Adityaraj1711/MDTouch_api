@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" readonly="true" id="4707dbbc-d72e-42cd-b90e-2166b487d53f" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/MDTouch/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/MDTouch/models.py" afterDir="false" />
-    </list>
+    <list default="true" readonly="true" id="4707dbbc-d72e-42cd-b90e-2166b487d53f" name="Default" comment="" />
     <ignored path="HAccelerator.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -31,7 +29,7 @@
       <file leaf-file-name="messages.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MDTouch/templates/MDTouch/messages.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
+            <state relative-caret-position="1258">
               <caret line="74" column="16" selection-start-line="74" selection-start-column="16" selection-end-line="74" selection-end-column="16" />
             </state>
           </provider>
@@ -40,8 +38,8 @@
       <file leaf-file-name="models.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MDTouch/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4131">
-              <caret line="243" lean-forward="true" selection-start-line="243" selection-end-line="243" />
+            <state relative-caret-position="119">
+              <caret line="267" column="4" selection-start-line="267" selection-start-column="4" selection-end-line="267" selection-end-column="4" />
               <folding>
                 <element signature="e#10#44#0" expanded="true" />
               </folding>
@@ -52,8 +50,8 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MDTouch/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="1959" column="31" lean-forward="true" selection-start-line="1959" selection-start-column="31" selection-end-line="1959" selection-end-column="31" />
+            <state relative-caret-position="32946">
+              <caret line="1959" column="31" selection-start-line="1959" selection-start-column="31" selection-end-line="1959" selection-end-column="31" />
               <folding>
                 <element signature="e#233#268#0" expanded="true" />
               </folding>
@@ -69,7 +67,7 @@
       <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MDTouch/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="177">
+            <state relative-caret-position="1683">
               <caret line="101" column="57" selection-start-line="101" selection-start-column="57" selection-end-line="101" selection-end-column="57" />
               <folding>
                 <element signature="e#117#149#0" expanded="true" />
@@ -81,7 +79,7 @@
       <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/HAccelerator/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="359">
+            <state relative-caret-position="2397">
               <caret line="143" selection-start-line="143" selection-end-line="143" />
             </state>
           </provider>
@@ -90,7 +88,7 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MDTouch/templates/MDTouch/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
+            <state relative-caret-position="255">
               <caret line="15" selection-start-line="15" selection-end-line="15" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -102,7 +100,7 @@
       <file leaf-file-name="about.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MDTouch/templates/MDTouch/about.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
+            <state relative-caret-position="272">
               <caret line="16" column="31" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="31" />
             </state>
           </provider>
@@ -120,7 +118,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>conta</find>
       <find>.img_text_w3ls</find>
       <find>consequat</find>
       <find>checkform</find>
@@ -150,6 +147,7 @@
       <find>billing</find>
       <find>event</find>
       <find>state</find>
+      <find>bloodbankce</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -230,6 +228,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -305,7 +304,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -336,7 +334,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Unknown.HAccelerator1359694571">
+  <component name="RunManager" selected="Unknown.HAccelerator1619516870">
     <configuration default="false" name="Test: db.sqlite3" type="DjangoTestsConfigurationType" factoryName="Django tests" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -917,14 +915,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MDTouch/templates/MDTouch/messages.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
+        <state relative-caret-position="1258">
           <caret line="74" column="16" selection-start-line="74" selection-start-column="16" selection-end-line="74" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MDTouch/templates/MDTouch/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
+        <state relative-caret-position="255">
           <caret line="15" selection-start-line="15" selection-end-line="15" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -934,7 +932,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MDTouch/templates/MDTouch/about.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
+        <state relative-caret-position="272">
           <caret line="16" column="31" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="31" />
         </state>
       </provider>
@@ -955,14 +953,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/HAccelerator/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="359">
+        <state relative-caret-position="2397">
           <caret line="143" selection-start-line="143" selection-end-line="143" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MDTouch/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
+        <state relative-caret-position="1683">
           <caret line="101" column="57" selection-start-line="101" selection-start-column="57" selection-end-line="101" selection-end-column="57" />
           <folding>
             <element signature="e#117#149#0" expanded="true" />
@@ -975,8 +973,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MDTouch/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="1959" column="31" lean-forward="true" selection-start-line="1959" selection-start-column="31" selection-end-line="1959" selection-end-column="31" />
+        <state relative-caret-position="32946">
+          <caret line="1959" column="31" selection-start-line="1959" selection-start-column="31" selection-end-line="1959" selection-end-column="31" />
           <folding>
             <element signature="e#233#268#0" expanded="true" />
           </folding>
@@ -985,8 +983,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MDTouch/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4131">
-          <caret line="243" lean-forward="true" selection-start-line="243" selection-end-line="243" />
+        <state relative-caret-position="119">
+          <caret line="267" column="4" selection-start-line="267" selection-start-column="4" selection-end-line="267" selection-end-column="4" />
           <folding>
             <element signature="e#10#44#0" expanded="true" />
           </folding>
