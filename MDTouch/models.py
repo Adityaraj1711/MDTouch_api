@@ -265,7 +265,6 @@ class BloodBankCenter(models.Model):
     name = models.CharField(max_length = 30, default= '')
     address = models.TextField(max_length = 200,default = '')
     city = models.CharField(max_length = 40,default = '')
-    state = models.CharField(max_length=50,default='')
     contact = models.CharField(default = '',max_length=20)
     email = models.EmailField(max_length=70,blank=True, null= True, unique= True)
     quantityAp = models.IntegerField(default = 0)
