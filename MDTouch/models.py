@@ -97,7 +97,7 @@ class Qualification(models.Model):
 class Doctor(models.Model):
     firstName = models.CharField(max_length=50, default='')
     lastName = models.CharField(max_length=50, default='')
-    username = models.ForeignKey(Login,on_delete=models.CASCADE)
+    username = models.ForeignKey(Login,on_delete=models.CASCADE,null=True)
     specialization = models.ForeignKey(Specialization,on_delete=models.CASCADE,null=True)
     qualification = models.ForeignKey(Qualification,on_delete=models.CASCADE,null=True)
     workplace = models.ForeignKey(Hospital, null=True,on_delete = models.CASCADE)
@@ -293,7 +293,6 @@ class Dispensaries(models.Model):
 class Event(models.Model):
     eventlocation = models.TextField(max_length=100,default='')
     city = models.CharField(max_length=40,default='')
-    state = models.CharField(max_length=40,default='')
     hospitalid = models.ForeignKey(Hospital,null=True,blank=True,on_delete=models.SET_NULL)
     bloodbankid = models.ForeignKey(BloodBankCenter,null=True,blank=True,on_delete=models.SET_NULL)
     dispensaryid = models.ForeignKey(Dispensaries,null=True,blank=True,on_delete=models.SET_NULL)
