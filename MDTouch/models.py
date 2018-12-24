@@ -26,23 +26,26 @@ class Hospital(models.Model):
     def __str__(self):
         return self.name
 
-#to contain what are the diffrent kinds of tests
-# D
-class TestServices(models.Model):
-    name = models.CharField(max_length=80,default='')
-    def __str__(self):
-        return self.name
-
 # D
 class TestCentre(models.Model):
+    username = models.ForeignKey(Login,on_delete=models.CASCADE,null=True)
     name = models.CharField(max_length = 20,default = '')
     address = models.CharField(max_length = 40,default ='')
     city = models.CharField(max_length = 20,default='')
     pin = models.IntegerField(default=0)
     state = models.CharField(max_length = 15,default ='')
-    tests = models.ForeignKey(TestServices,on_delete=models.CASCADE,null=True)
+
     def __str__(self):
         return self.name
+
+#to contain what are the diffrent kinds of tests
+# D
+class TestServices(models.Model):
+    name = models.CharField(max_length=80,default='')
+    testcenterid = models.ForeignKey(TestCentre,on_delete=models.CASCADE,null=True)
+    def __str__(self):
+        return self.name
+
 # This module contains the Emergency Contact model.
 # D
 class EmergencyContact(models.Model):
@@ -197,7 +200,7 @@ class Appointment(models.Model):
     dateofrequest = models.DateField(default=timezone.now)
 
     def __str__(self):
-        return self.patient
+        return self.phase
 
     def getPatient(self, appoint):
         return appoint.patient
@@ -215,7 +218,7 @@ class Message(models.Model):
     senderid = models.ForeignKey(Login,on_delete=models.CASCADE,null=True)
     #senderName = models.CharField(max_length=50, default='')
     #senderType = models.CharField(max_length=50, default='')
-    #receiverid = models.ForeignKey(Login,on_delete=models.CASCADE,null=True)
+    receiverid = models.IntegerField(default=0)
     #viewed = models.BooleanField(default=False)
     date = models.DateField(default=timezone.now)
     subjectLine = models.CharField(max_length=50, default='')
@@ -312,7 +315,7 @@ class Event(models.Model):
     testcentreid = models.ForeignKey(TestCentre,null=True,blank=True,on_delete=models.SET_NULL)
     title = models.CharField(max_length = 40,default= '')
     description = models.TextField(max_length = 600,default = '')
-    pic = models.CharField(max_length=2000,default='',null=True)
+    pic = models.CharField(max_length=2000,default='no image', null=True)
     dateofcreation = models.DateField(default=timezone.now)
     dateofevent = models.DateField(default=timezone.now)
     totalregistered = models.IntegerField(default=0)
