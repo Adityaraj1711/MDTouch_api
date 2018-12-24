@@ -294,8 +294,8 @@ class BloodBankCenter(models.Model):
 
 # D
 class Dispensaries(models.Model):
-    name = models.ForeignKey(Login,default='',on_delete=models.CASCADE)
-    regno = models.CharField(max_length = 10,default = '')
+    username = models.ForeignKey(Login,default='',on_delete=models.CASCADE)
+    name = models.CharField(default='',max_length=80)
     address = models.TextField(max_length=100,default='')
     city = models.CharField(max_length=25,default='')
     state = models.CharField(max_length=20,default='')
