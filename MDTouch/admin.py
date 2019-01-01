@@ -4,18 +4,6 @@
 
 # imports
 from django.contrib import admin
-from .models import Patient
-from .models import Doctor
-from .models import Nurse
-from .models import Administrator
-from .models import Hospital
-from .models import LogInInfo
-from .models import Prescription
-from .models import Appointment
-from .models import Test
-from .models import EmergencyContact
-from .models import Message
-from .models import EmergencyService,Event,Ambulance,BloodBankCenter,Dispensaries,Medicine,Login,BloodBilling
 from .models import *
 
 # model registers
@@ -39,9 +27,16 @@ admin.site.register(Dispensaries)
 admin.site.register(Medicine)
 admin.site.register(BloodBilling)
 admin.site.register(BloodWaste)
+admin.site.register(AmbulanceRequest)
 admin.site.register(AmbulanceBilling)
 admin.site.register(DispensaryBilling)
 admin.site.register(TestCentre)
 admin.site.register(TestServices)
 admin.site.register(Specialization)
 admin.site.register(Qualification)
+admin.site.register(HospitalFacilities)
+admin.site.register(HospitalBilling)
+admin.site.register(Bed)
+admin.site.register(BedBilling)
+admin.site.register(MaintainenceBed)
+

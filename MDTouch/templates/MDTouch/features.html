@@ -1,0 +1,14 @@
+{% block content %}
+  <h2>GitHub API</h2>
+  <form method="get">
+    <input type="text" name="search">
+    <button type="submit">search on github</button>
+  </form>
+  {% if facilities %}
+  {% for a in facilities %}
+    <p><strong>{{ a.hospital }}</strong> has <strong>{{ a.facilities }}</strong> public repositories.</p>
+  {% endfor %}
+  {% else %}
+    <p>Umm, No results found</p>
+  {% endif %}
+{% endblock %}

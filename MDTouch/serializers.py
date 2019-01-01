@@ -151,3 +151,28 @@ class BroadcastSerializer(serializers.ModelSerializer):
         model = Broadcast
         fields = '__all__'
 
+class BedSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Bed
+        fields = '__all__'
+
+class BedBillingSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = BedBilling
+        fields = '__all__'
+
+class HospitalBillingSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = HospitalBilling
+        fields = '__all__'
+
+class MaintainenceBedSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MaintainenceBed
+        fields = '__all__'
+
+class HospitalFacilitiesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = HospitalFacilities
+        fields = '__all__'
+

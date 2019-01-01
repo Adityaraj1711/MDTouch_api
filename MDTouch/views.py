@@ -239,6 +239,7 @@ def home(request):
         utype = "Patient"
         context = {'user': p,
                    'type': utype}
+
         return render(request, 'MDTouch/home.html', context)
 
 
@@ -1186,6 +1187,9 @@ def getevents(request):
     context = {'events':events,'user':patient}
     return render(request,'MDTouch/events.html',context)
 
+
+
+
 ##############################################################################################################
 ##############################################################################################################
 ################################           API and Calls              ########################################
@@ -1218,7 +1222,7 @@ class HospitalDetail(generics.RetrieveUpdateDestroyAPIView):
 class EmergencycontactList(generics.ListCreateAPIView):
     serializer_class = EmergencyContactSerializer
     queryset = EmergencyContact.objects.all()
-    filter_backends = (DjangoFilterBackend,)
+    filter_backends = (DjangoFilterBackend,filters.OrderingFilter,)
     filter_fields = '__all__'
     ordering_fields = '__all__'
 
@@ -1242,7 +1246,7 @@ class PatientDetail(generics.RetrieveUpdateDestroyAPIView):
 class SpecializationList(generics.ListCreateAPIView):
     serializer_class = SpecializationSerializer
     queryset = Specialization.objects.all()
-    filter_backends = (DjangoFilterBackend,)
+    filter_backends = (DjangoFilterBackend,filters.OrderingFilter,)
     filter_fields = '__all__'
     ordering_fields = '__all__'
 
@@ -1254,7 +1258,7 @@ class SpecializationDetail(generics.RetrieveUpdateDestroyAPIView):
 class QualificationList(generics.ListCreateAPIView):
     serializer_class = QualificationSerializer
     queryset = Qualification.objects.all()
-    filter_backends = (DjangoFilterBackend,)
+    filter_backends = (DjangoFilterBackend,filters.OrderingFilter,)
     filter_fields = '__all__'
     ordering_fields = '__all__'
 
@@ -1279,7 +1283,7 @@ class DoctorDetail(generics.RetrieveUpdateDestroyAPIView):
 class AdministratorList(generics.ListCreateAPIView):
     serializer_class = AdministratorSerializer
     queryset = Administrator.objects.all()
-    filter_backends = (DjangoFilterBackend,)
+    filter_backends = (DjangoFilterBackend,filters.OrderingFilter,)
     filter_fields = '__all__'
     ordering_fields = '__all__'
 
@@ -1291,7 +1295,7 @@ class AdministratorDetail(generics.RetrieveUpdateDestroyAPIView):
 class PrescriptionList(generics.ListCreateAPIView):
     serializer_class = PrescriptionSerializer
     queryset = Prescription.objects.all()
-    filter_backends = (DjangoFilterBackend,)
+    filter_backends = (DjangoFilterBackend,filters.OrderingFilter,)
     filter_fields = '__all__'
     ordering_fields = '__all__'
 
@@ -1314,9 +1318,9 @@ class TestFilter(django_filters.rest_framework.FilterSet):
 class TestList(generics.ListCreateAPIView):
     serializer_class = TestSerializer
     queryset = Test.objects.all()
-    filter_backends = (DjangoFilterBackend,)
+    filter_backends = (DjangoFilterBackend,filters.OrderingFilter,)
     filter_fields = '__all__'
-    filter_class = TestFilter
+    #filter_class = TestFilter
     ordering_fields = '__all__'
 
 class TestDetail(generics.RetrieveUpdateDestroyAPIView):
@@ -1337,9 +1341,9 @@ class AppointmentFilter(django_filters.rest_framework.FilterSet):
 class AppointmentList(generics.ListCreateAPIView):
     serializer_class = AppointmentSerializer
     queryset = Appointment.objects.all()
-    filter_backends = (DjangoFilterBackend,)
+    filter_backends = (DjangoFilterBackend,filters.OrderingFilter,)
     filter_fields = '__all__'
-    filter_class = AppointmentFilter
+    #filter_class = AppointmentFilter
     ordering_fields = '__all__'
 
 class AppointmentDetail(generics.RetrieveUpdateDestroyAPIView):
@@ -1359,9 +1363,9 @@ class MessageFilter(django_filters.rest_framework.FilterSet):
 class MessageList(generics.ListCreateAPIView):
     serializer_class = MessageSerializer
     queryset = Message.objects.all()
-    filter_backends = (DjangoFilterBackend,)
+    filter_backends = (DjangoFilterBackend,filters.OrderingFilter,)
     filter_fields = '__all__'
-    filter_class = MessageFilter
+    #filter_class = MessageFilter
     ordering_fields = '__all__'
 
 class MessageDetail(generics.RetrieveUpdateDestroyAPIView):
@@ -1371,7 +1375,7 @@ class MessageDetail(generics.RetrieveUpdateDestroyAPIView):
 class LogInInfoList(generics.ListCreateAPIView):
     serializer_class = LoginInInfoSerializer
     queryset = LogInInfo.objects.all()
-    filter_backends = (DjangoFilterBackend,)
+    filter_backends = (DjangoFilterBackend,filters.OrderingFilter,)
     filter_fields = '__all__'
     ordering_fields = '__all__'
 
@@ -1383,7 +1387,7 @@ class LogInInfoDetail(generics.RetrieveUpdateDestroyAPIView):
 class EmergencyServicesList(generics.ListCreateAPIView):
     serializer_class = EmergencyServiceSerializer
     queryset = EmergencyService.objects.all()
-    filter_backends = (DjangoFilterBackend,)
+    filter_backends = (DjangoFilterBackend,filters.OrderingFilter,)
     filter_fields = '__all__'
     ordering_fields = '__all__'
 
@@ -1394,7 +1398,7 @@ class EmergencyServiceDetail(generics.RetrieveUpdateDestroyAPIView):
 class AmbulanceList(generics.ListCreateAPIView):
     serializer_class = AmbulanceSerializer
     queryset = Ambulance.objects.all()
-    filter_backends = (DjangoFilterBackend,)
+    filter_backends = (DjangoFilterBackend,filters.OrderingFilter,)
     filter_fields = '__all__'
     ordering_fields = '__all__'
 
@@ -1406,7 +1410,7 @@ class AmbulanceDetail(generics.RetrieveUpdateDestroyAPIView):
 class LoginList(generics.ListCreateAPIView):
     serializer_class = LoginSerilizer
     queryset = Login.objects.all()
-    filter_backends = (DjangoFilterBackend,)
+    filter_backends = (DjangoFilterBackend,filters.OrderingFilter,)
     filter_fields = '__all__'
     ordering_fields = '__all__'
 
@@ -1418,7 +1422,7 @@ class LoginDetail(generics.RetrieveUpdateDestroyAPIView):
 class BloodBankCenterList(generics.ListCreateAPIView):
     serializer_class = BloodBankCenterSerializer
     queryset = BloodBankCenter.objects.all()
-    filter_backends = (DjangoFilterBackend,)
+    filter_backends = (DjangoFilterBackend,filters.OrderingFilter,)
     filter_fields = '__all__'
     ordering_fields = '__all__'
 
@@ -1430,7 +1434,7 @@ class BloodBankCenterDetail(generics.RetrieveUpdateDestroyAPIView):
 class DispensaryList(generics.ListCreateAPIView):
     serializer_class = DispensariesSerializer
     queryset = Dispensaries.objects.all()
-    filter_backends = (DjangoFilterBackend,)
+    filter_backends = (DjangoFilterBackend,filters.OrderingFilter,)
     filter_fields = '__all__'
     ordering_fields = '__all__'
 
@@ -1441,9 +1445,9 @@ class DispensaryDetail(generics.RetrieveUpdateDestroyAPIView):
 class EventFilter(django_filters.rest_framework.FilterSet):
     dateofevent = django_filters.DateFromToRangeFilter(field_name="dateofevent",lookup_expr='gt')
     dateofcreation = django_filters.DateFromToRangeFilter(field_name="dateofcreation",lookup_expr='gt')
-
     class Meta:
         model = Event
+        #filter_fields = '__all__'
         fields = [
             'dateofevent','dateofcreation'
         ]
@@ -1451,9 +1455,9 @@ class EventFilter(django_filters.rest_framework.FilterSet):
 class EventList(generics.ListCreateAPIView):
     serializer_class = EventSerializer
     queryset = Event.objects.all()
-    filter_backends = (DjangoFilterBackend,)
+    filter_backends = (DjangoFilterBackend,filters.OrderingFilter,)
     filter_fields = '__all__'
-    filter_class = EventFilter
+    ##filter_class = EventFilter
     ordering_fields = '__all__'
 
 class EventDetail(generics.RetrieveUpdateDestroyAPIView):
@@ -1472,9 +1476,9 @@ class BloodBillingFilter(django_filters.rest_framework.FilterSet):
 class BloodBillingList(generics.ListCreateAPIView):
     queryset = BloodBilling.objects.all()
     serializer_class = BloodBillingSerializer
-    filter_backends = (DjangoFilterBackend,)
+    filter_backends = (DjangoFilterBackend,filters.OrderingFilter,)
     filter_fields = '__all__'
-    filter_class = BloodBillingFilter
+    ##filter_class = BloodBillingFilter
     ordering_fields = '__all__'
 
 class BloodBillingDetail(generics.RetrieveUpdateDestroyAPIView):
@@ -1492,9 +1496,9 @@ class AmbulanceBillingFilter(django_filters.rest_framework.FilterSet):
 class AmbulanceBillingList(generics.ListCreateAPIView):
     serializer_class = AmbulanceBillingSerializer
     queryset = AmbulanceBilling.objects.all()
-    filter_backends = (DjangoFilterBackend,)
+    filter_backends = (DjangoFilterBackend,filters.OrderingFilter,)
     filter_fields = '__all__'
-    filter_class = AmbulanceBillingFilter
+    #filter_class = AmbulanceBillingFilter
     ordering_fields = '__all__'
 
 class AmbulanceBillingDetail(generics.RetrieveUpdateDestroyAPIView):
@@ -1512,9 +1516,9 @@ class BloodWasteFilter(django_filters.rest_framework.FilterSet):
 class BloodWasteList(generics.ListCreateAPIView):
     serializer_class = BloodWasteSerializer
     queryset = BloodWaste.objects.all()
-    filter_backends = (DjangoFilterBackend,)
+    filter_backends = (DjangoFilterBackend,filters.OrderingFilter,)
     filter_fields = '__all__'
-    filter_class = BloodWasteFilter
+    #filter_class = BloodWasteFilter
     ordering_fields = '__all__'
 
 class BloodWasteDetail(generics.RetrieveUpdateDestroyAPIView):
@@ -1534,9 +1538,9 @@ class MedicineFilter(django_filters.rest_framework.FilterSet):
 class MedicineList(generics.ListCreateAPIView):
     serializer_class = MedicineSerializer
     queryset = Medicine.objects.all()
-    filter_backends = (DjangoFilterBackend,)
+    filter_backends = (DjangoFilterBackend,filters.OrderingFilter,)
     filter_fields = '__all__'
-    filter_class = MedicineFilter
+    #filter_class = MedicineFilter
     ordering_fields = '__all__'
 
 class MedicineDetail(generics.RetrieveUpdateDestroyAPIView):
@@ -1555,9 +1559,9 @@ class DispensaryBillingFilter(django_filters.rest_framework.FilterSet):
 class DispensaryBillingList(generics.ListCreateAPIView):
     serializer_class = DispensariesSerializer
     queryset = Dispensaries.objects.all()
-    filter_backends = (DjangoFilterBackend,)
+    filter_backends = (DjangoFilterBackend,filters.OrderingFilter,)
     filter_fields = '__all__'
-    filter_class = DispensaryBillingFilter
+    #filter_class = DispensaryBillingFilter
     ordering_fields = '__all__'
 
 class DispensaryBillingDetail(generics.RetrieveUpdateDestroyAPIView):
@@ -1568,7 +1572,7 @@ class DispensaryBillingDetail(generics.RetrieveUpdateDestroyAPIView):
 class TestServicesList(generics.ListCreateAPIView):
     serializer_class = TestServicesSerializer
     queryset = TestServices.objects.all()
-    filter_backends = (DjangoFilterBackend,)
+    filter_backends = (DjangoFilterBackend,filters.OrderingFilter,)
     filter_fields = '__all__'
 
 class TestServiceDetail(generics.RetrieveUpdateDestroyAPIView):
@@ -1578,7 +1582,7 @@ class TestServiceDetail(generics.RetrieveUpdateDestroyAPIView):
 class TestCentreList(generics.ListCreateAPIView):
     serializer_class = TestCentreSerializer
     queryset = TestCentre.objects.all()
-    filter_backends = (DjangoFilterBackend,)
+    filter_backends = (DjangoFilterBackend,filters.OrderingFilter,)
     filter_fields = '__all__'
     ordering_fields = '__all__'
 
@@ -1597,9 +1601,9 @@ class NoticeFilter(django_filters.rest_framework.FilterSet):
 class NoticeList(generics.ListCreateAPIView):
     serializer_class = NoticeSerializer
     queryset = Notice.objects.all()
-    filter_backends = (DjangoFilterBackend,)
+    filter_backends = (DjangoFilterBackend,filters.OrderingFilter,)
     filter_fields = '__all__'
-    filter_class = NoticeFilter
+    #filter_class = NoticeFilter
     ordering_fields = '__all__'
 
 class NoticeDetail(generics.RetrieveUpdateDestroyAPIView):
@@ -1618,9 +1622,9 @@ class BroadcastFilter(django_filters.rest_framework.FilterSet):
 class BroadcastList(generics.ListCreateAPIView):
     serializer_class = BroadcastSerializer
     queryset = Broadcast.objects.all()
-    filter_backends = (DjangoFilterBackend,)
+    filter_backends = (DjangoFilterBackend,filters.OrderingFilter,)
     filter_fields = '__all__'
-    filter_class = BroadcastFilter
+    #filter_class = BroadcastFilter
     ordering_fields = '__all__'
 
 class BroadcastDetail(generics.RetrieveUpdateDestroyAPIView):
@@ -1631,13 +1635,69 @@ class BroadcastDetail(generics.RetrieveUpdateDestroyAPIView):
 class AmbulanceRequestList(generics.ListCreateAPIView):
     serializer_class = AmbulanceRequestSerializer
     queryset = AmbulanceRequest.objects.all()
-    filter_backends = (DjangoFilterBackend,)
+    filter_backends = (DjangoFilterBackend,filters.OrderingFilter,)
     filter_fields = '__all__'
     ordering_fields = '__all__'
 
 class AmbulanceRequestDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = AmbulanceRequest.objects.all()
     serializer_class = AmbulanceRequestSerializer
+
+class BedList(generics.ListCreateAPIView):
+    serializer_class = BedSerializer
+    queryset = Bed.objects.all()
+    filter_backends = (DjangoFilterBackend,filters.OrderingFilter,)
+    filter_fields = '__all__'
+    ordering_fields = '__all__'
+
+class BedDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Bed.objects.all()
+    serializer_class = BedSerializer
+
+class BedBillingtList(generics.ListCreateAPIView):
+    serializer_class = BedBillingSerializer
+    queryset = BedBilling.objects.all()
+    filter_backends = (DjangoFilterBackend,filters.OrderingFilter,)
+    filter_fields = '__all__'
+    ordering_fields = '__all__'
+
+class BedBillingDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = BedBilling.objects.all()
+    serializer_class = BedBillingSerializer
+
+class MaintainenceBedList(generics.ListCreateAPIView):
+    serializer_class = MaintainenceBedSerializer
+    queryset = MaintainenceBed.objects.all()
+    filter_backends = (DjangoFilterBackend,filters.OrderingFilter,)
+    filter_fields = '__all__'
+    ordering_fields = '__all__'
+
+class MaintainenceBedDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = MaintainenceBed.objects.all()
+    serializer_class = MaintainenceBedSerializer
+
+class HospitalBillingList(generics.ListCreateAPIView):
+    serializer_class = HospitalBillingSerializer
+    queryset = HospitalBilling.objects.all()
+    filter_backends = (DjangoFilterBackend,filters.OrderingFilter,)
+    filter_fields = '__all__'
+    ordering_fields = '__all__'
+
+class HospitalBillingDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = HospitalBilling.objects.all()
+    serializer_class = HospitalBillingSerializer
+
+class HospitalFacilitiesList(generics.ListCreateAPIView):
+    serializer_class = HospitalFacilitiesSerializer
+    queryset = HospitalFacilities.objects.all()
+    filter_backends = (DjangoFilterBackend,filters.OrderingFilter,filters.SearchFilter,)
+    filter_fields = '__all__'
+    ordering_fields = '__all__'
+    search_fields = ('facilities',)
+
+class HospitalFacilitiesDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = HospitalFacilities.objects.all()
+    serializer_class = HospitalFacilitiesSerializer
 
 @csrf_exempt
 def webcarousel_list(request):
@@ -1682,3 +1742,18 @@ def webcarousel_detail(request, pk):
         webcarousel.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+###################################################################################################################
+#############################
+############################################3
+from django.db.models import Q
+def search(request):
+    query = request.GET.get('q')
+    if query is not None:
+        result = HospitalFacilities.objects.filter(Q(facilities__icontains=query))
+        print(result,"sfdgfhffffffffffffffffffffffffffffffffffffffffffffffffffffffff")
+        context = {
+            'items' : result,
+        }
+        return render(request,'MDTouch/search-form.html',context)
+    else:
+        return render(request, 'MDTouch/search-form.html')

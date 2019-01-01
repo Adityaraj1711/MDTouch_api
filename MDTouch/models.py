@@ -66,6 +66,7 @@ class Patient(models.Model):
     lastName = models.CharField(max_length=50, default='')
     number = models.CharField(max_length=13, default='')
     address = models.CharField(max_length=100, default='')
+    city = models.CharField(max_length=80,default='')
     state = models.CharField(max_length=50,default='')
     pin = models.IntegerField(default=0)
     email = models.CharField(max_length=100, default='')
@@ -80,6 +81,11 @@ class Patient(models.Model):
     hospital = models.ForeignKey(Hospital, default=None, blank=True, null=True,on_delete = models.CASCADE)
     password = models.CharField(max_length=25,default='Password123!')
     dept = models.CharField(max_length=2,default='PA')
+    dateofbirth = models.DateTimeField(default=datetime.now())
+    bloodgroup = models.CharField(max_length=4,default='AB+')
+    maritalstatus = models.CharField(max_length=20,default='single')
+    aadharnumber = models.CharField(max_length=20,default='6995-6666-6214')
+    smokinghabit = models.BooleanField(default=False)
     def __str__(self):
         return self.firstName + " " + self.lastName
 
@@ -364,25 +370,26 @@ class DispensaryBilling(models.Model):
     eventid = models.ForeignKey(Event,on_delete=models.CASCADE)
     date = models.DateField(default=timezone.now)
 
-
+#D
 class WebCarousel(models.Model):
     banner = models.CharField(default='Welcome',max_length=30)
     url = models.CharField(default='img not found',max_length=800)
     slug = models.CharField(default='HealthCare',max_length=15)
-
+#D
 class Notice(models.Model):
     username = models.ForeignKey(Login,on_delete=models.CASCADE,null=True)
     host = models.CharField(default="Health Ministry",max_length=100)
     title = models.CharField(default='',max_length=100)
     notice = models.TextField(default='Important notice',max_length=400)
     date = models.DateTimeField(default=datetime.now())
-
+#D
 class Broadcast(models.Model):
     title = models.CharField(default='',max_length=100)
     message = models.CharField(default='',max_length=500)
     date = models.DateTimeField(default=datetime.now())
     sendto = models.IntegerField(default=0)
 
+#D
 class AmbulanceRequest(models.Model):
     patid = models.ForeignKey(Patient,on_delete=models.CASCADE)
     requestaddress = models.CharField(default='',max_length=200)
@@ -398,3 +405,36 @@ class AmbulanceBilling(models.Model):
     kilometers = models.IntegerField(default=0)
     datetime = models.DateTimeField(default=datetime.now())
     requestid = models.ForeignKey(AmbulanceRequest,on_delete=models.CASCADE,null=True)
+
+#D
+class Bed(models.Model):
+    hospitalid = models.ForeignKey(Hospital,on_delete=models.SET_NULL,null=True)
+    status = models.CharField(max_length=4,default='EMP')
+    currentpatient = models.ForeignKey(Patient,on_delete=models.SET_NULL,null=True)
+    type = models.CharField(max_length=25,default='single bed')
+#D
+class BedBilling(models.Model):
+    checkindate = models.DateTimeField(default=datetime.now())
+    checkoutdate = models.DateTimeField(default=datetime.now())
+    patientid = models.ForeignKey(Patient,on_delete=models.SET_NULL,null=True)
+    bedid = models.ForeignKey(Bed,on_delete=models.SET_NULL,null=True)
+#D
+class MaintainenceBed(models.Model):
+    bedid = models.ForeignKey(Bed,on_delete=models.SET_NULL,null=True)
+    startdate = models.DateTimeField(default=datetime.now())
+    enddate  = models.DateTimeField(default=datetime.now())
+    message = models.CharField(default='Under manintainence',max_length=80)
+#D
+class HospitalBilling(models.Model):
+    patientid = models.ForeignKey(Patient,on_delete=models.SET_NULL,null=True)
+    doctorid = models.ForeignKey(Doctor,on_delete=models.SET_NULL,null=True)
+    hospitalid = models.ForeignKey(Hospital,on_delete=models.SET_NULL,null=True)
+    appointmentid = models.ForeignKey(Appointment,on_delete=models.SET_NULL,null=True)
+    prescriptionid = models.ForeignKey(Prescription,on_delete=models.SET_NULL,null=True)
+    datetime = models.DateTimeField(default=datetime.now())
+#D
+class HospitalFacilities(models.Model):
+    hospital = models.ForeignKey(Hospital,on_delete=models.CASCADE,null=True)
+    facilities = models.CharField(max_length=200,default='')
+    def __str__(self):
+        return self.facilities

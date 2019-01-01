@@ -63,6 +63,10 @@ urlpatterns = [
     url(r'^statistics/$', views.statistics, name='statistics'),
     url(r'^logOut/$', views.logOut, name='logOut'),
     url(r'events/$',views.getevents,name='eventinview'),
+    #url(r'searchfacilities/$', views.search_facilities, name='searchfacilities'),
+    url(r'^search/$', views.search, name='query'),
+
+
     ##########API#####################
     path('api/hospital/', views.HospitalList.as_view()),
     path('api/hospital/<int:pk>', views.HospitalDetail.as_view()),
@@ -122,6 +126,16 @@ urlpatterns = [
     path('api/ambulancerequest/<int:pk>', views.AmbulanceRequestDetail.as_view()),
     path('api/broadcast/', views.BroadcastList.as_view()),
     path('api/broadcast/<int:pk>', views.BroadcastDetail.as_view()),
+    path('api/facilities/', views.HospitalFacilitiesList.as_view()),
+    path('api/facilities/<int:pk>', views.HospitalFacilitiesDetail.as_view()),
+    path('api/bed/', views.BedList.as_view()),
+    path('api/bed/<int:pk>', views.BedDetail.as_view()),
+    path('api/bedBilling/', views.BedBillingtList.as_view()),
+    path('api/bedbilling/<int:pk>', views.BedBillingDetail.as_view()),
+    path('api/maintainencebed/', views.MaintainenceBedList.as_view()),
+    path('api/maintainencebed/<int:pk>', views.MaintainenceBedDetail.as_view()),
+    path('api/hospitalbilling/', views.HospitalBillingList.as_view()),
+    path('api/hospitalbilling/<int:pk>', views.HospitalBillingDetail.as_view()),
 
     #url('^api/(?P<destination>.+)/$', views.AmbulanceBillingFilter.as_view()),
 
