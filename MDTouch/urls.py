@@ -64,8 +64,8 @@ urlpatterns = [
     url(r'^logOut/$', views.logOut, name='logOut'),
     url(r'events/$',views.getevents,name='eventinview'),
     #url(r'searchfacilities/$', views.search_facilities, name='searchfacilities'),
+    #url(r'^search/$', views.search2, name='sec'),
     url(r'^search/$', views.search, name='query'),
-
 
     ##########API#####################
     path('api/hospital/', views.HospitalList.as_view()),

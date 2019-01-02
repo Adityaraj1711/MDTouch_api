@@ -1746,11 +1746,15 @@ def webcarousel_detail(request, pk):
 #############################
 ############################################3
 from django.db.models import Q
+from itertools import chain
+#from . import templatetags
 def search(request):
     query = request.GET.get('q')
     if query is not None:
-        result = HospitalFacilities.objects.filter(Q(facilities__icontains=query))
-        print(result,"sfdgfhffffffffffffffffffffffffffffffffffffffffffffffffffffffff")
+        facility = HospitalFacilities.objects.filter(Q(facilities__icontains=query))
+        hospital = Hospital.objects.filter(Q(name__icontains=query)|Q(city__icontains=query))
+        result = chain(facility,hospital)
+        result = sorted(result,key=lambda instance:instance.pk,reverse=True)
         context = {
             'items' : result,
         }

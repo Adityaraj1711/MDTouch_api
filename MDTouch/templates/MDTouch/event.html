@@ -57,6 +57,9 @@
                         <li class="nav-item mr-3 mt-lg-0 mt-3">
                             <a class="nav-link" href="{% url 'MDTouch:about' %}">about</a>
                         </li>
+						<li class="nav-item">
+                            <a class="nav-link" href="{% url 'MDTouch:query' %}">search</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Contact</a>
                         </li>
@@ -96,7 +99,7 @@
                         <div class="img_text_w3ls">
                             <a href="{% url 'MDTouch:eventdetail' event.id %}"><h4>{{event.title}}</h4></a>
                             <span> </span>
-                            <p>{{event.description}}</p>
+                            <p>{{ event.description |truncatewords:5 }}</p>
                         </div>
                     </div>
                 </div>

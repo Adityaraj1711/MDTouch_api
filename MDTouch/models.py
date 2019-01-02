@@ -3,7 +3,6 @@ from datetime import date,datetime
 from django.utils import timezone
 from django.db import models
 
-
 # D
 class Login(models.Model):      #for software
     username = models.CharField(max_length=30, default="", unique=True)
@@ -191,7 +190,6 @@ class Test(models.Model):
     def getDoctor(self, test):
         return test.doctor
 
-
 # This module contains the Appointment model.
 # D
 class Appointment(models.Model):
@@ -216,7 +214,6 @@ class Appointment(models.Model):
 
     def getDoctor(self, appoint):
         return appoint.doctor
-
 
 # This module contains the messaging model
 # D
@@ -432,6 +429,7 @@ class HospitalBilling(models.Model):
     appointmentid = models.ForeignKey(Appointment,on_delete=models.SET_NULL,null=True)
     prescriptionid = models.ForeignKey(Prescription,on_delete=models.SET_NULL,null=True)
     datetime = models.DateTimeField(default=datetime.now())
+
 #D
 class HospitalFacilities(models.Model):
     hospital = models.ForeignKey(Hospital,on_delete=models.CASCADE,null=True)

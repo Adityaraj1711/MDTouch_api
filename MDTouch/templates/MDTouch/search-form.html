@@ -1,13 +1,239 @@
-<form method='GET' action='{% url "MDTouch:query" %}' class="form my-2 my-lg-0 search-form">
-  <div class='input-group'>
-    <input class="form-control" type="text" placeholder="Search" name='q' aria-label="Search" value='{{ request.GET.q }}'>
-    <span class='input-group-btn'>
-        <button class="btn btn-outline-success" type="submit">Search</button>
-    </span>
-    </div>
-</form>
-{% if items %}
-{% for obj in items %}
-  {{obj.facilities}}
-{% endfor %}
-{% endif %}
+<!DOCTYPE html>
+<html lang="en">
+{% load staticfiles %}
+<link rel='shortcut icon' href={% static 'HAccelerator/images/favicon.ico' %} type='images/favicon' />
+
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<head>
+    <title>MDTouch | Search </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script type = "text/javascript" src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <!-- Custom Theme files -->
+    <link href="{% static 'HAccelerator/index/css/bootstrap.css' %}" type="text/css" rel="stylesheet" media="all">
+    <link href="{% static 'HAccelerator/index/css/style.css' %}" type="text/css" rel="stylesheet" media="all">
+    <!-- font-awesome icons -->
+    <link href="{% static 'HAccelerator/index/css/fontawesome-all.min.css' %}" rel="stylesheet">
+    <!-- //Custom Theme files -->
+	<link href="{% static 'HAccelerator/index/css/minimal-slider.css' %}" rel='stylesheet' type='text/css' />
+	<link rel="stylesheet" href="{% static 'HAccelerator/index/css/flexslider.css' %}" type="text/css" media="screen" property="" />
+    <!-- online-fonts -->
+	<link href="http://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800,900" rel="stylesheet"><!-- //online-fonts -->
+</head>
+
+
+<body>
+
+        <!-- header -->
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-light bg-gradient-secondary">
+                <h1>
+                    <a class="navbar-brand text-white" href="index.html">
+                       MDTouch
+                    </a>
+                </h1>
+                <button class="navbar-toggler ml-md-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-lg-auto text-center">
+                        <li class="nav-item mr-3 mt-lg-0 mt-3">
+                            <a class="nav-link" href="{% url 'MDTouch:index' %}">Home
+                            </a>
+                        </li>
+                        <li class="nav-item  mr-3 mt-lg-0 mt-3">
+                            <a class="nav-link" href="{% url 'MDTouch:services' %}">services</a>
+                        </li>
+                        <li class="nav-item mr-3 mt-lg-0 mt-3">
+                            <a class="nav-link" href="{% url 'MDTouch:about' %}">about<span class="sr-only">(current)</span></a>
+                        </li>
+
+                        <li class="nav-item mr-3 mt-lg-0 mt-3">
+                            <a class="nav-link" href="{% url 'MDTouch:event' %}">event</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <br><br><br><br>
+        <!--Nav Ends-->
+<div class="container">
+        <form method='GET' action='{% url "MDTouch:query" %}'>
+        <div class='input-group'>
+          <input class="form-control" type="text" placeholder="Search for facilities" name='q' aria-label="Search" value='{{ request.GET.q }}'>
+          <span class='input-group-btn'>
+              <button class="btn btn-outline-success" type="submit">Search</button>
+          </span>
+          </div>
+        </form>
+
+        {% load class_name %}
+        {% if items %}
+    <h3 class="center">Hospital Facilities</h3>
+  <div  id="fac" class="col s12">
+      <div class="card #b2dfdb teal lighten-4">
+      <table class="striped centered highlight">
+        <thead>
+          <tr>
+              <th>HOSPITAL</th>
+              <th>FACILITIES</th>
+              <th>CITY</th>
+              <th>STATE</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for item in items %}
+          {% with item|class_name as clas %}
+          {% if clas == 'HospitalFacilities' %}
+          <tr>
+            <td>{{item.hospital}}</td>
+            <td>{{item.facilities}}</td>
+            <td>{{item.hospital.city}}</td>
+            <td>{{item.hospital.state}}</td>
+          </tr>
+          {% endif %}
+          {% endwith %}
+        {% endfor %}
+        </tbody>
+        {% endif %}
+      </table>
+        </div>
+      </div>
+          {% if items %}
+
+    <h3 class="center">Hospitals</h3>
+          <div id="hos" class="col s12">
+        <div class="card blue lighten-5">
+        <table class="striped centered highlight">
+        <thead>
+          <tr>
+              <th>HOSPITAL</th>
+              <th>CITY</th>
+              <th>STATE</th>
+              <th>ADDRESS</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for item in items %}
+          {% with item|class_name as clas %}
+          {% if clas == 'Hospital' %}
+          <tr>
+            <td>{{item.name}}</td>
+            <td>{{item.city}}</td>
+            <td>{{item.state}}</td>
+            <td>{{item.address}}</td>
+          </tr>
+          {% endif %}
+          {% endwith %}
+        {% endfor %}
+        </tbody>
+      </table>
+      </div>
+      </div>
+    {% endif %}
+  </div>
+        <br>
+        <br>
+        <br>
+<!-- footer -->
+	<footer class="py-sm-5">
+		<div class="container">
+			<div class="row py-5">
+				<!-- footer grid1 -->
+				<div class="col-lg-3 col-sm-6 fv5-contact">
+					<h2 class="mb-4">Contact Us</h2>
+					<div class="fv3-contact mt-3">
+
+						<span class="fas fa-home mr-2"></span>
+						<p>302-Esteem tower</p>
+					</div>
+					<div class="fv3-contact mt-3">
+						<span class="fas fa-phone-volume mr-2"></span>
+						<p>(+91)800 434 1143</p>
+					</div>
+					<div class="fv3-contact mt-3">
+						<span class="fas fa-envelope-open mr-2"></span>
+						<a href="mailto:example@email.com" class="text-secondary">magnet@example.com</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+
+
+
+
+
+        <!-- js -->
+    <script src="{% static 'HAccelerator/index/js/jquery-2.2.3.min.js' %}"></script>
+    <!-- //js -->
+	<script src="{% static 'HAccelerator/index/js/minimal-slider.js' %}"></script>
+	<!-- //flexSlider (for testimonials) -->
+	<script defer src="{% static 'HAccelerator/index/js/jquery.flexslider.js' %}"></script>
+    <script>
+        $(window).load(function () {
+            $('.flexslider').flexslider({
+                animation: "slide",
+                start: function (slider) {
+                    $('body').removeClass('loading');
+                }
+            });
+        });
+    </script>
+    <!-- script for password match -->
+    <script src="{% static 'HAccelerator/index/js/move-top.js' %}"></script>
+    <script src="{% static 'HAccelerator/index/js/easing.js' %}"></script>
+    <script>
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+
+                $('html,body').animate({
+                    scrollTop: $(this.hash).offset().top
+                }, 1000);
+            });
+        });
+    </script>
+        <script>
+
+  var instance = M.Tabs.init(el, options);
+
+  // Or with jQuery
+
+  $(document).ready(function(){
+    $('.tabs').tabs();
+  });
+
+        </script>
+    <script>
+        $(document).ready(function () {
+            $().UItoTop({
+                easingType: 'easeOutQuart'
+            });
+
+        });
+    </script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="{% static 'HAccelerator/index/js/SmoothScroll.min.js' %}"></script>
+    <script src="{% static 'HAccelerator/index/js/bootstrap.js' %}"></script>
+</body>
+</html>

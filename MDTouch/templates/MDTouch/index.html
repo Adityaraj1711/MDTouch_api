@@ -4,8 +4,6 @@
 
 <link rel='shortcut icon' href={% static 'HAccelerator/images/favicon.ico' %} type='images/favicon' />
 <head>
-		<!-- Global site tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-131122067-1"></script>
 	<script>
 	  window.dataLayer = window.dataLayer || [];
 	  function gtag(){dataLayer.push(arguments);}
@@ -127,6 +125,10 @@ if(typeof _bsa !== 'undefined' && _bsa) {
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'MDTouch:about' %}">about</a>
                         </li>
+						<li class="nav-item">
+                            <a class="nav-link" href="{% url 'MDTouch:query' %}">search</a>
+                        </li>
+
                         <li>
                             <button type="button" class="btn  ml-lg-2 w3ls-btn" data-toggle="modal" aria-pressed="false" data-target="#exampleModal">
                                 Login
