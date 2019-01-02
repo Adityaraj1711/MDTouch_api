@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" readonly="true" id="4707dbbc-d72e-42cd-b90e-2166b487d53f" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/MDTouch/templates/MDTouch/search-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/MDTouch/templates/MDTouch/search-form.html" afterDir="false" />
-    </list>
+    <list default="true" readonly="true" id="4707dbbc-d72e-42cd-b90e-2166b487d53f" name="Default" comment="" />
     <ignored path="HAccelerator.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -43,8 +41,8 @@
       <file leaf-file-name="search-form.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MDTouch/templates/MDTouch/search-form.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="182" column="81" selection-start-line="182" selection-start-column="81" selection-end-line="182" selection-end-column="81" />
+            <state relative-caret-position="17">
+              <caret line="94" column="71" lean-forward="true" selection-start-line="94" selection-start-column="71" selection-end-line="94" selection-end-column="71" />
               <folding>
                 <element signature="n#div#0;n#div#1;n#li#0;n#ul#0;n#body#0;n#html#0;n#!!top" />
                 <element signature="n#div#0;n#div#1;n#li#1;n#ul#0;n#div#0;n#body#0;n#html#0;n#!!top" />
@@ -1027,8 +1025,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MDTouch/templates/MDTouch/search-form.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="182" column="81" selection-start-line="182" selection-start-column="81" selection-end-line="182" selection-end-column="81" />
+        <state relative-caret-position="17">
+          <caret line="94" column="71" lean-forward="true" selection-start-line="94" selection-start-column="71" selection-end-line="94" selection-end-column="71" />
           <folding>
             <element signature="n#div#0;n#div#1;n#li#0;n#ul#0;n#body#0;n#html#0;n#!!top" />
             <element signature="n#div#0;n#div#1;n#li#1;n#ul#0;n#div#0;n#body#0;n#html#0;n#!!top" />

@@ -99,6 +99,9 @@
           </div>
         </form>
  {% load class_name %}
+
+{% if items %}
+
 <br>
   <ul class="collapsible popout">
     <li>
@@ -269,15 +272,9 @@
       </div>
     </li>
   </ul>
+{% else %}
+    <h3>No results</h3>
 
-
-{% if items %}
-<div class="col s12 16 offset-12">
-
-
-
-
-</div>
 {% endif %}
 
   </div>
