@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" readonly="true" id="4707dbbc-d72e-42cd-b90e-2166b487d53f" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/MDTouch/templates/MDTouch/search-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/MDTouch/templates/MDTouch/search-form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MDTouch/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/MDTouch/views.py" afterDir="false" />
     </list>
     <ignored path="HAccelerator.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,11 +28,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MDTouch/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="490">
-              <caret line="1759" selection-start-line="1759" selection-end-line="1759" />
+            <state relative-caret-position="405">
+              <caret line="1754" column="119" lean-forward="true" selection-start-line="1754" selection-start-column="119" selection-end-line="1754" selection-end-column="119" />
               <folding>
                 <element signature="e#233#268#0" expanded="true" />
               </folding>
@@ -40,11 +40,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="search-form.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="search-form.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MDTouch/templates/MDTouch/search-form.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="593">
-              <caret line="150" column="24" selection-start-line="150" selection-start-column="24" selection-end-line="150" selection-end-column="24" />
+              <caret line="150" column="21" selection-start-line="150" selection-start-column="21" selection-end-line="150" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -164,9 +164,9 @@
       <find>filter_class</find>
       <find>filter_fields</find>
       <find>patient</find>
-      <find>mater</find>
       <find>search</find>
       <find>google</find>
+      <find>mater</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -221,11 +221,11 @@
         <option value="$PROJECT_DIR$/MDTouch/templatetags/__init__.pyi" />
         <option value="$PROJECT_DIR$/MDTouch/templatetags/class_name.py" />
         <option value="$PROJECT_DIR$/MDTouch/templatetags/custom_tags.py" />
-        <option value="$PROJECT_DIR$/MDTouch/views.py" />
         <option value="$PROJECT_DIR$/MDTouch/templates/MDTouch/about.html" />
         <option value="$PROJECT_DIR$/MDTouch/templates/MDTouch/services.html" />
         <option value="$PROJECT_DIR$/MDTouch/templates/MDTouch/event.html" />
         <option value="$PROJECT_DIR$/MDTouch/templates/MDTouch/search-form.html" />
+        <option value="$PROJECT_DIR$/MDTouch/views.py" />
       </list>
     </option>
   </component>
@@ -983,16 +983,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MDTouch/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="490">
-          <caret line="1759" selection-start-line="1759" selection-end-line="1759" />
-          <folding>
-            <element signature="e#233#268#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/MDTouch/templates/MDTouch/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="166">
@@ -1031,7 +1021,17 @@
     <entry file="file://$PROJECT_DIR$/MDTouch/templates/MDTouch/search-form.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="593">
-          <caret line="150" column="24" selection-start-line="150" selection-start-column="24" selection-end-line="150" selection-end-column="24" />
+          <caret line="150" column="21" selection-start-line="150" selection-start-column="21" selection-end-line="150" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MDTouch/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="1754" column="119" lean-forward="true" selection-start-line="1754" selection-start-column="119" selection-end-line="1754" selection-end-column="119" />
+          <folding>
+            <element signature="e#233#268#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

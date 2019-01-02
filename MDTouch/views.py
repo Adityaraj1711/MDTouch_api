@@ -1752,7 +1752,7 @@ def search(request):
     query = request.GET.get('q')
     if query is not None:
         facility = HospitalFacilities.objects.filter(Q(facilities__icontains=query))
-        hospital = Hospital.objects.filter(Q(name__icontains=query)|Q(city__icontains=query))
+        hospital = Hospital.objects.filter(Q(name__icontains=query)|Q(city__icontains=query)|Q(state__icontains=query))
         result = chain(facility,hospital)
         result = sorted(result,key=lambda instance:instance.pk,reverse=True)
         context = {
