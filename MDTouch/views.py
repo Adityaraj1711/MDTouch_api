@@ -1750,10 +1750,13 @@ from itertools import chain
 #from . import templatetags
 def search(request):
     query = request.GET.get('q')
-    if query is not None:
+    print(query,"fffffffffffffffffffffffuuuuuuuuuuuuuuuuuuuuuuuuuuuubbbbbbbbbbbbbbbbbbbbbbb")
+    if query is not None and not (query == '' or query==' ' or query=='   '):
         facility = HospitalFacilities.objects.filter(Q(facilities__icontains=query))
         hospital = Hospital.objects.filter(Q(name__icontains=query)|Q(city__icontains=query)|Q(state__icontains=query))
-        result = chain(facility,hospital)
+        emergencyservices = EmergencyService.objects.filter(Q(name__icontains=query)|Q(city__icontains=query)|Q(state__icontains=query))
+        bloodbanks = BloodBankCenter.objects.filter(Q(name__icontains=query)|Q(city__icontains=query)|Q(state__icontains=query))
+        result = chain(facility,hospital,emergencyservices,bloodbanks)
         result = sorted(result,key=lambda instance:instance.pk,reverse=True)
         context = {
             'items' : result,

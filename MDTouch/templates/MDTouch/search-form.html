@@ -32,6 +32,19 @@
     <!-- online-fonts -->
 	<link href="http://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
     <link href="http://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800,900" rel="stylesheet"><!-- //online-fonts -->
+    <script>$(document).ready(function() {
+
+    // DEPENDENCY: https://github.com/flatlogic/bootstrap-tabcollapse
+    $('.content-tabs').tabCollapse();
+
+    // initialize tab function
+    $('.nav-tabs a').click(function(e) {
+        e.preventDefault();
+        $(this).tab('show');
+    });
+
+});</script>
+
 </head>
 
 
@@ -83,11 +96,16 @@
           </span>
           </div>
         </form>
+ {% load class_name %}
+<br>
+{% if items %}
+<div class="col s12 16 offset-12">
 
-        {% load class_name %}
-        {% if items %}
+
+  <div id="faci" class="">
+              {% if items %}
     <h3 class="center">Hospital Facilities</h3>
-  <div  id="fac" class="col s12">
+  <div  id="" class="">
       <div class="card #b2dfdb teal lighten-4">
       <table class="striped centered highlight">
         <thead>
@@ -116,10 +134,90 @@
       </table>
         </div>
       </div>
-          {% if items %}
+  </div>
+  <div id="emer" class="">
+      {% if items %}
+    <h3 class="center">Emergency service providers</h3>
+  <div  id="" class="">
+      <div class="card #b2dfdb teal lighten-4">
+      <table class="striped centered highlight">
+        <thead>
+          <tr>
+              <th>NAME</th>
+              <th>ADDRESS</th>
+              <th>CITY</th>
+              <th>STATE</th>
+              <th>CONTACT</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for item in items %}
+          {% with item|class_name as clas %}
+          {% if clas == 'EmergencyService' %}
+          <tr>
+            <td>{{item.name}}</td>
+            <td>{{item.address}}</td>
+            <td>{{item.city}}</td>
+            <td>{{item.state}}</td>
+            <td>{{item.contact}}</td>
+          </tr>
+          {% endif %}
+          {% endwith %}
+        {% endfor %}
+        </tbody>
+        {% endif %}
+      </table>
+        </div>
+      </div>
+  </div>
+  <div id="bbc" class="">
+    {% if items %}
+    <h3 class="center">Blood Bank centers</h3>
+  <div  id="fac" class="">
+      <div class="card #b2dfdb teal lighten-4">
+      <table class="striped centered highlight responsive-table">
+        <thead>
+          <tr>
+              <th>NAME</th>
+              <th>CITY</th>
+              <th>STATE</th>
+              <th>CONTACT</th>
+
+              <th>A+</th>
+              <th>A-</th>
+              <th>B+</th>
+              <th>B-</th>
+              <th>AB+</th>
+              <th>AB-</th>
+              <th>O+</th>
+              <th>O-</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for item in items %}
+          {% with item|class_name as clas %}
+          {% if clas == 'BloodBankCenter' %}
+          <tr>
+            <td>{{item.name}}</td>
+            <td>{{item.city}}</td>
+            <td>{{item.state}}</td>
+            <td>{{item.contact}}</td>
+            <td>{{item.quantityAp}}</td><td>{{item.quantityAm}}</td><td>{{item.quantityBp}}</td><td>{{item.quantityBm}}</td><td>{{item.quantityABp}}</td><td>{{item.quantityABm}}</td><td>{{item.quantityOp}}</td><td>{{item.quantityOm}}</td>
+          </tr>
+          {% endif %}
+          {% endwith %}
+        {% endfor %}
+        </tbody>
+        {% endif %}
+      </table>
+        </div>
+      </div>
+  </div>
+  <div id="hos" class="">
+      {% if items %}
 
     <h3 class="center">Hospitals</h3>
-          <div id="hos" class="col s12">
+    <div id="hos" class="">
         <div class="card blue lighten-5">
         <table class="striped centered highlight">
         <thead>
@@ -150,6 +248,11 @@
     {% else %}
     <h3 class="center">No results found</h3>
     {% endif %}
+  </div>
+
+</div>
+{% endif %}
+
   </div>
         <br>
         <br>
@@ -215,11 +318,6 @@
         });
     </script>
         <script>
-
-  var instance = M.Tabs.init(el, options);
-
-  // Or with jQuery
-
   $(document).ready(function(){
     $('.tabs').tabs();
   });
