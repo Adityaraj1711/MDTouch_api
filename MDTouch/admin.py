@@ -39,4 +39,6 @@ admin.site.register(HospitalBilling)
 admin.site.register(Bed)
 admin.site.register(BedBilling)
 admin.site.register(MaintainenceBed)
-
+admin.site.register(Disease)
+admin.site.register(DiseaseCured)
+admin.site.register(DiseaseSearch)

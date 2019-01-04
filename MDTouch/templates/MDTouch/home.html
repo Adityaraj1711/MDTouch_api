@@ -37,12 +37,12 @@
 <!-- Overlay For Sidebars -->
 <div class="overlay"></div>
 <div id="morphsearch" class="morphsearch">
-    <form class="morphsearch-form" method="">
+    <form class="morphsearch-form" method='GET' action='{% url "MDTouch:query" %}'>
         <div class="form-group m-0">
-            <input value="" type="search" placeholder="Explore MDTouch Events..." class="form-control morphsearch-input" name="search" />
+            <input type="text" placeholder="Explore MDTouch ..." class="form-control morphsearch-input" name='q' aria-label="Search" value='{{ request.GET.q }}' />
             <button class="morphsearch-submit" type="submit">Search</button>
         </div>
-    </form>   
+    </form>
     <span class="morphsearch-close"></span>
 </div>
 <nav class="navbar clearHeader">

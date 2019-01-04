@@ -436,3 +436,28 @@ class HospitalFacilities(models.Model):
     facilities = models.CharField(max_length=200,default='')
     def __str__(self):
         return self.facilities
+
+# D
+class Disease(models.Model):
+    disease = models.CharField(max_length=100,default='')
+    def __str__(self):
+        return self.disease
+
+# D
+class DiseaseCured(models.Model):
+    disease = models.ForeignKey(Disease,on_delete=models.CASCADE)
+    patientid = models.ForeignKey(Patient,on_delete=models.CASCADE)
+    state = models.CharField(default='',max_length=100)
+    city = models.CharField(default='',max_length=100)
+    datetime = models.DateTimeField(default=datetime.now())
+    def __str__(self):
+        return self.city
+
+# D
+class DiseaseSearch(models.Model):
+    disease = models.ForeignKey(Disease,on_delete=models.CASCADE)
+    state = models.CharField(default='',max_length=100)
+    city = models.CharField(default='',max_length=100)
+    datetime = models.DateTimeField(default=datetime.now())
+    def __str__(self):
+        return self.city

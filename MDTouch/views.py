@@ -54,6 +54,11 @@ class IndexView(generic.ListView):
     def get_queryset(self):
         return LogInInfo.objects.order_by('-username')
 
+    def get_context_data(self, **kwargs):
+        context = super(IndexView, self).get_context_data(**kwargs)
+        context['carousel'] = WebCarousel.objects.all()
+        return context
+
 def aboutpage(request):
     return render(request,'MDTouch/about.html')
 
@@ -1532,15 +1537,15 @@ class MedicineFilter(django_filters.rest_framework.FilterSet):
     class Meta:
         model = Medicine
         fields = [
-            'manufacturedate','expirydate',
+            'manufacturedate','expirydate','name','price','quantity'
         ]
 
 class MedicineList(generics.ListCreateAPIView):
     serializer_class = MedicineSerializer
     queryset = Medicine.objects.all()
     filter_backends = (DjangoFilterBackend,filters.OrderingFilter,)
-    filter_fields = '__all__'
-    #filter_class = MedicineFilter
+    #filter_fields = '__all__'
+    filter_class = MedicineFilter
     ordering_fields = '__all__'
 
 class MedicineDetail(generics.RetrieveUpdateDestroyAPIView):
@@ -1699,6 +1704,62 @@ class HospitalFacilitiesDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = HospitalFacilities.objects.all()
     serializer_class = HospitalFacilitiesSerializer
 
+
+class DiseaseList(generics.ListCreateAPIView):
+    serializer_class = DiseaseSerializer
+    queryset = Disease.objects.all()
+    filter_backends = (DjangoFilterBackend,filters.OrderingFilter,filters.SearchFilter,)
+    filter_fields = '__all__'
+    ordering_fields = '__all__'
+    search_fields = ('disease',)
+
+class DiseaseDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Disease.objects.all()
+    serializer_class = DiseaseSerializer
+
+class DiseaseSearchFilter(django_filters.rest_framework.FilterSet):
+    date = django_filters.DateFromToRangeFilter(field_name="datetime",lookup_expr='gt')
+
+    class Meta:
+        model = DiseaseSearch
+        fields = [
+            'datetime',
+        ]
+
+
+
+class DiseaseSearchList(generics.ListCreateAPIView):
+    serializer_class = DiseaseSearchSerializer
+    queryset = DiseaseSearch.objects.all()
+    filter_backends = (DjangoFilterBackend,filters.OrderingFilter,filters.SearchFilter,)
+    filter_class = DiseaseSearchFilter
+    ordering_fields = '__all__'
+
+class DiseaseSearchDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = DiseaseSearch.objects.all()
+    serializer_class = DiseaseSearchSerializer
+
+
+class DiseaseCuredFilter(django_filters.rest_framework.FilterSet):
+    date = django_filters.DateFromToRangeFilter(field_name="datetime",lookup_expr='gt')
+
+    class Meta:
+        model = DiseaseCured
+        fields = [
+            'datetime','state'
+        ]
+class DiseaseCuredList(generics.ListCreateAPIView):
+    serializer_class = DiseaseCuredSerializer
+    queryset = DiseaseCured.objects.all()
+    filter_backends = (DjangoFilterBackend,filters.OrderingFilter,filters.SearchFilter,)
+    filter_class = DiseaseCuredFilter
+    ordering_fields = '__all__'
+
+class DiseaseCuredDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = DiseaseCured.objects.all()
+    serializer_class = DiseaseCuredSerializer
+
+
 @csrf_exempt
 def webcarousel_list(request):
     """
@@ -1719,9 +1780,6 @@ def webcarousel_list(request):
 
 @api_view(['GET', 'PUT', 'DELETE'])
 def webcarousel_detail(request, pk):
-    """
-    Retrieve, update or delete a code snippet.
-    """
     try:
         webcarousel = WebCarousel.objects.get(pk=pk)
     except WebCarousel.DoesNotExist:
@@ -1742,15 +1800,12 @@ def webcarousel_detail(request, pk):
         webcarousel.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-###################################################################################################################
-#############################
+
 ############################################3
 from django.db.models import Q
 from itertools import chain
-#from . import templatetags
 def search(request):
     query = request.GET.get('q')
-    print(query,"fffffffffffffffffffffffuuuuuuuuuuuuuuuuuuuuuuuuuuuubbbbbbbbbbbbbbbbbbbbbbb")
     if query is not None and not (query == '' or query==' ' or query=='   '):
         facility = HospitalFacilities.objects.filter(Q(facilities__icontains=query))
         hospital = Hospital.objects.filter(Q(name__icontains=query)|Q(city__icontains=query)|Q(state__icontains=query))

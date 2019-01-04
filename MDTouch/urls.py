@@ -136,6 +136,12 @@ urlpatterns = [
     path('api/maintainencebed/<int:pk>', views.MaintainenceBedDetail.as_view()),
     path('api/hospitalbilling/', views.HospitalBillingList.as_view()),
     path('api/hospitalbilling/<int:pk>', views.HospitalBillingDetail.as_view()),
+    path('api/disease/', views.DiseaseList.as_view()),
+    path('api/disease/<int:pk>', views.DiseaseDetail.as_view()),
+    path('api/diseasesearch/', views.DiseaseSearchList.as_view()),
+    path('api/diseasesearch/<int:pk>', views.DiseaseSearchDetail.as_view()),
+    path('api/diseasecured/', views.DiseaseCuredList.as_view()),
+    path('api/diseasecured/<int:pk>', views.DiseaseCuredDetail.as_view()),
 
     #url('^api/(?P<destination>.+)/$', views.AmbulanceBillingFilter.as_view()),
 

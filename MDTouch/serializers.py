@@ -176,3 +176,18 @@ class HospitalFacilitiesSerializer(serializers.ModelSerializer):
         model = HospitalFacilities
         fields = '__all__'
 
+class DiseaseSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Disease
+        fields = '__all__'
+
+class DiseaseSearchSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = DiseaseSearch
+        fields = '__all__'
+
+class DiseaseCuredSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = DiseaseCured
+        fields = '__all__'
+
