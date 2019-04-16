@@ -82,13 +82,13 @@ STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
 
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
-
+# database set to postgres local host
 #DATABASES = {
 #    'default': {
 #        'ENGINE': 'django.db.backends.postgresql_psycopg2',
 #        'NAME': 'MDTouch',
-#        'USER': 'postgres',
-#        'PASSWORD': 'aditya123',
+#        'USER': '-----',   # fill your user and password.
+#        'PASSWORD': '------',
 #       'HOST': '127.0.0.1',
 #        'PORT': '5432',
 #    }
